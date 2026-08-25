@@ -206,6 +206,19 @@ body { background: var(--hg-black); }
   font-family: var(--sc-font-text); font-size: 0.78rem; line-height: 1.45;
   color: #A9B4AC; margin: 0; max-width: 22ch;
 }
+/* Says what this is to anyone the link gets forwarded to. Quiet, but present
+   on every screen, because the page otherwise carries real branding. Kept
+   OUTSIDE .hg-index: that element has a backdrop-filter, which makes it a
+   containing block for position:fixed children. */
+.hg-draft {
+  position: fixed; top: 0; right: 0; z-index: calc(var(--sc-z-chrome) + 1);
+  font-family: var(--sc-font-text); font-weight: 600;
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--hg-lime); margin: 0;
+  padding: 0.4rem 0.6rem; background: var(--hg-black);
+  border-end-start-radius: var(--sc-r-sm);
+  pointer-events: none;
+}
 .hg-index__title {
   font-family: var(--sc-font-text); font-weight: 600;
   font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
@@ -428,6 +441,8 @@ body.hg-wall .hg-index { opacity: 0; transform: translateX(-100%); pointer-event
 <!-- ═══ CHROME · the living client index. It is the nav (every row jumps) and
          it is the signature move: rows stamp as you pass their film and stay
          stamped, so the roster is complete by the time you reach the end. -->
+<p class="hg-draft">Concept draft. Not the live site.</p>
+
 <nav class="hg-index" id="index" aria-label="Clients">
   <div class="hg-index__head">
     <svg class="hg-logo" viewBox="0 0 1000 300" role="img" aria-label="Homeground">
@@ -737,7 +752,10 @@ body.hg-wall .hg-index { opacity: 0; transform: translateX(-100%); pointer-event
       <div class="hg-close__grid" data-sc-in data-sc-stagger="70">
         <div class="hg-close__cell">
           <p class="hg-meta">New business</p>
-          <p class="hg-close__val"><a href="mailto:hello@homeground.london">hello@homeground.london</a></p>
+          <!-- No real new-business address was verifiable, and an invented one
+               on a contact plate is a liability. Marked as a field, like the
+               unconfirmed project titles. -->
+          <p class="hg-close__val">Email address to confirm</p>
         </div>
         <div class="hg-close__cell">
           <p class="hg-meta">Studio</p>
