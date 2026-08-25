@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Homeground · creative for sport and sport culture</title>
+<meta name="description" content="Homeground is a creative agency for brands in sport, sponsorship and youth culture. Selected work for Beats by Dre, adidas Originals, Manchester United, Callaway, Sky Sports, Aston Villa and Arsenal.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%237CEE00'/><text x='16' y='23' font-family='Archivo,sans-serif' font-size='16' font-weight='900' text-anchor='middle' fill='%230B0D0B'>HG</text></svg>">
+<link rel="stylesheet" href="scrollcraft.css">
+<link rel="stylesheet" href="type.css">
+<style>
+/* ─────────────────────────────────────────────────────────────────────────
+   Homeground. Gallery/catalog grammar.
+   Six colour roles. One accent hue (the brand lime) at three lightnesses,
+   because the page hard-cuts between the lime field, black and bone and no
+   single stop clears 4.5:1 on all three.
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+  --sc-canvas:     #0B0D0B;
+  --sc-surface:    #141814;
+  --sc-ink:        #F2F1EB;
+  --sc-ink-soft:   #8E9A91;
+  --sc-accent:     #7CEE00;
+  --sc-accent-ink: #0B0D0B;
+  --sc-font-display: "Archivo", system-ui, sans-serif;
+  --sc-font-text:    "Geist", system-ui, sans-serif;
+  --sc-font-mark:    "Graduate", "Archivo", serif;
+
+  /* The brand lime, from the supplied logo. One hue, three lightnesses,
+     because the page hard-cuts between the lime field, black and bone and no
+     single stop clears 4.5:1 on all three. */
+  --hg-lime:      #7CEE00;  /* field, and accent on black — 13.1:1 on black */
+  --hg-lime-deep: #3D7300;  /* accent on bone             —  4.9:1 on bone  */
+  --hg-black:     #0B0D0B;
+  --hg-bone:      #EEEDE7;
+
+  --hg-index-w: 15.5rem;
+  --hg-bar-h: 0px;
+
+  /* Archivo at this width axis runs ~0.92em per cap, so a vw-based display
+     size guesses wrong and overruns the column the moment the fixed index
+     takes 15.5rem out of the viewport. Size the one-word display type to the
+     space it actually has instead. */
+  --hg-fit: calc((100vw - var(--hg-index-w) - 5rem) / 9.2);
+}
+
+/* ── Grounds. Hard cuts, not drift: on a catalogue several short acts are
+      part-way through at once, so an interpolated ground arrives late. ──── */
+.hg-plate { background: var(--hg-black); color: var(--sc-ink); position: relative; }
+.hg-plate--bone {
+  background: var(--hg-bone);
+  /* `color` inherits as a computed value, so redefining the token alone does
+     not re-ink text that already resolved on <body>. Restate it. */
+  --sc-ink: #0B0D0B; --sc-ink-soft: #545A52; --sc-accent: var(--hg-lime-deep);
+  color: var(--sc-ink);
+}
+.hg-plate--lime {
+  background: var(--hg-lime);
+  --sc-ink: #0B0D0B; --sc-ink-soft: #2E5A00; --sc-accent: #0B0D0B;
+  color: var(--sc-ink);
+}
+body { background: var(--hg-black); }
+
+/* ── Type ─────────────────────────────────────────────────────────────── */
+/* ── The mark. The supplied logo is an arched collegiate wordmark in black.
+      Reproduced as SVG text on an arc (real markup, selectable and sharp at
+      any size) rather than baked into an image. Drop a real assets/logo.svg
+      in and swap the three .hg-logo blocks for an <img> if preferred. ───── */
+.hg-logo { display: block; width: 100%; height: auto; }
+/* Graduate is lighter than the supplied mark, so bulk the strokes with a
+   painted-under outline rather than faking a bolder face. */
+.hg-logo text {
+  font-family: var(--sc-font-mark); font-size: 134px;
+  fill: currentColor; stroke: currentColor; stroke-width: 3.5;
+  paint-order: stroke fill; stroke-linejoin: round;
+}
+.hg-sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* The client name. This is the fix for "clients sit in a corner, very small":
+   it spans the whole plate above the work, at display scale. */
+.hg-client {
+  font-family: var(--sc-font-display);
+  font-weight: 800; font-stretch: 118%;
+  font-size: clamp(2.2rem, 5.7vw, 5.2rem);
+  line-height: 0.9; letter-spacing: -0.035em;
+  text-transform: uppercase; margin: 0;
+  text-wrap: balance;
+}
+.hg-project {
+  font-family: var(--sc-font-text); font-weight: 500;
+  font-size: clamp(1.05rem, 1.5vw, 1.45rem);
+  line-height: 1.4; letter-spacing: -0.01em;
+  margin: 0; max-width: min(30ch, 100%); text-wrap: pretty;
+}
+.hg-meta {
+  font-family: var(--sc-font-text); font-weight: 500;
+  font-size: 0.735rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--sc-ink-soft); margin: 0;
+}
+.hg-meta--accent { color: var(--sc-accent); }
+.hg-rule { height: 2px; background: var(--sc-accent); border: 0; margin: 0 0 var(--sc-3); width: 3.5rem; }
+
+/* ── An object plate. The label schema is identical on every object, which is
+      what makes this a collection rather than a run of sections. ────────── */
+.hg-object { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center;
+  padding-block: clamp(3.5rem, 8vh, 6rem); }
+.hg-object__inner {
+  width: min(100% - var(--sc-gutter) * 2, 92rem); margin-inline: auto;
+  display: grid;
+  /* The work gets the room: the frame runs to roughly three quarters of the
+     plate, and the label is a caption column beside it rather than an equal
+     partner. "Make sure the campaigns aren't too squished." */
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 2fr);
+  grid-template-areas: "name name" "label media";
+  column-gap: clamp(1.6rem, 3.2vw, 3.2rem);
+  row-gap: clamp(1.6rem, 3.5vh, 2.8rem);
+  align-items: start;
+}
+.hg-object--flip .hg-object__inner {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 0.72fr);
+  grid-template-areas: "name name" "media label";
+}
+.hg-object__name  { grid-area: name; }
+/* Marquee scale for the headline work. Same label schema, more room. */
+.hg-object--wide .hg-object__inner {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "name" "media" "label";
+}
+.hg-object--wide .hg-frame { aspect-ratio: 2 / 1; }
+.hg-object--wide .hg-object__label {
+  align-content: start; grid-auto-flow: column; grid-auto-columns: max-content;
+  justify-content: start; align-items: baseline;
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+}
+.hg-object--wide .hg-label__foot { grid-auto-flow: column; grid-auto-columns: max-content;
+  column-gap: clamp(1.5rem, 4vw, 4rem); margin-top: 0; }
+/* bottom-aligned, so the credit sits on the foot of the frame like a caption */
+.hg-object__label { grid-area: label; display: grid; gap: var(--sc-3);
+  align-content: end; align-self: stretch; }
+.hg-object__media { grid-area: media; }
+.hg-object__label .hg-label__foot { display: grid; gap: var(--sc-2); margin-top: var(--sc-2); }
+
+/* ── The media frame and its honest empty state ───────────────────────── */
+.hg-frame {
+  position: relative; aspect-ratio: 16 / 9; width: 100%;
+  overflow: hidden; background: var(--sc-surface);
+  border-radius: var(--sc-r-md);
+  box-shadow: 0 1.6rem 3.4rem -1.2rem var(--sc-shadow-color);
+}
+.hg-plate--bone .hg-frame { background: #DEDDD5; }
+.hg-frame__img, .hg-frame__vid {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block; z-index: 2;
+}
+/* Not a fake screenshot: it states what belongs here and under what filename. */
+.hg-frame__slot {
+  position: absolute; inset: 0; z-index: 1;
+  display: grid; align-content: space-between; justify-items: start;
+  padding: clamp(1rem, 2.2vw, 1.9rem);
+  background:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--sc-ink) 5%, transparent) 0 1px, transparent 1px 4.5rem),
+    repeating-linear-gradient(0deg,  color-mix(in srgb, var(--sc-ink) 5%, transparent) 0 1px, transparent 1px 4.5rem);
+}
+.hg-frame__slot::after {
+  content: ""; position: absolute; inset: 0;
+  border: 1px dashed color-mix(in srgb, var(--sc-ink) 22%, transparent);
+  border-radius: inherit; pointer-events: none;
+}
+.hg-slot__tag {
+  font-family: var(--sc-font-text); font-weight: 600;
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--sc-accent);
+}
+.hg-slot__file {
+  font-family: var(--sc-font-mono); font-size: 0.72rem;
+  color: var(--sc-ink-soft); word-break: break-all;
+}
+/* Deliberately does NOT repeat the client name: the name is already set at
+   display scale above the frame, and echoing it read as a doubled heading. */
+.hg-slot__ghost {
+  font-family: var(--sc-font-display); font-weight: 900; font-stretch: 125%;
+  font-size: clamp(1.4rem, 3.4vw, 2.6rem); line-height: 0.9;
+  text-transform: uppercase; letter-spacing: -0.03em;
+  color: color-mix(in srgb, var(--sc-ink) 12%, transparent);
+  align-self: center;
+}
+
+/* ── Chrome: the living client index (the signature move) ─────────────── */
+.hg-index {
+  position: fixed; inset-block: 0; inset-inline-start: 0; width: var(--hg-index-w);
+  z-index: var(--sc-z-chrome);
+  display: flex; flex-direction: column; gap: var(--sc-4);
+  padding: var(--sc-6) var(--sc-4);
+  background: color-mix(in srgb, var(--hg-black) 88%, transparent);
+  backdrop-filter: blur(14px);
+  border-inline-end: 1px solid color-mix(in srgb, #F2F1EB 12%, transparent);
+  transition: opacity 300ms var(--sc-ease-out), transform 300ms var(--sc-ease-out);
+}
+.hg-index__head { display: grid; gap: var(--sc-2); }
+.hg-index__head .hg-logo { color: var(--hg-lime); width: 100%; }
+.hg-logo--foot { width: 9rem; }
+.hg-index__standing {
+  font-family: var(--sc-font-text); font-size: 0.78rem; line-height: 1.45;
+  color: #A9B4AC; margin: 0; max-width: 22ch;
+}
+.hg-index__title {
+  font-family: var(--sc-font-text); font-weight: 600;
+  font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: #7C877F; margin: 0;
+}
+.hg-index__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
+.hg-index__link {
+  display: grid; gap: 0.15rem; padding: 0.44rem 0 0.44rem 0.7rem;
+  text-decoration: none; color: inherit;
+  border-inline-start: 2px solid color-mix(in srgb, #F2F1EB 14%, transparent);
+  transition: border-color 200ms var(--sc-ease-out), background-color 200ms var(--sc-ease-out);
+}
+.hg-index__name {
+  font-family: var(--sc-font-display); font-weight: 700; font-stretch: 112%;
+  font-size: 0.95rem; line-height: 1.1; letter-spacing: -0.015em;
+  text-transform: uppercase; color: #77837A;
+  transition: color 240ms var(--sc-ease-out);
+}
+.hg-index__made {
+  font-family: var(--sc-font-text); font-size: 0.66rem; line-height: 1.25;
+  color: #77837A; opacity: 0; max-height: 0; overflow: hidden;
+  transition: opacity 300ms var(--sc-ease-out), max-height 300ms var(--sc-ease-out);
+}
+/* stamped as you pass it, and it stays stamped */
+.hg-index__row.is-lit .hg-index__link { border-inline-start-color: var(--hg-lime); }
+.hg-index__row.is-lit .hg-index__name { color: #F2F1EB; }
+.hg-index__row.is-lit .hg-index__made { opacity: 1; max-height: 3rem; color: #9BA79E; }
+.hg-index__row.is-here .hg-index__link { background: color-mix(in srgb, var(--hg-lime) 12%, transparent); }
+.hg-index__row.is-here .hg-index__name { color: var(--hg-lime); }
+.hg-index__link:hover .hg-index__name { color: #F2F1EB; }
+.hg-index__link:focus-visible { outline: 2px solid var(--hg-lime); outline-offset: 2px; }
+/* during the peak the margin index has become the wall, so it stands down */
+body.hg-wall .hg-index { opacity: 0; transform: translateX(-100%); pointer-events: none; }
+
+.hg-index__cta {
+  margin-top: auto;
+  font-family: var(--sc-font-text); font-weight: 600; font-size: 0.8rem;
+  color: var(--hg-black); background: var(--hg-lime);
+  text-decoration: none; text-align: center;
+  padding: 0.62rem 0.9rem; border-radius: var(--sc-r-sm);
+  transition: transform 140ms var(--sc-ease-out), filter 140ms var(--sc-ease-out);
+}
+.hg-index__cta:hover { filter: brightness(1.08); }
+.hg-index__cta:active { transform: translateY(1px); }
+.hg-index__cta:focus-visible { outline: 2px solid var(--hg-lime); outline-offset: 3px; }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hg-hero { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center;
+  padding-block: clamp(4rem, 10vh, 8rem); }
+.hg-hero__inner {
+  width: min(100% - var(--sc-gutter) * 2, 92rem); margin-inline: auto;
+  display: grid; gap: clamp(1.4rem, 3.5vh, 2.6rem); justify-items: start;
+}
+/* the logo at composition scale: this IS the hero, per the brand asset */
+.hg-hero__logo { width: min(100%, 54rem); margin: 0; }
+.hg-hero__line {
+  font-family: var(--sc-font-text); font-size: clamp(1.05rem, 1.7vw, 1.45rem);
+  line-height: 1.5; color: #17330A; margin: 0; max-width: min(48ch, 100%); text-wrap: pretty;
+}
+.hg-hero__line b { color: var(--hg-black); font-weight: 600; }
+
+/* ── Capabilities: catalogued in the same schema as the work ──────────── */
+.hg-caps { padding-block: clamp(5rem, 13vh, 9rem); }
+.hg-caps__inner { width: min(100% - var(--sc-gutter) * 2, 92rem); margin-inline: auto;
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2.4rem, 6vh, 4rem); }
+.hg-caps__head { display: grid; max-width: 40ch; }
+.hg-caps__list { display: grid; gap: clamp(1.6rem, 3vw, 2.6rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr)); }
+.hg-cap { display: grid; gap: var(--sc-3); align-content: start;
+  padding-top: var(--sc-4); border-top: 1px solid var(--sc-hairline-strong); }
+.hg-cap h3 {
+  font-family: var(--sc-font-display); font-weight: 800; font-stretch: 115%;
+  font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1; letter-spacing: -0.025em;
+  text-transform: uppercase; margin: 0;
+}
+.hg-cap p { font-family: var(--sc-font-text); font-size: 0.95rem; line-height: 1.6;
+  color: var(--sc-ink-soft); margin: 0; max-width: min(32ch, 100%); text-wrap: pretty; }
+
+/* ── The peak: the index breaks out of the margin and becomes the wall ── */
+.hg-wall__inner { height: 100%; display: grid; align-content: center; }
+.hg-wall__rail { display: flex; gap: clamp(1rem, 1.8vw, 1.8rem); align-items: stretch;
+  padding-inline: var(--sc-gutter); will-change: transform; }
+.hg-wall__lead, .hg-wall__end {
+  flex: 0 0 clamp(16rem, 24vw, 22rem); display: grid; align-content: center; gap: var(--sc-3);
+}
+/* Echoes an index row deliberately: same green rule, same name-over-what-we-made
+   structure. It should read as the list, grown to fill the screen. */
+.hg-wall__card {
+  flex: 0 0 clamp(14.5rem, 22vw, 19.5rem);
+  /* tall enough that the wall fills the screen: the peak has to read as a
+     takeover, not as a band of cards floating in black */
+  min-height: min(60vh, 32rem);
+  display: grid; grid-template-rows: auto auto 1fr; gap: var(--sc-3);
+  padding: var(--sc-4); border-radius: var(--sc-r-md);
+  background: var(--hg-lime); color: var(--hg-black);
+  box-shadow: 0 1.2rem 2.6rem -1rem var(--sc-shadow-color);
+}
+.hg-wall__card h3 {
+  font-family: var(--sc-font-display); font-weight: 800; font-stretch: 118%;
+  font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 0.95; letter-spacing: -0.03em;
+  text-transform: uppercase; margin: 0; text-wrap: balance;
+}
+.hg-wall__card p { font-family: var(--sc-font-text); font-size: 0.82rem; line-height: 1.5;
+  color: #2E5A00; margin: 0; }
+.hg-wall__thumb {
+  align-self: stretch; min-height: 7rem; border-radius: var(--sc-r-sm);
+  display: grid; place-content: center;
+  background: color-mix(in srgb, #0B0D0B 8%, transparent);
+  border: 1px dashed color-mix(in srgb, #0B0D0B 38%, transparent);
+  font-family: var(--sc-font-text); font-weight: 600;
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #2E5A00;
+}
+.hg-wall__title {
+  font-family: var(--sc-font-display); font-weight: 900; font-stretch: 125%;
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem); line-height: 0.86; letter-spacing: -0.04em;
+  text-transform: uppercase; margin: 0;
+}
+
+/* ── Close: the inquiry plate, typeset exactly like a label ───────────── */
+.hg-close { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center;
+  padding-block: clamp(4rem, 10vh, 7rem); }
+.hg-close__inner { width: min(100% - var(--sc-gutter) * 2, 92rem); margin-inline: auto;
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vh, 3.4rem); }
+.hg-close__ask {
+  font-family: var(--sc-font-display); font-weight: 900; font-stretch: 122%;
+  font-size: clamp(2.4rem, 7vw, 5.8rem); line-height: 0.88; letter-spacing: -0.04em;
+  text-transform: uppercase; margin: 0; max-width: min(16ch, 100%); text-wrap: balance;
+}
+.hg-close__grid { display: grid; gap: clamp(1.4rem, 3vw, 2.4rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); max-width: 62rem; }
+.hg-close__cell { display: grid; gap: var(--sc-2); align-content: start;
+  padding-top: var(--sc-3); border-top: 1px solid color-mix(in srgb, #0B0D0B 24%, transparent); }
+.hg-close__cell a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.hg-close__cell a:focus-visible { outline: 2px solid var(--hg-black); outline-offset: 3px; }
+.hg-close__val { font-family: var(--sc-font-text); font-weight: 500; font-size: 1rem; line-height: 1.4; margin: 0; }
+.hg-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sc-4);
+  flex-wrap: wrap; padding-top: var(--sc-4);
+  border-top: 1px solid color-mix(in srgb, #0B0D0B 24%, transparent); }
+
+/* ── Layout offset for the fixed index ───────────────────────────────── */
+@media (min-width: 1024px) {
+  main { padding-inline-start: var(--hg-index-w); }
+  /* the wall is full-bleed: it is the index, grown */
+  .hg-wall { margin-inline-start: calc(var(--hg-index-w) * -1); }
+}
+
+/* ── Mobile: the index becomes a bottom bar and the clients stay legible ─ */
+@media (max-width: 1023px) {
+  /* the index leaves the margin, so the display type gets the width back */
+  :root { --hg-bar-h: 3.4rem; --hg-index-w: 0rem; }
+  .hg-index {
+    inset: auto 0 0 0; width: auto; height: var(--hg-bar-h);
+    flex-direction: row; align-items: center; gap: var(--sc-3);
+    padding: 0 var(--sc-3); border-inline-end: 0;
+    border-block-start: 1px solid color-mix(in srgb, #F2F1EB 14%, transparent);
+  }
+  .hg-index__head, .hg-index__title, .hg-index__made { display: none; }
+  .hg-index__list { display: flex; gap: var(--sc-3); overflow-x: auto; flex: 1;
+    scrollbar-width: none; scroll-snap-type: x proximity; }
+  .hg-index__list::-webkit-scrollbar { display: none; }
+  .hg-index__row { flex: 0 0 auto; scroll-snap-align: center; }
+  .hg-index__link { padding: 0.3rem 0 0.3rem 0.5rem; }
+  .hg-index__name { font-size: 0.8rem; white-space: nowrap; }
+  .hg-index__cta { margin-top: 0; flex: 0 0 auto; padding: 0.45rem 0.7rem; font-size: 0.72rem; }
+  main { padding-block-end: var(--hg-bar-h); }
+  body.hg-wall .hg-index { transform: translateY(100%); }
+
+  .hg-object__inner,
+  .hg-object--flip .hg-object__inner {
+    grid-template-columns: 1fr;
+    grid-template-areas: "name" "media" "label";
+  }
+  .hg-object { min-height: auto; padding-block: clamp(3rem, 7vh, 4.5rem); }
+  /* the marquee plate's single-row credit has to stack, or it sets a
+     max-content track wider than the phone */
+  .hg-object--wide .hg-object__label,
+  .hg-object--wide .hg-label__foot {
+    grid-auto-flow: row; grid-auto-columns: auto; row-gap: var(--sc-2);
+  }
+  .hg-object--wide .hg-label__foot { margin-top: var(--sc-2); }
+  .hg-object--wide .hg-frame { aspect-ratio: 16 / 9; }
+  .hg-hero { min-height: calc(100svh - var(--hg-bar-h)); }
+}
+@media (max-width: 700px) {
+  /* the portrait crop of the type: step the display down a rung */
+  .hg-client    { font-size: clamp(1.8rem, 8.6vw, 2.8rem); }
+  .hg-close__ask{ font-size: clamp(1.9rem, 8.6vw, 3.1rem); }
+}
+
+/* ── Motion floor ────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hg-index, .hg-index__link, .hg-index__name, .hg-index__made { transition: none; }
+  body.hg-wall .hg-index { opacity: 1; transform: none; pointer-events: auto; }
+
+  /* The peak IS lateral travel, and lateral travel is the one thing reduced
+     motion takes away. Holding the act's 3.1 viewport-heights anyway leaves a
+     static pinned stage under three screens of scroll, which is dead scroll and
+     nothing else. So relay the wall out as a grid in normal flow: every client
+     still on screen, the roster still complete, nothing moving. devices.md §3
+     sanctions re-laying a rail out here; the act height is an inline style the
+     engine writes per resize, hence the !important. */
+  #wall { height: auto !important; padding-block: clamp(4rem, 10vh, 7rem); }
+  #wall [data-sc-stage] { position: static; height: auto; overflow: visible; }
+  .hg-wall__inner { height: auto; }
+  .hg-wall__rail {
+    display: grid; gap: clamp(1rem, 2vw, 1.8rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  }
+  .hg-wall__lead, .hg-wall__end { flex: initial; }
+  .hg-wall__card { grid-template-rows: auto auto auto; }
+}
+</style>
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<!-- ═══ CHROME · the living client index. It is the nav (every row jumps) and
+         it is the signature move: rows stamp as you pass their film and stay
+         stamped, so the roster is complete by the time you reach the end. -->
+<nav class="hg-index" id="index" aria-label="Clients">
+  <div class="hg-index__head">
+    <svg class="hg-logo" viewBox="0 0 1000 300" role="img" aria-label="Homeground">
+      <defs><path id="hgArcA" d="M 30 255 Q 500 30 970 255" fill="none"></path></defs>
+      <text text-anchor="middle"><textPath href="#hgArcA" startOffset="50%">HOMEGROUND</textPath></text>
+    </svg>
+    <p class="hg-index__standing">Creative for brands in sport, sponsorship and youth culture.</p>
+  </div>
+  <p class="hg-index__title">Clients</p>
+  <ul class="hg-index__list">
+    <li class="hg-index__row" data-hg-row="beats"><a class="hg-index__link" href="#beats"><span class="hg-index__name">Beats by Dre</span><span class="hg-index__made">80-second film</span></a></li>
+    <li class="hg-index__row" data-hg-row="manutd"><a class="hg-index__link" href="#manutd"><span class="hg-index__name">Manchester United</span><span class="hg-index__made">Kit launch film</span></a></li>
+    <li class="hg-index__row" data-hg-row="callaway"><a class="hg-index__link" href="#callaway"><span class="hg-index__name">Callaway</span><span class="hg-index__made">Film</span></a></li>
+    <li class="hg-index__row" data-hg-row="sky"><a class="hg-index__link" href="#sky"><span class="hg-index__name">Sky Sports</span><span class="hg-index__made">To confirm</span></a></li>
+    <li class="hg-index__row" data-hg-row="villa"><a class="hg-index__link" href="#villa"><span class="hg-index__name">Aston Villa</span><span class="hg-index__made">To confirm</span></a></li>
+    <li class="hg-index__row" data-hg-row="arsenal"><a class="hg-index__link" href="#arsenal"><span class="hg-index__name">Arsenal</span><span class="hg-index__made">To confirm</span></a></li>
+    <li class="hg-index__row" data-hg-row="academy"><a class="hg-index__link" href="#academy"><span class="hg-index__name">Homeground Academy</span><span class="hg-index__made">Own initiative</span></a></li>
+  </ul>
+  <a class="hg-index__cta" href="#contact">Start a project</a>
+</nav>
+
+<main id="top">
+
+  <!-- ═══ 1 · ARRIVAL ─────────────────────────────────────────────────── -->
+  <section class="hg-plate hg-plate--lime hg-hero" data-sc-act="flow">
+    <div class="hg-hero__inner" data-sc-in data-sc-stagger="70">
+      <h1 class="hg-hero__logo">
+        <span class="hg-sr">Homeground</span>
+        <svg class="hg-logo" viewBox="0 0 1000 300" aria-hidden="true">
+          <defs><path id="hgArcB" d="M 30 255 Q 500 30 970 255" fill="none"></path></defs>
+          <text text-anchor="middle"><textPath href="#hgArcB" startOffset="50%">HOMEGROUND</textPath></text>
+        </svg>
+      </h1>
+      <p class="hg-hero__line">
+        An award-winning creative agency for brands in sport, sponsorship and
+        youth culture. <b>Seven clients below. Every project named, and what we
+        made for them.</b>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ 2 · RECOGNITION · object 01 ─────────────────────────────────── -->
+  <section class="hg-plate hg-object hg-object--wide" id="beats" data-sc-act="flow" data-hg-object="beats">
+    <div class="hg-object__inner">
+      <div class="hg-object__name" data-sc-in>
+        <hr class="hg-rule">
+        <h2 class="hg-client">Beats by Dre</h2>
+      </div>
+      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
+        <p class="hg-project">Some play, others glide.</p>
+        <div class="hg-label__foot">
+          <p class="hg-meta">80-second film</p>
+          <p class="hg-meta hg-meta--accent">With Cole Palmer</p>
+        </div>
+      </div>
+      <div class="hg-object__media" data-sc-reveal="up" data-sc-reveal-at="0.1 0.46">
+        <div class="hg-frame">
+          <div class="hg-frame__slot" aria-hidden="true">
+            <span class="hg-slot__tag">Film slot</span>
+            <span class="hg-slot__ghost">Awaiting film</span>
+            <span class="hg-slot__file">assets/01-beats.jpg &nbsp;·&nbsp; assets/01-beats.mp4</span>
+          </div>
+          <img class="hg-frame__img" src="assets/01-beats.jpg" width="1600" height="900"
+               alt="Beats by Dre, Some play others glide, with Cole Palmer." onerror="this.remove()">
+          <!-- <video class="hg-frame__vid" src="assets/01-beats.mp4" autoplay loop muted playsinline poster="assets/01-beats.jpg"></video> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3 · APPETITE · object 02. Ground cuts to bone, anchor flips. ── -->
+  <section class="hg-plate hg-plate--bone hg-object hg-object--wide" id="manutd" data-sc-act="flow" data-hg-object="manutd">
+    <div class="hg-object__inner">
+      <div class="hg-object__name" data-sc-in>
+        <hr class="hg-rule">
+        <h2 class="hg-client">Manchester United</h2>
+      </div>
+      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
+        <p class="hg-project">adidas Originals kit launch film.</p>
+        <div class="hg-label__foot">
+          <p class="hg-meta">Kit launch film, over two minutes</p>
+          <p class="hg-meta hg-meta--accent">With Barry Keoghan · Dir. Tom Day</p>
+        </div>
+      </div>
+      <div class="hg-object__media" data-sc-reveal="left" data-sc-reveal-at="0.1 0.46">
+        <div class="hg-frame">
+          <div class="hg-frame__slot" aria-hidden="true">
+            <span class="hg-slot__tag">Film slot</span>
+            <span class="hg-slot__ghost">Awaiting film</span>
+            <span class="hg-slot__file">assets/02-manutd.jpg &nbsp;·&nbsp; assets/02-manutd.mp4</span>
+          </div>
+          <img class="hg-frame__img" src="assets/02-manutd.jpg" width="1600" height="900"
+               alt="adidas Originals and Manchester United kit launch film with Barry Keoghan." onerror="this.remove()">
+          <!-- <video class="hg-frame__vid" src="assets/02-manutd.mp4" autoplay loop muted playsinline poster="assets/02-manutd.jpg"></video> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4 · object 03 ───────────────────────────────────────────────── -->
+  <section class="hg-plate hg-object" id="callaway" data-sc-act="flow" data-hg-object="callaway">
+    <div class="hg-object__inner">
+      <div class="hg-object__name" data-sc-in>
+        <hr class="hg-rule">
+        <h2 class="hg-client">Callaway</h2>
+      </div>
+      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
+        <p class="hg-project">The golfers stuck indoors.</p>
+        <div class="hg-label__foot">
+          <p class="hg-meta">Film</p>
+          <p class="hg-meta hg-meta--accent">With MSQ Sport &amp; Entertainment</p>
+        </div>
+      </div>
+      <div class="hg-object__media" data-sc-reveal="right" data-sc-reveal-at="0.1 0.46">
+        <div class="hg-frame">
+          <div class="hg-frame__slot" aria-hidden="true">
+            <span class="hg-slot__tag">Film slot</span>
+            <span class="hg-slot__ghost">Awaiting film</span>
+            <span class="hg-slot__file">assets/03-callaway.jpg &nbsp;·&nbsp; assets/03-callaway.mp4</span>
+          </div>
+          <img class="hg-frame__img" src="assets/03-callaway.jpg" width="1600" height="900"
+               alt="Callaway film about golfers stuck indoors." onerror="this.remove()">
+          <!-- <video class="hg-frame__vid" src="assets/03-callaway.mp4" autoplay loop muted playsinline poster="assets/03-callaway.jpg"></video> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5 · object 04 ───────────────────────────────────────────────── -->
+  <section class="hg-plate hg-plate--bone hg-object hg-object--flip" id="sky" data-sc-act="flow" data-hg-object="sky">
+    <div class="hg-object__inner">
+      <div class="hg-object__name" data-sc-in>
+        <hr class="hg-rule">
+        <h2 class="hg-client">Sky Sports</h2>
+      </div>
+      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
+        <p class="hg-project">Project title to confirm.</p>
+        <div class="hg-label__foot">
+          <p class="hg-meta">To confirm</p>
+          <p class="hg-meta hg-meta--accent">Client confirmed</p>
+        </div>
+      </div>
+      <div class="hg-object__media" data-sc-reveal="up" data-sc-reveal-at="0.1 0.46">
+        <div class="hg-frame">
+          <div class="hg-frame__slot" aria-hidden="true">
+            <span class="hg-slot__tag">Film slot</span>
+            <span class="hg-slot__ghost">Awaiting film</span>
+            <span class="hg-slot__file">assets/04-skysports.jpg &nbsp;·&nbsp; assets/04-skysports.mp4</span>
+          </div>
+          <img class="hg-frame__img" src="assets/04-skysports.jpg" width="1600" height="900"
+               alt="Sky Sports project by Homeground." onerror="this.remove()">
+          <!-- <video class="hg-frame__vid" src="assets/04-skysports.mp4" autoplay loop muted playsinline poster="assets/04-skysports.jpg"></video> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6 · object 05 ───────────────────────────────────────────────── -->
+  <section class="hg-plate hg-object" id="villa" data-sc-act="flow" data-hg-object="villa">
+    <div class="hg-object__inner">
+      <div class="hg-object__name" data-sc-in>
+        <hr class="hg-rule">
+        <h2 class="hg-client">Aston Villa</h2>
+      </div>
+      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
+        <p class="hg-project">Project title to confirm.</p>
+        <div class="hg-label__foot">
+          <p class="hg-meta">To confirm</p>
+          <p class="hg-meta hg-meta--accent">Client confirmed</p>
+        </div>
+      </div>
+      <div class="hg-object__media" data-sc-reveal="left" data-sc-reveal-at="0.1 0.46">
+        <div class="hg-frame">
+          <div class="hg-frame__slot" aria-hidden="true">
+            <span class="hg-slot__tag">Film slot</span>
+            <span class="hg-slot__ghost">Awaiting film</span>
+            <span class="hg-slot__file">assets/05-astonvilla.jpg &nbsp;·&nbsp; assets/05-astonvilla.mp4</span>
+          </div>
+          <img class="hg-frame__img" src="assets/05-astonvilla.jpg" width="1600" height="900"
+               alt="Aston Villa project by Homeground." onerror="this.remove()">
+          <!-- <video class="hg-frame__vid" src="assets/05-astonvilla.mp4" autoplay loop muted playsinline poster="assets/05-astonvilla.jpg"></video> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 7 · object 06 ───────────────────────────────────────────────── -->
+  <section class="hg-plate hg-plate--bone hg-object hg-object--flip" id="arsenal" data-sc-act="flow" data-hg-object="arsenal">
+    <div class="hg-object__inner">
+      <div class="hg-object__name" data-sc-in>
+        <hr class="hg-rule">
+        <h2 class="hg-client">Arsenal</h2>
+      </div>
+      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
+        <p class="hg-project">Project title to confirm.</p>
+        <div class="hg-label__foot">
+          <p class="hg-meta">To confirm</p>
+          <p class="hg-meta hg-meta--accent">Client confirmed</p>
+        </div>
+      </div>
+      <div class="hg-object__media" data-sc-reveal="right" data-sc-reveal-at="0.1 0.46">
+        <div class="hg-frame">
+          <div class="hg-frame__slot" aria-hidden="true">
+            <span class="hg-slot__tag">Film slot</span>
+            <span class="hg-slot__ghost">Awaiting film</span>
+            <span class="hg-slot__file">assets/06-arsenal.jpg &nbsp;·&nbsp; assets/06-arsenal.mp4</span>
+          </div>
+          <img class="hg-frame__img" src="assets/06-arsenal.jpg" width="1600" height="900"
+               alt="Arsenal project by Homeground." onerror="this.remove()">
+          <!-- <video class="hg-frame__vid" src="assets/06-arsenal.mp4" autoplay loop muted playsinline poster="assets/06-arsenal.jpg"></video> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 8 · CALM. The offer, catalogued in the same schema as the work. -->
+  <section class="hg-plate hg-caps" id="offer" data-sc-act="flow">
+    <div class="hg-caps__inner">
+      <div class="hg-caps__head" data-sc-in>
+        <hr class="hg-rule">
+        <p class="hg-project">Four disciplines, run in one building, for brands whose audience already cares about sport.</p>
+      </div>
+      <div class="hg-caps__list" data-sc-in data-sc-stagger="80">
+        <article class="hg-cap">
+          <h3>Strategy<br>&amp; comms</h3>
+          <p>Where a brand stands in sport, and what it is entitled to say there.</p>
+        </article>
+        <article class="hg-cap">
+          <h3>Creative</h3>
+          <p>The idea, the script, the talent, the thing that gets watched to the end.</p>
+        </article>
+        <article class="hg-cap">
+          <h3>Design</h3>
+          <p>Identity, kit graphics, titles, the visual language a campaign lives in.</p>
+        </article>
+        <article class="hg-cap">
+          <h3>Production</h3>
+          <p>Made in house, from the shoot through to the social cut-downs.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9 · WEIGHT. The object that is not a client. Authored quiet: this
+           is the silence in front of the peak, not dead scroll. ────────── -->
+  <section class="hg-plate hg-plate--bone hg-object" id="academy" data-sc-act="flow" data-hg-object="academy">
+    <div class="hg-object__inner">
+      <div class="hg-object__name" data-sc-in>
+        <hr class="hg-rule">
+        <h2 class="hg-client">Homeground Academy</h2>
+      </div>
+      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
+        <p class="hg-project">Helping young athletes see that they do not have to turn pro to have a career in sport.</p>
+        <div class="hg-label__foot">
+          <p class="hg-meta">Homeground's own initiative</p>
+          <p class="hg-meta hg-meta--accent">Not client work</p>
+        </div>
+      </div>
+      <div class="hg-object__media" data-sc-reveal="iris" data-sc-reveal-at="0.12 0.52">
+        <div class="hg-frame">
+          <div class="hg-frame__slot" aria-hidden="true">
+            <span class="hg-slot__tag">Film slot</span>
+            <span class="hg-slot__ghost">Awaiting film</span>
+            <span class="hg-slot__file">assets/07-academy.jpg &nbsp;·&nbsp; assets/07-academy.mp4</span>
+          </div>
+          <img class="hg-frame__img" src="assets/07-academy.jpg" width="1600" height="900"
+               alt="Homeground Academy." onerror="this.remove()">
+          <!-- <video class="hg-frame__vid" src="assets/07-academy.mp4" autoplay loop muted playsinline poster="assets/07-academy.jpg"></video> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 10 · THE PEAK. The index leaves the margin and takes the screen. -->
+  <section class="hg-plate hg-wall" id="wall" data-sc-act="pan" data-sc-span="3.1">
+    <div data-sc-stage>
+      <div class="hg-wall__inner">
+        <div class="hg-wall__rail" data-sc-pan="0.05">
+          <div class="hg-wall__lead">
+            <hr class="hg-rule">
+            <h2 class="hg-wall__title">Who we<br>work for</h2>
+            <p class="hg-project">The whole list, in one place.</p>
+          </div>
+          <article class="hg-wall__card" data-sc-tilt="6"><h3>Beats by Dre</h3><p>Some play, others glide. 80-second film with Cole Palmer.</p><div class="hg-wall__thumb">Film slot</div></article>
+          <article class="hg-wall__card" data-sc-tilt="6"><h3>Manchester United</h3><p>adidas Originals kit launch film with Barry Keoghan.</p><div class="hg-wall__thumb">Film slot</div></article>
+          <article class="hg-wall__card" data-sc-tilt="6"><h3>Callaway</h3><p>The golfers stuck indoors, with MSQ Sport &amp; Entertainment.</p><div class="hg-wall__thumb">Film slot</div></article>
+          <article class="hg-wall__card" data-sc-tilt="6"><h3>Sky Sports</h3><p>Project title to confirm.</p><div class="hg-wall__thumb">Film slot</div></article>
+          <article class="hg-wall__card" data-sc-tilt="6"><h3>Aston Villa</h3><p>Project title to confirm.</p><div class="hg-wall__thumb">Film slot</div></article>
+          <article class="hg-wall__card" data-sc-tilt="6"><h3>Arsenal</h3><p>Project title to confirm.</p><div class="hg-wall__thumb">Film slot</div></article>
+          <article class="hg-wall__card" data-sc-tilt="6"><h3>Homeground Academy</h3><p>Homeground's own initiative for young athletes.</p><div class="hg-wall__thumb">Film slot</div></article>
+          <div class="hg-wall__end">
+            <p class="hg-meta hg-meta--accent">And the one that is not on the wall yet</p>
+            <h2 class="hg-wall__title">Yours</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 11 · RESOLVE. The inquiry plate, typeset exactly like a label. -->
+  <section class="hg-plate hg-plate--lime hg-close" id="contact" data-sc-act="flow">
+    <div class="hg-close__inner">
+      <div data-sc-in>
+        <hr class="hg-rule">
+        <h2 class="hg-close__ask">Bring us a season</h2>
+      </div>
+      <div class="hg-close__grid" data-sc-in data-sc-stagger="70">
+        <div class="hg-close__cell">
+          <p class="hg-meta">New business</p>
+          <p class="hg-close__val"><a href="mailto:hello@homeground.london">hello@homeground.london</a></p>
+        </div>
+        <div class="hg-close__cell">
+          <p class="hg-meta">Studio</p>
+          <p class="hg-close__val">London · North America<br>Latin America · Europe</p>
+        </div>
+        <div class="hg-close__cell">
+          <p class="hg-meta">Elsewhere</p>
+          <p class="hg-close__val"><a href="https://www.instagram.com/homegroundldn/">@homegroundldn</a></p>
+        </div>
+      </div>
+      <div class="hg-foot" data-sc-in>
+        <svg class="hg-logo hg-logo--foot" viewBox="0 0 1000 300" aria-hidden="true">
+          <defs><path id="hgArcC" d="M 30 255 Q 500 30 970 255" fill="none"></path></defs>
+          <text text-anchor="middle"><textPath href="#hgArcC" startOffset="50%">HOMEGROUND</textPath></text>
+        </svg>
+        <p class="hg-meta">Creative for sport and sport culture</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>
+ScrollCraft.mount(document.body);
+
+/* The arched wordmark is SVG text on a path, and text longer than the path is
+   silently trimmed at both ends: at the wrong size the mark renders
+   "OMEGROUN". Measure the arc and set textLength so the word always spans it
+   exactly, whatever face actually loads. lengthAdjust="spacing" tracks the
+   letters rather than distorting the glyphs, which is how a varsity arch is
+   set anyway. */
+(function () {
+  function fitLogos() {
+    document.querySelectorAll(".hg-logo").forEach(function (svg) {
+      var path = svg.querySelector("path"), tp = svg.querySelector("textPath");
+      if (!path || !tp || !path.getTotalLength) return;
+      var L = path.getTotalLength();
+      if (!L) return;
+      tp.setAttribute("lengthAdjust", "spacing");
+      tp.setAttribute("textLength", (L * 0.97).toFixed(1));
+    });
+  }
+  fitLogos();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLogos);
+  addEventListener("resize", fitLogos, { passive: true });
+})();
+
+/* ─────────────────────────────────────────────────────────────────────────
+   THE SIGNATURE MOVE · the living client index.
+
+   Rows stamp as their object is passed and stay stamped, so the index
+   accumulates into a complete client list rather than being a static nav.
+   The engine is untouched: this reads plain scroll state off the page.
+   ───────────────────────────────────────────────────────────────────────── */
+(function () {
+  var rows = {}, order = [];
+  document.querySelectorAll("[data-hg-row]").forEach(function (r) {
+    rows[r.getAttribute("data-hg-row")] = r;
+  });
+  document.querySelectorAll("[data-hg-object]").forEach(function (o) {
+    order.push({ key: o.getAttribute("data-hg-object"), el: o });
+  });
+
+  /* Light a row the first time its object is meaningfully on screen, and never
+     unlight it. A list that empties as you scroll back up is a defect, not an
+     effect: the whole point is that the roster accumulates. */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var row = rows[e.target.getAttribute("data-hg-object")];
+      if (row) row.classList.add("is-lit");
+    });
+  }, { rootMargin: "0px 0px -35% 0px", threshold: 0.01 });
+  order.forEach(function (o) { io.observe(o.el); });
+
+  /* "You are here" follows the object nearest the middle of the viewport. */
+  var wall = document.getElementById("wall");
+  var ticking = false;
+  function mark() {
+    ticking = false;
+    var mid = innerHeight / 2, best = null, bestD = Infinity;
+    for (var i = 0; i < order.length; i++) {
+      var r = order[i].el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) continue;
+      var d = Math.abs(r.top + r.height / 2 - mid);
+      if (d < bestD) { bestD = d; best = order[i].key; }
+    }
+    for (var k in rows) rows[k].classList.toggle("is-here", k === best);
+
+    /* The breakout. While the wall act owns the screen the margin index stands
+       down, because the wall IS the index, grown. */
+    if (wall) {
+      var w = wall.getBoundingClientRect();
+      document.body.classList.toggle("hg-wall", w.top < innerHeight * 0.5 && w.bottom > innerHeight * 0.5);
+    }
+
+    /* Keep the current row in view in the mobile bottom bar. */
+    if (best && innerWidth < 1024) {
+      var el = rows[best];
+      if (el && el.scrollIntoView) el.scrollIntoView({ block: "nearest", inline: "center" });
+    }
+  }
+  addEventListener("scroll", function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(mark); }
+  }, { passive: true });
+  addEventListener("resize", mark, { passive: true });
+  mark();
+})();
+</script>
+</body>
+</html>

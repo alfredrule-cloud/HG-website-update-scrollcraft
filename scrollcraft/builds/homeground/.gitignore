@@ -1,0 +1,9 @@
+node_modules/
+package-lock.json
+package.json
+# Verification output: hundreds of full-page PNGs per run, ~200MB. Regenerate
+# with scripts/shoot.mjs rather than committing them.
+lab/shots/
+lab/mobile/
+lab/reduced/
+lab/serve.log
