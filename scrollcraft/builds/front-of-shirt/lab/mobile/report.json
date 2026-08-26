@@ -1,0 +1,1167 @@
+{
+  "doc": {
+    "height": 9656,
+    "vh": 844,
+    "acts": [
+      "pin",
+      "flow",
+      "flow",
+      "flow",
+      "flow",
+      "flow",
+      "pin"
+    ],
+    "world": null
+  },
+  "report": [
+    {
+      "i": 0,
+      "y": 27,
+      "pct": 0,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "pin",
+      "stages": [
+        0,
+        8490
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 1,
+      "y": 286,
+      "pct": 3,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "pin",
+      "stages": [
+        0,
+        8231
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 2,
+      "y": 545,
+      "pct": 6,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "pin",
+      "stages": [
+        0,
+        7972
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 3,
+      "y": 805,
+      "pct": 9,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "pin",
+      "stages": [
+        0,
+        7712
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 4,
+      "y": 1064,
+      "pct": 12,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "pin",
+      "stages": [
+        0,
+        7453
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 5,
+      "y": 1323,
+      "pct": 15,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "pin",
+      "stages": [
+        0,
+        7194
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 6,
+      "y": 1396,
+      "pct": 16,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "pin",
+      "stages": [
+        -46,
+        7121
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 7,
+      "y": 1829,
+      "pct": 21,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -479,
+        6688
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 8,
+      "y": 2263,
+      "pct": 26,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -913,
+        6254
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 9,
+      "y": 2696,
+      "pct": 31,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -1346,
+        5821
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 10,
+      "y": 2811,
+      "pct": 32,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -1461,
+        5706
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 11,
+      "y": 3130,
+      "pct": 36,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -1780,
+        5387
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 12,
+      "y": 3268,
+      "pct": 37,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -1918,
+        5249
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 13,
+      "y": 3563,
+      "pct": 40,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -2213,
+        4954
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 14,
+      "y": 3725,
+      "pct": 42,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -2375,
+        4792
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 15,
+      "y": 4181,
+      "pct": 47,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -2831,
+        4336
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 16,
+      "y": 4338,
+      "pct": 49,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -2988,
+        4179
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 17,
+      "y": 4638,
+      "pct": 53,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -3288,
+        3879
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 18,
+      "y": 4723,
+      "pct": 54,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -3373,
+        3794
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 19,
+      "y": 5094,
+      "pct": 58,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -3744,
+        3423
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 20,
+      "y": 5109,
+      "pct": 58,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "none",
+        "none"
+      ],
+      "act": "flow",
+      "stages": [
+        -3759,
+        3408
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 21,
+      "y": 5494,
+      "pct": 62,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 100% 0px 0px)",
+        "inset(0px 0px 0px 100%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -4144,
+        3023
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 22,
+      "y": 5500,
+      "pct": 62,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 100% 0px 0px)",
+        "inset(0px 0px 0px 100%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -4150,
+        3017
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 23,
+      "y": 5867,
+      "pct": 67,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 14.58% 0px 0px)",
+        "inset(0px 0px 0px 83.3%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -4517,
+        2650
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 24,
+      "y": 5879,
+      "pct": 67,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 11.3% 0px 0px)",
+        "inset(0px 0px 0px 79.55%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -4529,
+        2638
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 25,
+      "y": 6235,
+      "pct": 71,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -4885,
+        2282
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 26,
+      "y": 6265,
+      "pct": 71,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -4915,
+        2252
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 27,
+      "y": 6572,
+      "pct": 75,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -5222,
+        1945
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 28,
+      "y": 6603,
+      "pct": 75,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -5253,
+        1914
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 29,
+      "y": 6953,
+      "pct": 79,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -5603,
+        1564
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 30,
+      "y": 6970,
+      "pct": 79,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -5620,
+        1547
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 31,
+      "y": 7334,
+      "pct": 83,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -5984,
+        1183
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 32,
+      "y": 7338,
+      "pct": 83,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -5988,
+        1179
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 33,
+      "y": 7715,
+      "pct": 88,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "flow",
+      "stages": [
+        -6365,
+        802
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 34,
+      "y": 8096,
+      "pct": 92,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -6746,
+        421
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 35,
+      "y": 8477,
+      "pct": 96,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -7127,
+        40
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 36,
+      "y": 8523,
+      "pct": 97,
+      "settled": true,
+      "contrast": [],
+      "cues": [],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -7173,
+        0
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 37,
+      "y": 8579,
+      "pct": 97,
+      "settled": true,
+      "contrast": [
+        {
+          "t": "Chapter six Book a valuation. One call, ",
+          "dir": "light-on-dark",
+          "worst": 14.67,
+          "mean": 14.67
+        }
+      ],
+      "cues": [
+        {
+          "t": "Chapter six Book a valuation. One call, about ",
+          "o": 0.99
+        }
+      ],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -7229,
+        0
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 38,
+      "y": 8636,
+      "pct": 98,
+      "settled": true,
+      "contrast": [
+        {
+          "t": "Chapter six Book a valuation. One call, ",
+          "dir": "light-on-dark",
+          "worst": 14.67,
+          "mean": 14.67
+        }
+      ],
+      "cues": [
+        {
+          "t": "Chapter six Book a valuation. One call, about ",
+          "o": 1
+        }
+      ],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -7286,
+        0
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 39,
+      "y": 8693,
+      "pct": 99,
+      "settled": true,
+      "contrast": [
+        {
+          "t": "Chapter six Book a valuation. One call, ",
+          "dir": "light-on-dark",
+          "worst": 14.67,
+          "mean": 14.67
+        }
+      ],
+      "cues": [
+        {
+          "t": "Chapter six Book a valuation. One call, about ",
+          "o": 1
+        }
+      ],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -7343,
+        0
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 40,
+      "y": 8749,
+      "pct": 99,
+      "settled": true,
+      "contrast": [
+        {
+          "t": "Chapter six Book a valuation. One call, ",
+          "dir": "light-on-dark",
+          "worst": 14.67,
+          "mean": 14.67
+        }
+      ],
+      "cues": [
+        {
+          "t": "Chapter six Book a valuation. One call, about ",
+          "o": 1
+        }
+      ],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -7399,
+        0
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 41,
+      "y": 8806,
+      "pct": 100,
+      "settled": true,
+      "contrast": [
+        {
+          "t": "Chapter six Book a valuation. One call, ",
+          "dir": "light-on-dark",
+          "worst": 14.67,
+          "mean": 14.67
+        }
+      ],
+      "cues": [
+        {
+          "t": "Chapter six Book a valuation. One call, about ",
+          "o": 1
+        }
+      ],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -7456,
+        0
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    },
+    {
+      "i": 42,
+      "y": 8812,
+      "pct": 100,
+      "settled": true,
+      "contrast": [
+        {
+          "t": "Chapter six Book a valuation. One call, ",
+          "dir": "light-on-dark",
+          "worst": 14.67,
+          "mean": 14.67
+        }
+      ],
+      "cues": [
+        {
+          "t": "Chapter six Book a valuation. One call, about ",
+          "o": 1
+        }
+      ],
+      "clips": [],
+      "rails": [],
+      "wipes": [
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 0%)"
+      ],
+      "act": "pin",
+      "stages": [
+        -7462,
+        0
+      ],
+      "segs": [],
+      "custom": [],
+      "customHold": false,
+      "seg": null,
+      "segp": null,
+      "bg": "#131B3D"
+    }
+  ],
+  "consoleErrors": [],
+  "failed": []
+}

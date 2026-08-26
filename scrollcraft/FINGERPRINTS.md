@@ -28,9 +28,9 @@ changes only grammar and world will fail it.
 
 | Build | Grammar | Nav treatment | Hero device | Act-sequence shape | Close pattern | Signature move | World | Port |
 |---|---|---|---|---|---|---|---|---|
+| front-of-shirt | Chaptered editorial | Vertical margin folio, chapter name only, no fixed bar, no counter | Pinned title page carrying a live rate card, no media | pin > count > flow+in > parallax > reveal > flow+in > pin; 7 acts, 9.7vh | Masthead plate with a real form, brass button, one marquee, footer inside the pinned stage | The revaluation ledger | Typographic/documentary, no imagery: ink navy + warm bone, two-stop brass | static single page |
 
-*(empty: your first build has nothing to clear, so build whatever the interview
-points at. From the second onwards, this table is the constraint.)*
+*(One row. The next build must differ from it on at least 4 of the 6.)*
 
 ---
 
@@ -41,7 +41,19 @@ reusing: a grammar, a nav treatment, a close pattern, a signature move, an
 act-count-and-length band. The shared columns are what the next build inherits
 as a constraint, so writing them down is the whole point.
 
-Nothing is taken yet.
+- **Chaptered editorial** as a grammar, with hard-cut per-section grounds and no
+  drift anywhere.
+- **The margin folio** as a nav treatment: fixed, vertical, chapter name only.
+- **A live document as the hero.** A pinned title page whose content is a
+  working price list rather than a headline over media.
+- **The revaluation ledger** as a signature move: paired struck/real figures
+  resolving on the first scroll gesture with a running shortfall total.
+- **The masthead-plate close**: a real form inside the final pinned stage with
+  the footer and one marquee held in the same stage.
+- **7 acts at 9.7vh.** Note this sits outside the 6-to-7-acts-at-13.6-13.8vh
+  band the skill flags, but the act count itself is now partly spent.
+- **Two-stop accent keyed to ground** (brass on navy, bronze on bone). The
+  technique is licensed by taste.md and reusable; this particular hue is taken.
 
 ---
 

@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FRONT OF SHIRT · The commercial department your club does not have</title>
+<meta name="description" content="An outsourced commercial department for women's football clubs below the elite tier. We value your inventory, take it to market, and prove what the sponsor got.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23131B3D'/><rect x='6' y='13' width='20' height='3.5' fill='%23C9A227'/></svg>">
+<link rel="preload" href="fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/instrument.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+/* ───────────────────────────────────────────────────────────────────────────
+   FRONT OF SHIRT
+   Grammar: chaptered editorial. Grounds are painted per chapter and cut hard;
+   there is no drift anywhere on this page, by design and by brief.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Ink navy is the page. Chapters that are bone say so and re-ink.
+     The brief's electric ultramarine and tangerine were taken down to a deep
+     navy and an antique brass on the client's note to read more professional
+     and elegant. The structure is unchanged: saturated field, one accent, and
+     a hard cut between the two grounds. */
+  --sc-canvas:     #131B3D;
+  --sc-surface:    #1A2350;
+  --sc-ink:        #F2EFE9;
+  --sc-ink-soft:   #9AA0B8;
+
+  /* Two-stop accent, one hue. taste.md licenses exactly this for a page that
+     hard-cuts between light and dark grounds: one lightness cannot clear
+     4.5:1 on both.
+       on navy  #C9A227  6.93:1  body-safe
+       on bone  #8A6410  4.68:1  body-safe
+     #C9A227 also carries the button as a FILL, with navy ink on it at 6.93:1. */
+  --sc-accent:     #C9A227;
+  --sc-accent-ink: #131B3D;
+  --fos-brass:     #C9A227;
+
+  --sc-font-display: "Archivo", "Archivo Expanded", system-ui, sans-serif;
+  --sc-font-text:    "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --sc-font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Violent scale. Hero, chapter head, then body. Almost nothing between. */
+  --fos-hero:  clamp(2.05rem, 5.6vw, 5.2rem);
+  --fos-head:  clamp(1.9rem,  4.9vw, 4.2rem);
+  --fos-sub:   clamp(1.15rem, 1.7vw, 1.5rem);
+  --fos-body:  1.1rem;
+  --fos-fig:   clamp(1.5rem, 3.4vw, 3rem);
+  --fos-rule:  1px solid color-mix(in srgb, currentColor 26%, transparent);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--sc-canvas);
+  color: var(--sc-ink);
+  font-family: var(--sc-font-text);
+  font-size: var(--fos-body);
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Light-on-dark compensation: a touch more leading and tracking, one step of
+   weight. Chalk chapters undo it. */
+.ch--blue { letter-spacing: 0.004em; }
+
+::selection { background: var(--fos-brass); color: #131B3D; }
+
+:focus-visible {
+  outline: 3px solid var(--fos-brass);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+.fos-skip {
+  position: absolute; left: -9999px; top: 0; z-index: 99;
+  background: var(--fos-brass); color: #131B3D;
+  padding: 0.7rem 1.1rem; font-family: var(--sc-font-mono);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.fos-skip:focus { left: 0.6rem; top: 0.6rem; }
+
+/* ── chapter grounds ─────────────────────────────────────────────────────── */
+
+.ch { position: relative; }
+
+.ch--blue  { background: #131B3D; color: #F2EFE9;
+             --sc-ink: #F2EFE9; --sc-ink-soft: #9AA0B8; --sc-accent: #C9A227; }
+
+/* Restating `color` alongside the token is not optional: `color` inherits as a
+   computed value, so a subtree that only redefines --sc-ink renders in the
+   body's ink and fails contrast silently. */
+.ch--chalk { background: #F2EFE9; color: #14161C;
+             --sc-ink: #14161C; --sc-ink-soft: #565248; --sc-accent: #8A6410;
+             letter-spacing: 0; }
+
+.fos-wrap {
+  width: min(100% - (2 * var(--sc-gutter, 1.4rem)), 78rem);
+  margin-inline: auto;
+}
+.fos-wrap--narrow { width: min(100% - (2 * var(--sc-gutter, 1.4rem)), 58rem); }
+
+.fos-pad { padding-block: clamp(4.5rem, 9vw, 9rem); }
+
+/* ── type ────────────────────────────────────────────────────────────────── */
+
+.fos-display {
+  font-family: var(--sc-font-display);
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.028em;
+  line-height: 0.95;
+  text-wrap: balance;
+  margin: 0;
+}
+.fos-display--hero { font-size: var(--fos-hero); letter-spacing: -0.034em; }
+.fos-display--head { font-size: var(--fos-head); }
+
+.fos-label {
+  font-family: var(--sc-font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--sc-ink-soft);
+  margin: 0;
+}
+
+.fos-lede {
+  font-size: var(--fos-sub);
+  line-height: 1.45;
+  max-width: 34ch;
+  text-wrap: pretty;
+  margin: 0;
+}
+
+.fos-p {
+  max-width: 62ch;
+  text-wrap: pretty;
+  margin: 0 0 1.15em;
+}
+.fos-p:last-child { margin-bottom: 0; }
+
+.fos-mono { font-family: var(--sc-font-mono); font-variant-numeric: tabular-nums; }
+
+/* More space above a heading than below it. */
+.fos-headblock { margin-bottom: clamp(2.2rem, 4vw, 3.6rem); }
+.fos-headblock .fos-label + .fos-display { margin-top: 0.9rem; }
+
+/* Placeholder content the client replaces. Deliberately conspicuous so it
+   cannot ship by accident. */
+.fos-tbc {
+  color: var(--sc-ink-soft);
+  border-left: 2px dashed currentColor;
+  padding-left: 0.9rem;
+  font-style: italic;
+}
+
+/* ── folio (the chrome; chaptered editorial takes no fixed bar) ──────────── */
+
+.fos-folio {
+  position: fixed;
+  left: 1.15rem; top: 50%; transform: translateY(-50%);
+  z-index: 20;
+  display: none;
+  writing-mode: vertical-rl;
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: #F2EFE9;
+}
+.fos-folio__mark { font-weight: 700; }
+.fos-folio__sep { opacity: 0.5; }
+.fos-folio__now { opacity: 0.82; transition: opacity 120ms linear; }
+@media (min-width: 1180px) { .fos-folio { display: flex; gap: 1.1rem; align-items: center; } }
+
+/* ── chapter 0 · the rate card ───────────────────────────────────────────── */
+
+#ch-0 [data-sc-stage] {
+  display: flex;
+  align-items: center;
+  padding-block: clamp(2rem, 5vh, 4rem);
+}
+
+/* The hero has to fit one viewport: it is a pinned stage, so anything taller
+   than the stage is simply cut, and what got cut was the first line of the h1
+   and the shortfall total, which is the whole point of the act. Two columns
+   above 1024px keeps the display type large AND keeps the total on screen. */
+.hero {
+  width: min(100% - (2 * var(--sc-gutter, 1.4rem)), 78rem);
+  margin-inline: auto;
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.4rem);
+  align-content: center;
+}
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 4vw, 4.4rem);
+    align-items: center;
+  }
+}
+.hero__lead { display: grid; gap: clamp(1rem, 2vw, 1.6rem); align-content: center; }
+
+.hero__mark {
+  font-family: var(--sc-font-display);
+  font-weight: 800;
+  font-stretch: 125%;
+  font-size: 0.94rem;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.hero h1 { max-width: 13ch; }
+
+/* the ledger */
+.ledger { width: 100%; border-collapse: collapse; caption-side: bottom; }
+
+.ledger caption {
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--sc-ink-soft);
+  text-align: left;
+  padding-top: 1rem;
+  max-width: 46ch;
+}
+
+.ledger th {
+  font-family: var(--sc-font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--sc-ink-soft);
+  text-align: right;
+  padding: 0 0 0.7rem;
+  border-bottom: var(--fos-rule);
+}
+.ledger th:first-child { text-align: left; }
+
+.ledger td {
+  padding: 0.5rem 0;
+  border-bottom: var(--fos-rule);
+  vertical-align: baseline;
+}
+
+.ledger__asset {
+  font-size: clamp(0.95rem, 1.5vw, 1.22rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.ledger__now,
+.ledger__worth {
+  font-family: var(--sc-font-mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.ledger__now {
+  font-size: clamp(0.82rem, 1.15vw, 1rem);
+  color: var(--sc-ink-soft);
+  position: relative;
+}
+/* The strike is drawn, not text-decoration, so it can animate its own width
+   without the browser re-laying-out the figure. */
+.ledger__now span { position: relative; display: inline-block; }
+.ledger__now span::after {
+  content: "";
+  position: absolute;
+  left: -2px; right: -2px; top: 52%;
+  height: 1.5px;
+  background: var(--fos-brass);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 260ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+[data-fos-row].is-revalued .ledger__now span::after { transform: scaleX(1); }
+
+.ledger__worth {
+  font-size: clamp(1.05rem, 2vw, 1.7rem);
+  font-weight: 700;
+  color: var(--sc-accent);
+  letter-spacing: -0.02em;
+  min-width: 5.5ch;
+}
+
+.ledger tfoot td {
+  border-bottom: none;
+  border-top: 2px solid currentColor;
+  padding-top: 1rem;
+}
+.ledger__totlab {
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}
+.ledger__shortfall {
+  font-family: var(--sc-font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--fos-fig);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--sc-accent);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── chapter 1 · the case ────────────────────────────────────────────────── */
+
+.case__fig {
+  font-family: var(--sc-font-mono);
+  line-height: 0;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--fos-fig);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--sc-accent);
+}
+.case__grid { max-width: 46ch; }
+.case__grid p {
+  font-size: clamp(1.2rem, 2.1vw, 1.75rem);
+  line-height: 1.5;
+  margin: 0 0 0.85em;
+  text-wrap: pretty;
+}
+.case__grid p:last-child { margin-bottom: 0; }
+.case__land {
+  border-top: var(--fos-rule);
+  padding-top: clamp(1.8rem, 3vw, 2.6rem);
+  font-family: var(--sc-font-display);
+  font-weight: 800; font-stretch: 125%;
+  font-size: var(--fos-head);
+  letter-spacing: -0.028em;
+  line-height: 0.98;
+  max-width: 20ch;
+  margin: clamp(2.6rem, 5vw, 4.2rem) 0 0;
+  text-wrap: balance;
+}
+.case__src {
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  color: var(--sc-ink-soft);
+  margin: 2.4rem 0 0;
+  max-width: 60ch;
+  line-height: 1.6;
+}
+.case__src a { color: inherit; }
+
+/* ── chapter 2 · pillars ─────────────────────────────────────────────────── */
+
+.pillar { padding-block: clamp(2.2rem, 4vw, 3.4rem); border-top: var(--fos-rule); }
+.pillar:last-of-type { border-bottom: var(--fos-rule); }
+.pillar__grid { display: grid; gap: 1.2rem; }
+@media (min-width: 860px) {
+  .pillar__grid { grid-template-columns: 15rem 1fr; gap: clamp(2rem, 4vw, 4rem); }
+}
+.pillar h3 {
+  font-family: var(--sc-font-display);
+  font-weight: 800; font-stretch: 125%;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+.pillar__out {
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--sc-accent);
+  margin: 1.1rem 0 0;
+}
+
+/* ── chapter 3 · the report (parallax media column) ──────────────────────── */
+
+.proof__grid { display: grid; gap: clamp(2.4rem, 5vw, 4rem); align-items: start; }
+@media (min-width: 940px) { .proof__grid { grid-template-columns: 1fr 1.05fr; } }
+
+.report {
+  background: #FFFFFF;
+  color: #131B3D;
+  border: 1px solid #DEDED6;
+  padding: clamp(1.3rem, 2.4vw, 2rem);
+  box-shadow: 0 22px 44px -28px rgba(11, 11, 15, 0.42);
+  font-family: var(--sc-font-mono);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  will-change: transform;
+}
+.report__head { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 2px solid #131B3D; padding-bottom: 0.6rem; }
+.report__ttl { font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.report__tbl { width: 100%; border-collapse: collapse; margin-top: 1rem; font-variant-numeric: tabular-nums; }
+.report__tbl th { text-align: left; font-weight: 500; text-transform: uppercase; letter-spacing: 0.09em; font-size: 0.66rem; color: #565248; padding-bottom: 0.45rem; border-bottom: 1px solid #DEDED6; }
+.report__tbl th:not(:first-child), .report__tbl td:not(:first-child) { text-align: right; }
+.report__tbl td { padding: 0.42rem 0; border-bottom: 1px solid #EDEDE7; }
+.report__rec { margin-top: 1.1rem; padding-top: 0.8rem; border-top: 2px solid #131B3D; display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+.report__verdict { color: #8A6410; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; }
+.report__cap {
+  font-family: var(--sc-font-mono);
+  font-size: 0.72rem;
+  color: var(--sc-ink-soft);
+  margin: 0.9rem 0 0;
+  max-width: 44ch;
+  line-height: 1.6;
+}
+
+/* ── chapter 4 · qualification (reveal) ──────────────────────────────────── */
+
+.qual__grid { display: grid; gap: clamp(2.4rem, 5vw, 4rem); }
+@media (min-width: 860px) { .qual__grid { grid-template-columns: 1.15fr 1fr; } }
+.qual ul { list-style: none; margin: 0; padding: 0; }
+.qual li { padding: 1rem 0; border-bottom: var(--fos-rule); font-size: clamp(1rem, 1.5vw, 1.22rem); line-height: 1.45; }
+.qual li:first-child { border-top: var(--fos-rule); }
+.qual--not { color: var(--sc-ink-soft); }
+.qual--not .fos-display--head { color: var(--sc-ink); }
+
+/* clip-path is relative to the border box, so the reveal wrapper carries the
+   padding rather than the type. */
+.qual__reveal { padding-block: 2px; }
+
+/* ── chapter 5 · people and point of view ───────────────────────────────── */
+
+.who__grid { display: grid; gap: clamp(2.4rem, 5vw, 4rem); }
+@media (min-width: 900px) { .who__grid { grid-template-columns: 1fr 1fr; } }
+
+.index { list-style: none; margin: 0; padding: 0; }
+.index li { border-top: var(--fos-rule); }
+.index li:last-child { border-bottom: var(--fos-rule); }
+.index a {
+  display: grid; gap: 0.35rem;
+  padding: 1.15rem 0;
+  color: inherit; text-decoration: none;
+}
+@media (min-width: 620px) {
+  .index a { grid-template-columns: 7.5rem 1fr; gap: 1.4rem; align-items: baseline; }
+}
+.index__kind { font-family: var(--sc-font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sc-ink-soft); }
+.index__ttl { font-size: clamp(1.05rem, 1.7vw, 1.35rem); line-height: 1.3; text-wrap: pretty; }
+/* Hovers snap. 80 to 120ms, per brief. */
+.index a:hover .index__ttl { text-decoration: underline; text-decoration-color: var(--sc-accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.index a { transition: background-color 100ms linear; }
+.index a:hover { background-color: color-mix(in srgb, var(--sc-accent) 9%, transparent); }
+
+/* ── chapter 6 · the plate ───────────────────────────────────────────────── */
+
+#ch-6 [data-sc-stage] { display: flex; flex-direction: column; justify-content: center; }
+
+.plate__grid { display: grid; gap: clamp(2rem, 4vw, 3.4rem); align-items: start; }
+@media (min-width: 900px) { .plate__grid { grid-template-columns: 1fr 1fr; } }
+
+.form { display: grid; gap: 0.9rem; }
+.field { display: grid; gap: 0.34rem; }
+.field label {
+  font-family: var(--sc-font-mono);
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--sc-ink-soft);
+}
+.field input, .field textarea {
+  font-family: var(--sc-font-text);
+  font-size: 1rem;
+  color: #F2EFE9;
+  background: transparent;
+  border: 0;
+  border-bottom: 1.5px solid color-mix(in srgb, #F2EFE9 42%, transparent);
+  padding: 0.55rem 0;
+  transition: border-color 100ms linear;
+}
+.field input:hover, .field textarea:hover { border-bottom-color: #F2EFE9; }
+.field input:focus, .field textarea:focus { outline: none; border-bottom-color: var(--fos-brass); border-bottom-width: 2px; }
+.field input:focus-visible, .field textarea:focus-visible { outline: 3px solid var(--fos-brass); outline-offset: 4px; }
+.field textarea { resize: vertical; min-height: 4.2rem; }
+.field--pair { display: grid; gap: 0.9rem; }
+@media (min-width: 560px) { .field--pair { grid-template-columns: 1fr 1fr; } }
+
+.cta {
+  justify-self: start;
+  margin-top: 0.6rem;
+  font-family: var(--sc-font-mono);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #131B3D;
+  background: var(--fos-brass);
+  border: 0;
+  padding: 1rem 1.6rem;
+  cursor: pointer;
+  transition: background-color 100ms linear, transform 100ms linear;
+}
+.cta:hover { background: #E0B93C; }
+.cta:active { transform: translateY(1px); }
+.cta[data-booked="true"] { background: #F2EFE9; }
+
+.form__note { font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-ink-soft); margin: 0.4rem 0 0; max-width: 40ch; line-height: 1.6; }
+.form__status { font-family: var(--sc-font-mono); font-size: 0.8rem; margin: 0.5rem 0 0; min-height: 1.2em; color: var(--sc-accent); }
+
+/* ── footer marquee: one, once, league names ────────────────────────────── */
+
+.foot { border-top: 1px solid color-mix(in srgb, #F2EFE9 30%, transparent); margin-top: clamp(2.6rem, 5vw, 4rem); }
+
+.marquee { overflow: hidden; padding: 0.9rem 0; border-bottom: 1px solid color-mix(in srgb, #F2EFE9 30%, transparent); }
+.marquee__track {
+  display: flex; gap: 2.4rem; width: max-content;
+  font-family: var(--sc-font-mono); font-size: 0.74rem;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--sc-ink-soft);
+  animation: fos-marquee 44s linear infinite;
+}
+@keyframes fos-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+.marquee__track span { white-space: nowrap; }
+
+.foot__bar {
+  display: flex; flex-wrap: wrap; gap: 0.8rem 1.6rem;
+  justify-content: space-between; align-items: baseline;
+  padding: 1.2rem 0 clamp(1.4rem, 3vw, 2.4rem);
+  font-family: var(--sc-font-mono); font-size: 0.72rem;
+  color: var(--sc-ink-soft);
+}
+.foot__mark { font-family: var(--sc-font-display); font-weight: 800; font-stretch: 125%; letter-spacing: 0.17em; color: var(--sc-ink); font-size: 0.8rem; }
+
+/* ── mobile ──────────────────────────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  /* The hero steps down a rung: --fos-hero's clamp floor is a desktop floor. */
+  :root { --fos-hero: clamp(1.7rem, 8.4vw, 2.4rem); }
+
+  #ch-0 [data-sc-stage] { padding-block: 1.6rem; }
+  .hero { gap: 1.2rem; }
+  .hero__lead { gap: 0.7rem; }
+  .hero__mark { font-size: 0.8rem; }
+  .hero h1 { max-width: none; }
+
+  /* The rate card becomes a stacked list, still two figures, still resolving.
+     One line per row, not two: the whole card plus the headline plus the total
+     has to clear a 844px stage, and a two-line row overflowed it by half a
+     screen. `display:block` also kills caption-side, which threw the caption to
+     the top of the table in a 10ch column, so the table is a flex column here
+     and the caption is explicitly ordered last. */
+  .ledger { display: flex; flex-direction: column; width: 100%; }
+  .ledger thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ledger tbody { display: block; order: 1; }
+  .ledger tfoot { display: block; order: 2; }
+  .ledger caption { order: 3; max-width: none; font-size: 0.66rem; padding-top: 0.8rem; }
+
+  .ledger tr[data-fos-row] {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0 0.7rem;
+    align-items: baseline;
+    padding: 0.44rem 0;
+    border-bottom: var(--fos-rule);
+  }
+  .ledger td { display: block; border-bottom: none; padding: 0; }
+  .ledger__asset { font-size: 0.86rem; }
+  .ledger__now   { font-size: 0.7rem; text-align: right; }
+  .ledger__worth { font-size: 1rem; text-align: right; min-width: 0; }
+
+  .ledger tfoot tr { display: grid; grid-template-columns: 1fr auto; gap: 0.7rem; align-items: baseline; border-top: 2px solid currentColor; padding-top: 0.7rem; }
+  .ledger tfoot td { border-top: none; padding-top: 0; }
+  .ledger__totlab { font-size: 0.64rem; }
+  .ledger__shortfall { font-size: 1.3rem; }
+
+  /* Tap targets, not desktop hit areas. */
+  .cta { width: 100%; text-align: center; padding-block: 1.15rem; }
+  .index a { padding: 1.1rem 0; min-height: 44px; }
+  .field input, .field textarea { padding: 0.7rem 0; font-size: 16px; }
+}
+
+/* ── reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track { animation: none; }
+  .ledger__now span::after { transition: none; }
+  .report { transform: none !important; }
+  .cta:active { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<a class="fos-skip" href="#ch-0">Skip to content</a>
+
+<div class="fos-folio" aria-hidden="true">
+  <span class="fos-folio__mark">FRONT OF SHIRT</span>
+  <span class="fos-folio__sep">/</span>
+  <span class="fos-folio__now" data-fos-folio>The rate card</span>
+</div>
+
+<main>
+
+<!-- ═══ CHAPTER 0 · title page · the rate card ═══════════════════════════════
+     The peak. Pinned so the revaluation has room to run. Nothing crossfades
+     here: the card is the ground, present from the first frame, and the only
+     motion is the bespoke ledger. Span is the largest on the page by ~1.6x. -->
+<section class="ch ch--blue" id="ch-0" data-sc-act="pin" data-sc-span="2.6" data-chapter="The rate card">
+  <div data-sc-stage>
+    <div class="hero">
+
+      <div class="hero__lead">
+        <p class="hero__mark">FRONT OF SHIRT</p>
+        <h1 class="fos-display fos-display--hero">You are underselling everything you own.</h1>
+      </div>
+
+      <table class="ledger" id="ledger">
+        <caption>
+          Indicative 2026/27 rates for a Women's Super League 2 or tier 3 club.
+          Yours will be different, that's what the call is for.
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Inventory</th>
+            <th scope="col">What clubs charge</th>
+            <th scope="col">What it is worth</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-fos-row data-fos-now="18000" data-fos-worth="120000">
+            <td class="ledger__asset">Front of shirt</td>
+            <td class="ledger__now"><span>£18,000</span></td>
+            <td class="ledger__worth" data-fos-worthfig>£18,000</td>
+          </tr>
+          <tr data-fos-row data-fos-now="4000" data-fos-worth="25000">
+            <td class="ledger__asset">Sleeve</td>
+            <td class="ledger__now"><span>£4,000</span></td>
+            <td class="ledger__worth" data-fos-worthfig>£4,000</td>
+          </tr>
+          <tr data-fos-row data-fos-now="3500" data-fos-worth="22000">
+            <td class="ledger__asset">Back of shirt</td>
+            <td class="ledger__now"><span>£3,500</span></td>
+            <td class="ledger__worth" data-fos-worthfig>£3,500</td>
+          </tr>
+          <tr data-fos-row data-fos-now="6000" data-fos-worth="38000">
+            <td class="ledger__asset">Training kit</td>
+            <td class="ledger__now"><span>£6,000</span></td>
+            <td class="ledger__worth" data-fos-worthfig>£6,000</td>
+          </tr>
+          <tr data-fos-row data-fos-now="5000" data-fos-worth="30000">
+            <td class="ledger__asset">LED and perimeter</td>
+            <td class="ledger__now"><span>£5,000</span></td>
+            <td class="ledger__worth" data-fos-worthfig>£5,000</td>
+          </tr>
+          <tr data-fos-row data-fos-now="1200" data-fos-worth="9500">
+            <td class="ledger__asset">Matchday title</td>
+            <td class="ledger__now"><span>£1,200</span></td>
+            <td class="ledger__worth" data-fos-worthfig>£1,200</td>
+          </tr>
+          <tr data-fos-row data-fos-now="2500" data-fos-worth="18000">
+            <td class="ledger__asset">Community programme</td>
+            <td class="ledger__now"><span>£2,500</span></td>
+            <td class="ledger__worth" data-fos-worthfig>£2,500</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="ledger__totlab" colspan="2">Left on the table, per season</td>
+            <td class="ledger__shortfall" data-fos-shortfall aria-live="polite"></td>
+          </tr>
+        </tfoot>
+      </table>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHAPTER 1 · the case, in three figures ═══════════════════════════════
+     Device: count, inside running prose. Real figures only, cited below. -->
+<section class="ch ch--chalk" data-sc-act="flow" data-chapter="The money is here">
+  <div class="fos-wrap fos-pad case">
+    <div class="fos-headblock">
+      <p class="fos-label">Chapter one</p>
+      <h2 class="fos-display fos-display--head">The money arrived. It did not spread out.</h2>
+    </div>
+
+    <div class="case__grid" data-sc-in data-sc-stagger="80">
+      <p>
+        Women's Super League clubs turned over
+        <span class="case__fig">£</span><span class="case__fig" data-sc-count="0 90" data-sc-count-at="0.05 0.4">0</span><span class="case__fig">m</span>
+        in 2024/25. That is
+        <span class="case__fig" data-sc-count="0 39" data-sc-count-at="0.1 0.45">0</span><span class="case__fig">%</span>
+        more than the season before.
+      </p>
+      <p>
+        Four clubs took
+        <span class="case__fig" data-sc-count="0 71" data-sc-count-at="0.15 0.5">0</span><span class="case__fig">%</span>
+        of it. The season before, the same four took 66%.
+      </p>
+      <p>
+        The distance between the highest earner in the league and the lowest is now
+        <span class="case__fig" data-sc-count="0 16" data-sc-count-at="0.2 0.55">0</span><span class="case__fig">x</span>.
+        Last season it was 13x.
+      </p>
+      <p>
+        Across the fifteen highest-earning women's clubs in the world,
+        <span class="case__fig" data-sc-count="0 72" data-sc-count-at="0.25 0.6">0</span><span class="case__fig">%</span>
+        of all income is commercial. Commercial capability is not part of the difference. It is the difference.
+      </p>
+    </div>
+
+    <p class="case__land">The money is here. It is not distributed by accident.</p>
+
+    <p class="case__src">
+      Sources: Deloitte Annual Review of Football Finance, Women's Super League, 2024/25 season.
+      League revenue, growth, top-four concentration and the earnings spread are league figures.
+      The 72% commercial share is drawn from the fifteen highest-earning women's clubs worldwide
+      (£95.8m of £132.2m), which is a wider set than the WSL alone.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ CHAPTER 2 · what we do ══════════════════════════════════════════════
+     Device: flow + in, staggered. Running text, no cards, real deliverables. -->
+<section class="ch ch--blue" data-sc-act="flow" data-chapter="Value it, sell it, prove it">
+  <div class="fos-wrap fos-pad">
+    <div class="fos-headblock">
+      <p class="fos-label">Chapter two</p>
+      <h2 class="fos-display fos-display--head">An outsourced commercial department, on retainer.</h2>
+      <p class="fos-lede" style="margin-top:1.4rem">
+        Three things, in order. Each one ends in a document you can hold.
+      </p>
+    </div>
+
+    <div data-sc-in data-sc-stagger="70">
+      <div class="pillar">
+        <div class="pillar__grid">
+          <h3>Value it</h3>
+          <div>
+            <p class="fos-p">
+              We audit everything you can sell. Shirt, sleeve, back of shirt, training kit, LED,
+              matchday, digital, community, data. Then we price it against what comparable rights
+              actually cleared this season, not against what you charged last season and rolled over.
+            </p>
+            <p class="pillar__out">Deliverable: inventory audit and a priced media pack.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar__grid">
+          <h3>Sell it</h3>
+          <div>
+            <p class="fos-p">
+              We take the packages to market by category, not by mailing list. A named target list,
+              brands with a reason to be in front of your audience, approached in the right order.
+              You see every conversation. You sign every deal.
+            </p>
+            <p class="pillar__out">Deliverable: named target list by category, and the deals.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar__grid">
+          <h3>Prove it</h3>
+          <div>
+            <p class="fos-p">
+              Then the part nobody does. Every quarter, the sponsor gets a report they will actually
+              read: logo screen time in minutes, reach by asset, what it was worth against what they
+              paid, and a straight recommendation on renewal. Deals die at year one because nobody
+              ever showed the sponsor what they got.
+            </p>
+            <p class="pillar__out">Deliverable: quarterly partner report and a renewal case.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHAPTER 3 · prove it, expanded ══════════════════════════════════════
+     Device: parallax, inside a media column. The report travels against its
+     own column; the copy and the caption stay put. Body copy never rides a
+     parallax layer. -->
+<section class="ch ch--chalk" data-sc-act="flow" data-chapter="Proof of delivery">
+  <div class="fos-wrap fos-pad">
+    <div class="proof__grid">
+
+      <div>
+        <div class="fos-headblock">
+          <p class="fos-label">Chapter three</p>
+          <h2 class="fos-display fos-display--head">This is why the second year happens.</h2>
+        </div>
+        <p class="fos-p">
+          A sponsor who cannot measure what they bought will not buy it twice. Most clubs below the
+          elite tier send nothing after the season ends, so renewal becomes a conversation about
+          goodwill and budget, which is a conversation you lose.
+        </p>
+        <p class="fos-p">
+          We send this instead. Screen time counted, reach broken out by asset, cost per thousand
+          against what they paid, and a recommendation we are prepared to defend. When the number
+          says renew at a higher rate, it says so. When it says the LED package underdelivered, it
+          says that too, and we fix it before the sponsor raises it.
+        </p>
+      </div>
+
+      <figure style="margin:0">
+        <div class="report" data-sc-parallax="-0.9">
+          <div class="report__head">
+            <span class="report__ttl">Partner report</span>
+            <span>Q3 · 2025/26</span>
+          </div>
+          <table class="report__tbl">
+            <caption class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Sample delivery figures by asset</caption>
+            <thead>
+              <tr><th scope="col">Asset</th><th scope="col">Screen time</th><th scope="col">Reach</th><th scope="col">CPT</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Front of shirt</td><td>412 min</td><td>2.10m</td><td>£4.90</td></tr>
+              <tr><td>Sleeve</td><td>168 min</td><td>2.10m</td><td>£3.20</td></tr>
+              <tr><td>LED, in-play</td><td>96 min</td><td>1.44m</td><td>£8.70</td></tr>
+              <tr><td>Matchday title</td><td>31 min</td><td>0.62m</td><td>£6.10</td></tr>
+              <tr><td>Social, owned</td><td>—</td><td>3.35m</td><td>£1.80</td></tr>
+            </tbody>
+          </table>
+          <div class="report__rec">
+            <span>Renewal recommendation</span>
+            <span class="report__verdict">Renew, +34%</span>
+          </div>
+        </div>
+        <figcaption class="report__cap">
+          Sample partner report, illustrative figures. The format is the one your sponsor receives
+          every quarter.
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHAPTER 4 · who this is for ═════════════════════════════════════════
+     Device: reveal. A wipe is a change of state, and this chapter changes the
+     reader's state: in, or out. -->
+<section class="ch ch--blue" data-sc-act="flow" data-chapter="Who this is for">
+  <div class="fos-wrap fos-pad qual">
+    <div class="fos-headblock">
+      <p class="fos-label">Chapter four</p>
+      <h2 class="fos-display fos-display--head">We are not right for every club.</h2>
+    </div>
+
+    <div class="qual__grid">
+      <div class="qual__reveal" data-sc-reveal="left" data-sc-reveal-at="0.06 0.26">
+        <p class="fos-label" style="margin-bottom:1rem">This is for</p>
+        <ul>
+          <li>Women's Super League 2 and tier 3 clubs with an audience growing faster than the commercial team can sell it.</li>
+          <li>Independent women's clubs operating outside a men's parent structure.</li>
+          <li>Women's teams inside a men's parent club who are being sold as an afterthought in a bundled deal.</li>
+          <li>Clubs who have never had their inventory valued by anyone who does this for a living.</li>
+        </ul>
+      </div>
+
+      <div class="qual--not qual__reveal" data-sc-reveal="right" data-sc-reveal-at="0.16 0.36">
+        <p class="fos-label" style="margin-bottom:1rem">This is not for</p>
+        <ul>
+          <li>Clubs with a full commercial department already selling at market rate.</li>
+          <li>Anyone looking for a grant, a partner, or a cause.</li>
+          <li>Clubs who want a logo on a bib in exchange for exposure.</li>
+          <li>Anyone who wants the deal announced before the reporting is built.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHAPTER 5 · the people, and the point of view ═══════════════════════
+     Device: flow + in. The authored quiet. Smallest type on the site, and
+     deliberately the least eventful screen: chapter six has to land as a
+     decision, and it cannot do that after another loud chapter. -->
+<section class="ch ch--chalk" data-sc-act="flow" data-chapter="The people">
+  <div class="fos-wrap fos-pad">
+    <div class="who__grid" data-sc-in data-sc-stagger="60">
+
+      <div>
+        <div class="fos-headblock">
+          <p class="fos-label">Chapter five</p>
+          <h2 class="fos-display fos-display--head">Who you would be working with.</h2>
+        </div>
+        <!-- PLACEHOLDER · client to replace with real names, real background,
+             real brands. No stock headshots. Nothing here is invented copy
+             pretending to be fact. -->
+        <p class="fos-p fos-tbc">
+          [Founder name and role.] [Where they sold rights before this, and for whom.]
+          [The brands they have done deals with, named.] [The football background, and
+          what it is actually worth here.]
+        </p>
+        <p class="fos-p fos-tbc">
+          [Second name, if there is one. Same treatment.]
+        </p>
+        <p class="fos-p" style="margin-top:1.6rem">
+          No account managers. The person who values your inventory is the person who
+          sells it and the person who writes the report.
+        </p>
+      </div>
+
+      <div>
+        <div class="fos-headblock">
+          <p class="fos-label">Point of view</p>
+          <h2 class="fos-display fos-display--head">Writing.</h2>
+        </div>
+        <!-- PLACEHOLDER · titles are positioning, not claims. Replace with
+             real pieces before launch; the index carries any number. -->
+        <ul class="index">
+          <li><a href="#"><span class="index__kind">Valuation</span><span class="index__ttl">What a sleeve is actually worth in the Championship, and how the £4,000 number got set</span></a></li>
+          <li><a href="#"><span class="index__kind">Reporting</span><span class="index__ttl">Screen time is not reach, and selling it as reach is why your sponsor left</span></a></li>
+          <li><a href="#"><span class="index__kind">Market</span><span class="index__ttl">Seventy-one per cent to four clubs: reading the 2024/25 revenue split</span></a></li>
+        </ul>
+        <p class="fos-label" style="margin-top:1.4rem">More to follow</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CHAPTER 6 · book a valuation ════════════════════════════════════════
+     The close. Pinned, on a ground that is already there, with a hold cue so
+     the last screen still has something on it. Masthead plate, then the one
+     permitted marquee, then it stops. -->
+<section class="ch ch--blue" id="ch-6" data-sc-act="pin" data-sc-span="1.35" data-chapter="Book a valuation">
+  <div data-sc-stage>
+    <div class="fos-wrap" style="width:min(100% - (2 * var(--sc-gutter, 1.4rem)), 78rem)">
+      <div class="plate__grid" data-sc-cue="0.04">
+
+        <div>
+          <p class="fos-label">Chapter six</p>
+          <h2 class="fos-display fos-display--head" style="margin-top:0.9rem">Book a valuation.</h2>
+          <p class="fos-lede" style="margin-top:1.4rem">
+            One call, about an hour. You leave it knowing what your inventory is worth.
+            There is no charge for it and no obligation after it.
+          </p>
+        </div>
+
+        <form class="form" id="book" novalidate>
+          <div class="field--pair">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-club">Club</label>
+              <input id="f-club" name="club" type="text" autocomplete="organization" required>
+            </div>
+          </div>
+          <div class="field--pair">
+            <div class="field">
+              <label for="f-role">Role</label>
+              <input id="f-role" name="role" type="text" autocomplete="organization-title">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-note">Anything we should know</label>
+            <textarea id="f-note" name="note" rows="2"></textarea>
+          </div>
+          <button class="cta" type="submit">Book a valuation call</button>
+          <p class="form__status" role="status" data-fos-status></p>
+          <p class="form__note">
+            No form handler is wired up yet. Point this at your inbox or your booking tool
+            before launch.
+          </p>
+        </form>
+
+      </div>
+
+      <footer class="foot">
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <span>Women's Super League 2</span><span>FA Women's National League North</span><span>FA Women's National League South</span><span>FA Women's National League Premier Division</span><span>Scottish Women's Premier League</span><span>Women's Super League 2</span><span>FA Women's National League North</span><span>FA Women's National League South</span><span>FA Women's National League Premier Division</span><span>Scottish Women's Premier League</span>
+          </div>
+        </div>
+        <div class="foot__bar">
+          <span class="foot__mark">FRONT OF SHIRT</span>
+          <span>An outsourced commercial department for women's football.</span>
+          <span>Retainer plus commission.</span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>
+ScrollCraft.mount(document.body);
+
+/* ═══ SIGNATURE MOVE · the revaluation ledger ═══════════════════════════════
+   Bespoke, in the page, driven off chapter zero's --sc-p. The engine is
+   untouched. On the visitor's first scroll gesture each row revalues: the
+   current figure stays and is struck, the real figure resolves in beside it,
+   staggered by row, and the shortfall at the foot accumulates the difference
+   as each row lands. It runs once. It does not loop and it does not replay. */
+(function () {
+  var card = document.getElementById('ledger');
+  var act  = document.getElementById('ch-0');
+  if (!card || !act) return;
+
+  var totalEl = card.querySelector('[data-fos-shortfall]');
+  var rows = Array.prototype.slice.call(card.querySelectorAll('[data-fos-row]'))
+    .map(function (r) {
+      return {
+        el: r,
+        now: parseFloat(r.getAttribute('data-fos-now')),
+        worth: parseFloat(r.getAttribute('data-fos-worth')),
+        fig: r.querySelector('[data-fos-worthfig]'),
+        fired: false, t0: 0
+      };
+    });
+
+  function gbp(n) { return '£' + Math.round(n).toLocaleString('en-GB'); }
+
+  function settle() {
+    var total = 0;
+    rows.forEach(function (d) {
+      d.el.classList.add('is-revalued');
+      d.fig.textContent = gbp(d.worth);
+      total += d.worth - d.now;
+    });
+    totalEl.textContent = gbp(total);
+  }
+
+  /* Reduced motion renders the final state, per brief. */
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { settle(); return; }
+
+  var START = 0.05, STEP = 0.05, DUR = 620, raf = 0;
+  function ease(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function frame(now) {
+    var p = parseFloat(getComputedStyle(act).getPropertyValue('--sc-p')) || 0;
+    var running = 0, done = true, anyFired = false;
+
+    for (var i = 0; i < rows.length; i++) {
+      var d = rows[i];
+      if (!d.fired && p >= START + i * STEP) {
+        d.fired = true; d.t0 = now;
+        d.el.classList.add('is-revalued');
+      }
+      if (d.fired) {
+        anyFired = true;
+        var t = Math.min((now - d.t0) / DUR, 1);
+        var v = d.now + (d.worth - d.now) * ease(t);
+        d.fig.textContent = gbp(v);
+        running += v - d.now;
+        if (t < 1) done = false;
+      } else {
+        done = false;
+      }
+    }
+
+    if (anyFired) totalEl.textContent = gbp(running);
+    if (done) { card.setAttribute('data-settled', 'true'); return; }
+    raf = requestAnimationFrame(frame);
+  }
+  raf = requestAnimationFrame(frame);
+})();
+
+/* ═══ folio ════════════════════════════════════════════════════════════════
+   Chaptered editorial takes a margin folio rather than a fixed bar. Chapter
+   name only: a sequence counter would be the banned "01 / 06". */
+(function () {
+  var out = document.querySelector('[data-fos-folio]');
+  if (!out || !('IntersectionObserver' in window)) return;
+  var chapters = document.querySelectorAll('[data-chapter]');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var name = e.target.getAttribute('data-chapter');
+        if (out.textContent !== name) out.textContent = name;
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  Array.prototype.forEach.call(chapters, function (c) { io.observe(c); });
+})();
+
+/* ═══ booking form ═════════════════════════════════════════════════════════
+   No handler is wired up. The confirmation word is the client's: "Booked." */
+(function () {
+  var form = document.getElementById('book');
+  if (!form) return;
+  var status = form.querySelector('[data-fos-status]');
+  var btn = form.querySelector('.cta');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { status.textContent = 'Name, club and email, please.'; return; }
+    btn.textContent = 'Booked.';
+    btn.setAttribute('data-booked', 'true');
+    status.textContent = 'Nothing was sent: connect a handler before launch.';
+  });
+})();
+</script>
+</body>
+</html>
