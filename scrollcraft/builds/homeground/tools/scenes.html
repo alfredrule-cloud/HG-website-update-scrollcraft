@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><style>html,body{margin:0;background:#0B0D0B}canvas{display:block}</style></head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<script>
+/* Placeholder motion plates for the Homeground grid.
+   Seven generative broadcast fields, one per project, so the tiles read as
+   seven different things rather than seven grey boxes. Palette is the page's
+   own: near-black ground, bone, one lime accent. Every scene is periodic over
+   phase 0..1 so the encoded clip loops seamlessly.
+
+   These are placeholders. They are replaced by dropping real footage in. */
+const C = document.getElementById('c'), X = C.getContext('2d');
+const W = C.width, H = C.height;
+const BLACK = '#0B0D0B', BONE = '#EEEDE7', LIME = '#7CEE00';
+const TAU = Math.PI * 2;
+
+// deterministic PRNG so every render of a scene is identical
+function rng(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+
+function ground() { X.fillStyle = BLACK; X.fillRect(0, 0, W, H); }
+
+function grain(p) {
+  // cheap animated grain: a few hundred faint dots, reseeded per frame band
+  const r = rng(9973 + Math.floor(p * 12) * 71);
+  X.globalAlpha = 0.05;
+  X.fillStyle = BONE;
+  for (let i = 0; i < 1400; i++) X.fillRect(r() * W | 0, r() * H | 0, 1, 1);
+  X.globalAlpha = 1;
+}
+
+const scenes = {
+  // Beats by Dre — audio pulse
+  pulse(p) {
+    ground();
+    const cx = W * 0.34, cy = H * 0.5;
+    for (let i = 0; i < 7; i++) {
+      const q = (p + i / 7) % 1;
+      const rad = q * Math.hypot(W, H) * 0.62;
+      X.globalAlpha = (1 - q) * 0.85;
+      X.strokeStyle = i % 3 === 0 ? LIME : BONE;
+      X.lineWidth = i % 3 === 0 ? 5 : 2;
+      X.beginPath(); X.arc(cx, cy, rad, 0, TAU); X.stroke();
+    }
+    X.globalAlpha = 1;
+    X.fillStyle = LIME;
+    X.beginPath(); X.arc(cx, cy, 12 + Math.sin(p * TAU) * 4, 0, TAU); X.fill();
+  },
+
+  // Manchester United — kit stripes wiping across
+  stripes(p) {
+    ground();
+    const n = 26, bw = W / n;
+    for (let i = 0; i < n; i++) {
+      const q = (i / n + p) % 1;
+      const h = (0.35 + 0.65 * Math.abs(Math.sin((i * 0.7 + p * TAU)))) * H;
+      X.fillStyle = (i % 9 === 4) ? LIME : BONE;
+      X.globalAlpha = (i % 9 === 4) ? 0.95 : 0.13 + q * 0.10;
+      X.fillRect(i * bw, (H - h) / 2, bw * 0.62, h);
+    }
+    X.globalAlpha = 1;
+  },
+
+  // Callaway — a ball flight, drawn and travelled
+  arc(p) {
+    ground();
+    const x0 = W * 0.08, y0 = H * 0.86, x1 = W * 0.94, y1 = H * 0.32, peak = H * 0.10;
+    const at = t => ({ x: x0 + (x1 - x0) * t, y: (1 - t) * y0 + t * y1 - Math.sin(t * Math.PI) * (y0 - peak) * 0.72 });
+    X.strokeStyle = BONE; X.globalAlpha = 0.14; X.lineWidth = 1;
+    for (let y = H * 0.86; y < H; y += 14) { X.beginPath(); X.moveTo(0, y); X.lineTo(W, y); X.stroke(); }
+    X.strokeStyle = BONE; X.globalAlpha = 0.28; X.lineWidth = 2; X.setLineDash([9, 11]);
+    X.beginPath();
+    for (let t = 0; t <= 1.001; t += 0.01) { const q = at(t); t ? X.lineTo(q.x, q.y) : X.moveTo(q.x, q.y); }
+    X.stroke(); X.setLineDash([]);
+    const head = (p * 1.18) % 1.18;
+    X.globalAlpha = 1; X.strokeStyle = LIME; X.lineWidth = 4;
+    X.beginPath();
+    for (let t = 0; t <= Math.min(head, 1); t += 0.01) { const q = at(t); t ? X.lineTo(q.x, q.y) : X.moveTo(q.x, q.y); }
+    X.stroke();
+    if (head <= 1) { const q = at(head); X.fillStyle = BONE; X.beginPath(); X.arc(q.x, q.y, 9, 0, TAU); X.fill(); }
+  },
+
+  // Sky Sports — a broadcast scan band travelling down a grid
+  scan(p) {
+    ground();
+    X.strokeStyle = BONE; X.globalAlpha = 0.17; X.lineWidth = 1;
+    for (let x = 0; x <= W; x += 64) { X.beginPath(); X.moveTo(x, 0); X.lineTo(x, H); X.stroke(); }
+    for (let y = 0; y <= H; y += 64) { X.beginPath(); X.moveTo(0, y); X.lineTo(W, y); X.stroke(); }
+    const by = ((p * 1.35) % 1.35) * H - H * 0.18, bh = H * 0.16;
+    const g = X.createLinearGradient(0, by, 0, by + bh);
+    g.addColorStop(0, 'rgba(124,238,0,0)'); g.addColorStop(0.5, 'rgba(124,238,0,0.5)'); g.addColorStop(1, 'rgba(124,238,0,0)');
+    X.globalAlpha = 1; X.fillStyle = g; X.fillRect(0, by, W, bh);
+    X.strokeStyle = LIME; X.lineWidth = 2; X.globalAlpha = 0.9;
+    X.beginPath(); X.moveTo(0, by + bh / 2); X.lineTo(W, by + bh / 2); X.stroke();
+    X.globalAlpha = 1;
+  },
+
+  // Aston Villa — chevrons at speed
+  chevron(p) {
+    ground();
+    const step = 150, off = p * step;
+    X.lineWidth = 26; X.lineCap = 'butt';
+    for (let i = -3; i < W / step + 3; i++) {
+      const x = i * step + off;
+      X.strokeStyle = (i % 5 === 0) ? LIME : BONE;
+      X.globalAlpha = (i % 5 === 0) ? 0.9 : 0.14;
+      X.beginPath(); X.moveTo(x, -40); X.lineTo(x + H * 0.5, H / 2); X.lineTo(x, H + 40); X.stroke();
+    }
+    X.globalAlpha = 1;
+  },
+
+  // Arsenal — a crowd mosaic resolving in a wave
+  mosaic(p) {
+    ground();
+    const cell = 40, cols = Math.ceil(W / cell), rows = Math.ceil(H / cell);
+    const r = rng(4242);
+    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
+      const seed = r();
+      const wave = (Math.sin((x / cols) * TAU * 1.5 - p * TAU) + 1) / 2;
+      const on = seed < wave * 0.55;
+      if (!on) continue;
+      X.fillStyle = seed < 0.06 ? LIME : BONE;
+      X.globalAlpha = seed < 0.06 ? 0.95 : 0.10 + wave * 0.22;
+      X.fillRect(x * cell + 3, y * cell + 3, cell - 6, cell - 6);
+    }
+    X.globalAlpha = 1;
+  },
+
+  // Homeground Academy — a slow drifting field
+  drift(p) {
+    ground();
+    const r = rng(31337), N = 150;
+    for (let i = 0; i < N; i++) {
+      const bx = r() * W, by = r() * H, sp = 0.35 + r() * 0.9, sz = 1.5 + r() * 3.5;
+      const y = (by - p * H * sp + H * 2) % H;
+      X.fillStyle = i % 17 === 0 ? LIME : BONE;
+      X.globalAlpha = i % 17 === 0 ? 0.9 : 0.16 + r() * 0.2;
+      X.beginPath(); X.arc(bx, y, sz, 0, TAU); X.fill();
+    }
+    X.globalAlpha = 1;
+  }
+};
+
+window.renderFrame = function (name, p) {
+  scenes[name](((p % 1) + 1) % 1);
+  grain(p);
+  return C.toDataURL('image/jpeg', 0.9);
+};
+window.SCENES = Object.keys(scenes);
+</script>
+</body>
+</html>

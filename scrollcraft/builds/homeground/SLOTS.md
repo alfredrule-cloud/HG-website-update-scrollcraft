@@ -1,112 +1,129 @@
 # Media slots — what to drop where
 
-Every media frame on the page is a placeholder. To fill one, drop a file into
-`assets/` with the **exact filename** below. No HTML edit is needed for the
-still; the `<video>` line is already written and commented out beneath each
-still.
+Every project currently shows an **authored placeholder plate**, not real work.
+Each is a generative broadcast field rendered from `tools/scenes.html` — seven
+visually distinct plates so the grid reads as seven different things rather than
+seven grey boxes. They exist to prove the motion pipeline; they are not the
+work.
 
 ## How a slot works
 
-```html
-<!-- still: shown until a video is supplied -->
-<img class="hg-frame__img" src="assets/01-beats.jpg" width="1600" height="900" alt="…">
+Each project needs **three files** in `assets/`, named from its `media` key in
+the `PROJECTS` array in `index.html`:
 
-<!-- video: uncomment, and it replaces the still -->
-<!-- <video class="hg-frame__vid" src="assets/01-beats.mp4"
-        autoplay loop muted playsinline poster="assets/01-beats.jpg"></video> -->
-```
+| File | Purpose |
+|---|---|
+| `<key>-poster.jpg` | The resting frame. Shown until hover, and the *only* thing shown on touch devices and under reduced motion. |
+| `<key>.webm` | Hover clip, VP9. Browsers that support it take this — it is the smaller file. |
+| `<key>.mp4` | Hover clip, H.264. Safari and older browsers. |
 
-Stills are **16:9, 1600×900 or larger**. Videos are **16:9, muted, and should be
-6–12 seconds**, cut to loop. Keep them under ~4 MB each; they autoplay on
-entry, so weight is felt immediately.
+Drop all three in with the right filename and nothing else changes. No HTML
+edit, no rebuild.
 
-**Two slots are marquee plates.** Beats by Dre (01) and Manchester United (02)
-sit on a wider, cinematic frame at **2:1** on desktop, so a 16:9 file is
-centre-cropped top and bottom there. Supply those two with headroom, or send a
-2:1 crop. Below 1024px they revert to 16:9 and nothing is cropped. These two are
-wider than the rest on purpose: they are the projects with confirmed
-attribution, and giving them more room is what stops seven identical plates
-reading as one repeated beat.
+**Specs.** 16:9. Poster 1280×720 or larger. Clips **4–8 seconds, silent, cut to
+loop** — they play on hover and loop until the pointer leaves, so a hard cut
+back to frame 1 is visible. Keep each clip under ~1.5 MB; the current
+placeholders run 15–220 KB.
+
+**The poster must be the clip's first frame.** Otherwise the tile jumps at the
+moment hover starts. Two of the placeholders (`03-callaway`, `04-skysports`)
+have their loops rotated in `tools/render.mjs` for exactly this reason — frame 0
+was a near-empty frame, so the loop was rotated to start somewhere strong and
+the poster taken from the new frame 0.
 
 ---
 
-## The slots, in page order
+## The slots
 
-| # | Filename | Client | Project | Attribution |
+| Key | Client | Project | Discipline | Attribution |
 |---|---|---|---|---|
-| 01 | `01-beats.jpg` / `.mp4` | Beats by Dre | "Some play, others glide" — Cole Palmer, 80-second spot | **Verified** |
-| 02 | `02-manutd.jpg` / `.mp4` | adidas Originals × Manchester United | Kit launch film — Barry Keoghan, dir. Tom Day | **Verified** |
-| 03 | `03-callaway.jpg` / `.mp4` | Callaway Golf | The indoor-golfers film (made with MSQ Sport & Entertainment) | **Verified**, exact title to confirm |
-| 04 | `04-skysports.jpg` / `.mp4` | Sky Sports | — | **Confirm off your own site** |
-| 05 | `05-astonvilla.jpg` / `.mp4` | Aston Villa | — | **Confirm off your own site** |
-| 06 | `06-arsenal.jpg` / `.mp4` | adidas × Arsenal | — | **Confirm off your own site** |
-| 07 | `07-academy.jpg` / `.mp4` | Homeground Academy | Homeground's own initiative — careers in sport beyond turning pro | **Verified**, needs a project line |
+| `01-beats` | Beats by Dre | "Some play, others glide" — Cole Palmer, 80-second spot | Film | **Verified** |
+| `02-manutd` | Manchester United | adidas Originals kit launch film — Barry Keoghan, dir. Tom Day | Kit launch | **Verified** |
+| `03-callaway` | Callaway | The golfers stuck indoors (with MSQ Sport & Entertainment) | Film | **Verified**, exact title to confirm |
+| `04-skysports` | Sky Sports | — | Broadcast | **Confirm off your own site** |
+| `05-astonvilla` | Aston Villa | — | Kit launch | **Confirm off your own site** |
+| `06-arsenal` | Arsenal | — | Kit launch | **Confirm off your own site** |
+| `07-academy` | Homeground Academy | Careers in sport beyond turning pro | Social | **Verified**, needs a project line |
+
+**Watch slot 05.** The adidas × Aston Villa 2024/25 away-kit "Gaslamp" neo-noir
+film was made by **M+C Saatchi, not Homeground**. Aston Villa is genuinely a
+Homeground client; that particular film is not Homeground's work.
 
 ---
 
-## What I could and could not confirm
+## Adding the rest of the roster
 
-I could not reach homeground.london or the Instagram account: this environment's
-network egress proxy blocks both, and there was no asset-generation budget to
-fall back on. Everything above came from public press coverage instead, so:
+The grid, the filters, the client list, the routing and the project pages are
+all generated from one array — `PROJECTS`, near the top of the `<script>` in
+`index.html`. Adding a project is one object:
 
-**Verified** — I found independent press confirming Homeground made it.
-
-**Confirm off your own site** — the *client* is confirmed (all three appear on
-Homeground's own work page per its search listing), but I could not confirm which
-specific project. The label on the page currently reads `Project title to
-confirm` in those three slots, in the same type as every other label, so it does
-not look broken — it looks like a field waiting on you.
-
-**One thing to watch on slot 05.** The adidas × Aston Villa 2024/25 away-kit
-"Gaslamp" neo-noir film was made by **M+C Saatchi, not Homeground**. Do not put
-that one in this slot. Aston Villa is genuinely a Homeground client; it is that
-particular film that belongs to someone else.
-
----
-
-## The three capability plates
-
-These are not media slots and need nothing dropped in. They are set in the same
-label schema as the work, which is what makes the calm section read as part of
-the collection rather than as a marketing interruption:
-
-- **Strategy & comms**
-- **Creative & design**
-- **Production**
-
-Sourced from Homeground's own description of itself ("brand strategy and comms,
-creative, design and production for brands involved in sport and sport culture").
-Reword freely — the schema holds as long as each plate keeps one short label and
-one line under it.
-
----
-
-## The logo
-
-Built from the artwork you sent: the arched collegiate "HOMEGROUND" wordmark in
-near-black on the acid lime. It is **set as SVG text on an arc** in *Graduate* (a
-collegiate varsity face, self-hosted in `fonts/`), thickened with a
-painted-under stroke to match the weight of your artwork. Real markup, so it
-stays sharp at any size and screen readers read it as "Homeground".
-
-It is a close reconstruction, **not a trace of your actual file.** For exact
-fidelity, drop the real vector at `assets/logo.svg` and replace the three
-`.hg-logo` blocks in `index.html` with:
-
-```html
-<img class="hg-logo" src="assets/logo.svg" alt="Homeground">
+```js
+{
+  slug: 'nike-something',            // becomes #/work/nike-something
+  client: 'Nike',
+  title: 'Campaign name',
+  discipline: 'Film',                // appears in the Discipline filter
+  sport: 'Football',
+  media: '08-nike',                  // assets/08-nike-poster.jpg + .webm + .mp4
+  verified: true,
+  facts: ['60-second film', 'Dir. Someone'],
+  challenge: null, idea: null, execution: null,   // null renders "awaiting copy"
+  metric: null,                      // ONLY a real, checkable figure
+  metricNote: 'A verifiable fact if there is no metric'
+}
 ```
 
-It appears in exactly three places: the index in the margin, the hero plate, and
-the footer of the closing plate.
+Nothing else needs touching. The filter sets, the client list and the counts all
+derive from the array.
 
-## The lime
+---
 
-`--hg-lime: #7CEE00` is **eyeballed from your image, not sampled from a file.**
-If you have the real hex, change it in one place at the top of `index.html` and
-the whole page follows: the hero field, the index stamps, the peak wall and the
-closing plate all derive from it. Two companions derive from the same hue —
-`--hg-lime-deep` (`#3D7300`) is the accent on the light ground, because the
-bright lime only clears 1.3:1 there and would fail contrast; adjust it if you
-move the main lime far.
+## Alt text
+
+Every poster currently carries `Placeholder plate for <client> — <title>`, which
+is honest for a placeholder and useless once the real frame lands. **When you
+supply real stills, describe the frame**: "Cole Palmer in a dark tunnel, Beats
+headphones around his neck." That is the line a screen-reader user hears, and it
+is generated in `tileHTML()` — change it there to read from a per-project `alt`
+field if you want them individually written.
+
+---
+
+## The three copy fields
+
+`challenge`, `idea` and `execution` are `null` on every project, which renders a
+marked **awaiting copy** slot rather than plausible-sounding fiction about a real
+client's brief. Fill them in with one short paragraph each.
+
+`metric` is the one to be careful with. It stays `null` unless you have a real,
+checkable figure — a fabricated percentage on a page naming Beats by Dre and
+adidas is a credibility and legal problem, not a design element. Where there is
+no metric, `metricNote` carries a verifiable fact instead and the tile reads
+"Result to confirm" until you supply one.
+
+---
+
+## The logo and the lime
+
+The wordmark is the arched collegiate "HOMEGROUND" set as SVG text on an arc in
+*Graduate*, thickened with a painted-under stroke. A close reconstruction, **not
+a trace of your file** — drop the real vector at `assets/logo.svg` and swap the
+`<svg class="logo">` block in the header for `<img src="assets/logo.svg"
+alt="Homeground">`.
+
+`--lime: #7CEE00` is **eyeballed from your image, not sampled.** Change it once
+at the top of `index.html`. Its companion `--lime-deep: #3D7300` is the accent on
+the off-white ground: the bright lime only clears 1.3:1 there and cannot legally
+carry text or a focus ring, so anything that needs contrast on light uses the
+deep one. If you move the main lime far, move that too.
+
+---
+
+## Regenerating the placeholders
+
+```bash
+node tools/render.mjs      # renders frames, encodes mp4 + webm + poster
+```
+
+Edit the scenes in `tools/scenes.html`. Delete both files once real footage is
+in; nothing in `index.html` depends on them.

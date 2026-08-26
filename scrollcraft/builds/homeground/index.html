@@ -3,868 +3,771 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Homeground · creative for sport and sport culture</title>
-<meta name="description" content="Homeground is a creative agency for brands in sport, sponsorship and youth culture. Selected work for Beats by Dre, adidas Originals, Manchester United, Callaway, Sky Sports, Aston Villa and Arsenal.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%237CEE00'/><text x='16' y='23' font-family='Archivo,sans-serif' font-size='16' font-weight='900' text-anchor='middle' fill='%230B0D0B'>HG</text></svg>">
-<link rel="stylesheet" href="scrollcraft.css">
+
+<title>Homeground — creative for brands in sport</title>
+<meta name="description" content="Homeground is an award-winning creative agency for brands in sport, sponsorship and youth culture. Selected work for Beats by Dre, adidas Originals, Manchester United, Callaway, Sky Sports, Aston Villa and Arsenal.">
+
+<!-- Open Graph / Twitter. NOTE: this is a single-file build, so every route
+     serves this same <head> to a crawler. The router updates these tags at
+     runtime, which fixes the browser tab and any JS-executing crawler, but a
+     static scraper (Slack, iMessage, most link unfurlers) will always show the
+     card below. Per-project cards need one static HTML file per project, or a
+     server. og:image must also be an absolute https URL on a real host: set
+     OG_BASE below once this is deployed. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Homeground">
+<meta property="og:title" content="Homeground — creative for brands in sport">
+<meta property="og:description" content="An award-winning creative agency for brands in sport, sponsorship and youth culture.">
+<meta property="og:image" content="assets/01-beats-poster.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Homeground — creative for brands in sport">
+<meta name="twitter:description" content="An award-winning creative agency for brands in sport, sponsorship and youth culture.">
+<meta name="twitter:image" content="assets/01-beats-poster.jpg">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23EEEDE7'/><text x='16' y='23' font-family='Georgia,serif' font-size='17' font-weight='700' text-anchor='middle' fill='%230B0D0B'>H</text></svg>">
 <link rel="stylesheet" href="type.css">
+
 <style>
-/* ─────────────────────────────────────────────────────────────────────────
-   Homeground. Gallery/catalog grammar.
-   Six colour roles. One accent hue (the brand lime) at three lightnesses,
-   because the page hard-cuts between the lime field, black and bone and no
-   single stop clears 4.5:1 on all three.
-   ───────────────────────────────────────────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════════
+   Homeground. Work grid.
+
+   Near-black on off-white, one lime accent. The lime is a FIELD colour and a
+   dark-ground accent: at 1.3:1 on the off-white it can never carry text or a
+   focus ring there, so anything that needs contrast on the light ground uses
+   --lime-deep instead. Same hue, two jobs.
+   ═══════════════════════════════════════════════════════════════════════════ */
 :root {
-  --sc-canvas:     #0B0D0B;
-  --sc-surface:    #141814;
-  --sc-ink:        #F2F1EB;
-  --sc-ink-soft:   #8E9A91;
-  --sc-accent:     #7CEE00;
-  --sc-accent-ink: #0B0D0B;
-  --sc-font-display: "Archivo", system-ui, sans-serif;
-  --sc-font-text:    "Geist", system-ui, sans-serif;
-  --sc-font-mark:    "Graduate", "Archivo", serif;
+  --bone:      #EEEDE7;
+  --bone-2:    #E4E2DA;
+  --ink:       #0B0D0B;
+  --ink-soft:  #55594F;   /* 6.1:1 on bone */
+  --lime:      #7CEE00;   /* field, and accent on dark */
+  --lime-deep: #3D7300;   /* accent text on bone — 4.9:1 */
 
-  /* The brand lime, from the supplied logo. One hue, three lightnesses,
-     because the page hard-cuts between the lime field, black and bone and no
-     single stop clears 4.5:1 on all three. */
-  --hg-lime:      #7CEE00;  /* field, and accent on black — 13.1:1 on black */
-  --hg-lime-deep: #3D7300;  /* accent on bone             —  4.9:1 on bone  */
-  --hg-black:     #0B0D0B;
-  --hg-bone:      #EEEDE7;
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-text:    "Geist", system-ui, sans-serif;
+  --font-mark:    "Graduate", "Archivo", serif;
 
-  --hg-index-w: 15.5rem;
-  --hg-bar-h: 0px;
-
-  /* Archivo at this width axis runs ~0.92em per cap, so a vw-based display
-     size guesses wrong and overruns the column the moment the fixed index
-     takes 15.5rem out of the viewport. Size the one-word display type to the
-     space it actually has instead. */
-  --hg-fit: calc((100vw - var(--hg-index-w) - 5rem) / 9.2);
+  --gutter: clamp(1.15rem, 4vw, 3.25rem);
+  --maxw: 108rem;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* ── Grounds. Hard cuts, not drift: on a catalogue several short acts are
-      part-way through at once, so an interpolated ground arrives late. ──── */
-.hg-plate { background: var(--hg-black); color: var(--sc-ink); position: relative; }
-.hg-plate--bone {
-  background: var(--hg-bone);
-  /* `color` inherits as a computed value, so redefining the token alone does
-     not re-ink text that already resolved on <body>. Restate it. */
-  --sc-ink: #0B0D0B; --sc-ink-soft: #545A52; --sc-accent: var(--hg-lime-deep);
-  color: var(--sc-ink);
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bone); color: var(--ink);
+  font-family: var(--font-text); font-size: 1rem; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
-.hg-plate--lime {
-  background: var(--hg-lime);
-  --sc-ink: #0B0D0B; --sc-ink-soft: #2E5A00; --sc-accent: #0B0D0B;
-  color: var(--sc-ink);
-}
-body { background: var(--hg-black); }
+img, video { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-/* ── Type ─────────────────────────────────────────────────────────────── */
-/* ── The mark. The supplied logo is an arched collegiate wordmark in black.
-      Reproduced as SVG text on an arc (real markup, selectable and sharp at
-      any size) rather than baked into an image. Drop a real assets/logo.svg
-      in and swap the three .hg-logo blocks for an <img> if preferred. ───── */
-.hg-logo { display: block; width: 100%; height: auto; }
-/* Graduate is lighter than the supplied mark, so bulk the strokes with a
-   painted-under outline rather than faking a bolder face. */
-.hg-logo text {
-  font-family: var(--sc-font-mark); font-size: 134px;
+.sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.wrap { width: min(100% - var(--gutter) * 2, var(--maxw)); margin-inline: auto; }
+
+/* ── The mark ───────────────────────────────────────────────────────────── */
+.logo { display: block; width: 100%; height: auto; color: var(--ink); }
+.logo text {
+  font-family: var(--font-mark); font-size: 134px;
   fill: currentColor; stroke: currentColor; stroke-width: 3.5;
   paint-order: stroke fill; stroke-linejoin: round;
 }
-.hg-sr {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+
+/* ── Draft marker. The page carries real branding, so it says what it is. ── */
+.draft {
+  position: fixed; top: 0; right: 0; z-index: 60;
+  font-weight: 600; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--lime); background: var(--ink); margin: 0;
+  padding: 0.4rem 0.6rem; border-end-start-radius: 3px; pointer-events: none;
 }
 
-/* The client name. This is the fix for "clients sit in a corner, very small":
-   it spans the whole plate above the work, at display scale. */
-.hg-client {
-  font-family: var(--sc-font-display);
-  font-weight: 800; font-stretch: 118%;
-  font-size: clamp(2.2rem, 5.7vw, 5.2rem);
-  line-height: 0.9; letter-spacing: -0.035em;
-  text-transform: uppercase; margin: 0;
-  text-wrap: balance;
+/* ── Top. Two nav items, exactly what the original has. ─────────────────── */
+.top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--gutter); padding-block: clamp(1.25rem, 3vw, 2.25rem);
 }
-.hg-project {
-  font-family: var(--sc-font-text); font-weight: 500;
-  font-size: clamp(1.05rem, 1.5vw, 1.45rem);
-  line-height: 1.4; letter-spacing: -0.01em;
-  margin: 0; max-width: min(30ch, 100%); text-wrap: pretty;
+.top__mark { width: clamp(8rem, 16vw, 13rem); margin: 0; }
+.top__nav { display: flex; gap: clamp(1rem, 2.5vw, 2rem); padding-top: 0.35rem; }
+.top__nav a {
+  font-weight: 600; font-size: 0.78rem; letter-spacing: 0.14em;
+  text-transform: uppercase; text-decoration: none; padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
 }
-.hg-meta {
-  font-family: var(--sc-font-text); font-weight: 500;
-  font-size: 0.735rem; letter-spacing: 0.13em; text-transform: uppercase;
-  color: var(--sc-ink-soft); margin: 0;
-}
-.hg-meta--accent { color: var(--sc-accent); }
-.hg-rule { height: 2px; background: var(--sc-accent); border: 0; margin: 0 0 var(--sc-3); width: 3.5rem; }
+.top__nav a:hover, .top__nav a[aria-current="true"] { border-bottom-color: var(--ink); }
 
-/* ── An object plate. The label schema is identical on every object, which is
-      what makes this a collection rather than a run of sections. ────────── */
-.hg-object { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center;
-  padding-block: clamp(3.5rem, 8vh, 6rem); }
-.hg-object__inner {
-  width: min(100% - var(--sc-gutter) * 2, 92rem); margin-inline: auto;
-  display: grid;
-  /* The work gets the room: the frame runs to roughly three quarters of the
-     plate, and the label is a caption column beside it rather than an equal
-     partner. "Make sure the campaigns aren't too squished." */
-  grid-template-columns: minmax(0, 0.72fr) minmax(0, 2fr);
-  grid-template-areas: "name name" "label media";
-  column-gap: clamp(1.6rem, 3.2vw, 3.2rem);
-  row-gap: clamp(1.6rem, 3.5vh, 2.8rem);
-  align-items: start;
+/* ── Manifesto. Two lines, heavy, tight. Type does the work. ────────────── */
+.manifesto { padding-block: clamp(2rem, 7vw, 6rem) clamp(2rem, 5vw, 4rem); }
+.manifesto h1 {
+  margin: 0;
+  font-family: var(--font-display); font-weight: 900; font-stretch: 118%;
+  /* sized so the longest line clears the container at every width:
+     ~19 characters of Archivo 900 at 118% runs ~0.92em each */
+  font-size: clamp(2rem, 5.2vw, 6.6rem);
+  line-height: 0.95; letter-spacing: -0.035em; text-transform: uppercase;
 }
-.hg-object--flip .hg-object__inner {
-  grid-template-columns: minmax(0, 2fr) minmax(0, 0.72fr);
-  grid-template-areas: "name name" "media label";
-}
-.hg-object__name  { grid-area: name; }
-/* Marquee scale for the headline work. Same label schema, more room. */
-.hg-object--wide .hg-object__inner {
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: "name" "media" "label";
-}
-.hg-object--wide .hg-frame { aspect-ratio: 2 / 1; }
-.hg-object--wide .hg-object__label {
-  align-content: start; grid-auto-flow: column; grid-auto-columns: max-content;
-  justify-content: start; align-items: baseline;
-  column-gap: clamp(1.5rem, 4vw, 4rem);
-}
-.hg-object--wide .hg-label__foot { grid-auto-flow: column; grid-auto-columns: max-content;
-  column-gap: clamp(1.5rem, 4vw, 4rem); margin-top: 0; }
-/* bottom-aligned, so the credit sits on the foot of the frame like a caption */
-.hg-object__label { grid-area: label; display: grid; gap: var(--sc-3);
-  align-content: end; align-self: stretch; }
-.hg-object__media { grid-area: media; }
-.hg-object__label .hg-label__foot { display: grid; gap: var(--sc-2); margin-top: var(--sc-2); }
+.manifesto h1 span { display: block; }
+.manifesto h1 em { font-style: normal; color: var(--lime-deep); }
 
-/* ── The media frame and its honest empty state ───────────────────────── */
-.hg-frame {
-  position: relative; aspect-ratio: 16 / 9; width: 100%;
-  overflow: hidden; background: var(--sc-surface);
-  border-radius: var(--sc-r-md);
-  box-shadow: 0 1.6rem 3.4rem -1.2rem var(--sc-shadow-color);
+/* ── Filters. Text toggles, kept quiet. ─────────────────────────────────── */
+.filters {
+  display: grid; gap: clamp(0.5rem, 1.2vw, 0.85rem);
+  padding-block: clamp(1rem, 2.5vw, 1.75rem);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
 }
-.hg-plate--bone .hg-frame { background: #DEDDD5; }
-.hg-frame__img, .hg-frame__vid {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; display: block; z-index: 2;
+.filters__row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1rem; }
+.filters__label {
+  flex: 0 0 5.5rem;
+  font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-soft);
 }
-/* Not a fake screenshot: it states what belongs here and under what filename. */
-.hg-frame__slot {
-  position: absolute; inset: 0; z-index: 1;
-  display: grid; align-content: space-between; justify-items: start;
-  padding: clamp(1rem, 2.2vw, 1.9rem);
-  background:
-    repeating-linear-gradient(90deg, color-mix(in srgb, var(--sc-ink) 5%, transparent) 0 1px, transparent 1px 4.5rem),
-    repeating-linear-gradient(0deg,  color-mix(in srgb, var(--sc-ink) 5%, transparent) 0 1px, transparent 1px 4.5rem);
+.filters__set { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; }
+.filters button {
+  appearance: none; background: none; border: 0; padding: 0.1rem 0; margin: 0;
+  font: inherit; font-size: 0.86rem; color: var(--ink-soft); cursor: pointer;
+  border-bottom: 1px solid transparent; transition: color 140ms var(--ease);
 }
-.hg-frame__slot::after {
-  content: ""; position: absolute; inset: 0;
-  border: 1px dashed color-mix(in srgb, var(--sc-ink) 22%, transparent);
-  border-radius: inherit; pointer-events: none;
+.filters button:hover { color: var(--ink); }
+.filters button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--lime-deep); }
+.filters__count { font-size: 0.72rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+/* ── The grid ───────────────────────────────────────────────────────────── */
+.grid {
+  display: grid; gap: clamp(0.9rem, 2.2vw, 1.75rem);
+  grid-template-columns: 1fr;
+  padding-block: clamp(1rem, 2vw, 1.5rem) clamp(3rem, 8vw, 6rem);
 }
-.hg-slot__tag {
-  font-family: var(--sc-font-text); font-weight: 600;
-  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--sc-accent);
+@media (min-width: 620px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+.tile { margin: 0; min-width: 0; }
+/* the whole tile is the link, so the hit area matches what you see */
+.tile__link {
+  display: block; position: relative; text-decoration: none;
+  background: var(--ink); overflow: hidden;
+  transition: transform 300ms var(--ease);
 }
-.hg-slot__file {
-  font-family: var(--sc-font-mono); font-size: 0.72rem;
-  color: var(--sc-ink-soft); word-break: break-all;
+.tile__link:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.tile__media { position: relative; aspect-ratio: 16 / 9; background: var(--ink); }
+.tile__poster, .tile__vid {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
 }
-/* Deliberately does NOT repeat the client name: the name is already set at
-   display scale above the frame, and echoing it read as a doubled heading. */
-.hg-slot__ghost {
-  font-family: var(--sc-font-display); font-weight: 900; font-stretch: 125%;
-  font-size: clamp(1.4rem, 3.4vw, 2.6rem); line-height: 0.9;
-  text-transform: uppercase; letter-spacing: -0.03em;
-  color: color-mix(in srgb, var(--sc-ink) 12%, transparent);
-  align-self: center;
+.tile__vid { opacity: 0; transition: opacity 320ms var(--ease); }
+.tile.is-playing .tile__vid { opacity: 1; }
+
+/* Caption. On a coarse pointer it is always visible, because hover does not
+   exist there and a title nobody can reveal is a title nobody has. */
+.tile__cap {
+  position: absolute; inset-inline: 0; bottom: 0; z-index: 2;
+  display: grid; gap: 0.2rem;
+  padding: clamp(0.8rem, 2vw, 1.15rem);
+  background: linear-gradient(to top, rgba(11,13,11,0.92) 0%, rgba(11,13,11,0.72) 55%, rgba(11,13,11,0) 100%);
+  color: var(--bone);
+}
+.tile__client {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+  font-size: clamp(1rem, 2.1vw, 1.4rem); line-height: 1.05;
+  letter-spacing: -0.02em; text-transform: uppercase;
+}
+.tile__title { font-size: 0.82rem; line-height: 1.3; color: #C9CFC3; }
+/* the result line: the thing the original never tells you */
+.tile__result {
+  display: flex; gap: 0.45rem; align-items: baseline;
+  font-size: 0.74rem; line-height: 1.3; color: var(--lime);
+  margin-top: 0.15rem;
+}
+.tile__result::before {
+  content: ""; flex: 0 0 0.9rem; height: 1px; background: var(--lime);
+  transform: translateY(-0.28em);
+}
+.tile__result[data-pending="true"] { color: #9AA394; }
+.tile__result[data-pending="true"]::before { background: #9AA394; }
+
+/* Overlay-on-hover, but only where there is both a fine pointer AND room for
+   the tile to be read at a glance. Keying on pointer alone hides every title
+   at 390px on any desktop-class browser, which is a title nobody can reveal. */
+@media (hover: hover) and (pointer: fine) and (min-width: 620px) {
+  .tile__cap {
+    opacity: 0; transform: translateY(6px);
+    transition: opacity 240ms var(--ease), transform 240ms var(--ease);
+  }
+  .tile:hover .tile__cap,
+  .tile__link:focus-visible .tile__cap { opacity: 1; transform: none; }
+  .tile:hover .tile__link { transform: scale(1.012); }
 }
 
-/* ── Chrome: the living client index (the signature move) ─────────────── */
-.hg-index {
-  position: fixed; inset-block: 0; inset-inline-start: 0; width: var(--hg-index-w);
-  z-index: var(--sc-z-chrome);
-  display: flex; flex-direction: column; gap: var(--sc-4);
-  padding: var(--sc-6) var(--sc-4);
-  background: color-mix(in srgb, var(--hg-black) 88%, transparent);
-  backdrop-filter: blur(14px);
-  border-inline-end: 1px solid color-mix(in srgb, #F2F1EB 12%, transparent);
-  transition: opacity 300ms var(--sc-ease-out), transform 300ms var(--sc-ease-out);
-}
-.hg-index__head { display: grid; gap: var(--sc-2); }
-.hg-index__head .hg-logo { color: var(--hg-lime); width: 100%; }
-.hg-logo--foot { width: 9rem; }
-.hg-index__standing {
-  font-family: var(--sc-font-text); font-size: 0.78rem; line-height: 1.45;
-  color: #A9B4AC; margin: 0; max-width: 22ch;
-}
-/* Says what this is to anyone the link gets forwarded to. Quiet, but present
-   on every screen, because the page otherwise carries real branding. Kept
-   OUTSIDE .hg-index: that element has a backdrop-filter, which makes it a
-   containing block for position:fixed children. */
-.hg-draft {
-  position: fixed; top: 0; right: 0; z-index: calc(var(--sc-z-chrome) + 1);
-  font-family: var(--sc-font-text); font-weight: 600;
-  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--hg-lime); margin: 0;
-  padding: 0.4rem 0.6rem; background: var(--hg-black);
-  border-end-start-radius: var(--sc-r-sm);
-  pointer-events: none;
-}
-.hg-index__title {
-  font-family: var(--sc-font-text); font-weight: 600;
-  font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
-  color: #7C877F; margin: 0;
-}
-.hg-index__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; }
-.hg-index__link {
-  display: grid; gap: 0.15rem; padding: 0.44rem 0 0.44rem 0.7rem;
-  text-decoration: none; color: inherit;
-  border-inline-start: 2px solid color-mix(in srgb, #F2F1EB 14%, transparent);
-  transition: border-color 200ms var(--sc-ease-out), background-color 200ms var(--sc-ease-out);
-}
-.hg-index__name {
-  font-family: var(--sc-font-display); font-weight: 700; font-stretch: 112%;
-  font-size: 0.95rem; line-height: 1.1; letter-spacing: -0.015em;
-  text-transform: uppercase; color: #77837A;
-  transition: color 240ms var(--sc-ease-out);
-}
-.hg-index__made {
-  font-family: var(--sc-font-text); font-size: 0.66rem; line-height: 1.25;
-  color: #77837A; opacity: 0; max-height: 0; overflow: hidden;
-  transition: opacity 300ms var(--sc-ease-out), max-height 300ms var(--sc-ease-out);
-}
-/* stamped as you pass it, and it stays stamped */
-.hg-index__row.is-lit .hg-index__link { border-inline-start-color: var(--hg-lime); }
-.hg-index__row.is-lit .hg-index__name { color: #F2F1EB; }
-.hg-index__row.is-lit .hg-index__made { opacity: 1; max-height: 3rem; color: #9BA79E; }
-.hg-index__row.is-here .hg-index__link { background: color-mix(in srgb, var(--hg-lime) 12%, transparent); }
-.hg-index__row.is-here .hg-index__name { color: var(--hg-lime); }
-.hg-index__link:hover .hg-index__name { color: #F2F1EB; }
-.hg-index__link:focus-visible { outline: 2px solid var(--hg-lime); outline-offset: 2px; }
-/* during the peak the margin index has become the wall, so it stands down */
-body.hg-wall .hg-index { opacity: 0; transform: translateX(-100%); pointer-events: none; }
+/* filtering: quiet fade, no layout thrash */
+.tile[hidden] { display: none; }
+.tile.is-entering { animation: tileIn 320ms var(--ease) both; }
+@keyframes tileIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-.hg-index__cta {
-  margin-top: auto;
-  font-family: var(--sc-font-text); font-weight: 600; font-size: 0.8rem;
-  color: var(--hg-black); background: var(--hg-lime);
-  text-decoration: none; text-align: center;
-  padding: 0.62rem 0.9rem; border-radius: var(--sc-r-sm);
-  transition: transform 140ms var(--sc-ease-out), filter 140ms var(--sc-ease-out);
-}
-.hg-index__cta:hover { filter: brightness(1.08); }
-.hg-index__cta:active { transform: translateY(1px); }
-.hg-index__cta:focus-visible { outline: 2px solid var(--hg-lime); outline-offset: 3px; }
+.grid__empty { grid-column: 1 / -1; padding-block: 3rem; color: var(--ink-soft); }
 
-/* ── Hero ─────────────────────────────────────────────────────────────── */
-.hg-hero { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center;
-  padding-block: clamp(4rem, 10vh, 8rem); }
-.hg-hero__inner {
-  width: min(100% - var(--sc-gutter) * 2, 92rem); margin-inline: auto;
-  display: grid; gap: clamp(1.4rem, 3.5vh, 2.6rem); justify-items: start;
+/* ── Clients list ───────────────────────────────────────────────────────── */
+.clients { padding-block: clamp(2.5rem, 6vw, 5rem); border-top: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); }
+.clients h2, .enquiry h2, .project h2 {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 115%;
+  font-size: clamp(1.5rem, 4vw, 2.6rem); line-height: 1; letter-spacing: -0.03em;
+  text-transform: uppercase; margin: 0 0 clamp(1rem, 2.5vw, 1.75rem);
 }
-/* the logo at composition scale: this IS the hero, per the brand asset */
-.hg-hero__logo { width: min(100%, 54rem); margin: 0; }
-.hg-hero__line {
-  font-family: var(--sc-font-text); font-size: clamp(1.05rem, 1.7vw, 1.45rem);
-  line-height: 1.5; color: #17330A; margin: 0; max-width: min(48ch, 100%); text-wrap: pretty;
-}
-.hg-hero__line b { color: var(--hg-black); font-weight: 600; }
-
-/* ── Capabilities: catalogued in the same schema as the work ──────────── */
-.hg-caps { padding-block: clamp(5rem, 13vh, 9rem); }
-.hg-caps__inner { width: min(100% - var(--sc-gutter) * 2, 92rem); margin-inline: auto;
-  display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2.4rem, 6vh, 4rem); }
-.hg-caps__head { display: grid; max-width: 40ch; }
-.hg-caps__list { display: grid; gap: clamp(1.6rem, 3vw, 2.6rem);
+.clients__list { list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 0 clamp(1rem, 3vw, 3rem);
   grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr)); }
-.hg-cap { display: grid; gap: var(--sc-3); align-content: start;
-  padding-top: var(--sc-4); border-top: 1px solid var(--sc-hairline-strong); }
-.hg-cap h3 {
-  font-family: var(--sc-font-display); font-weight: 800; font-stretch: 115%;
-  font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1; letter-spacing: -0.025em;
+.clients__list li { border-top: 1px solid color-mix(in srgb, var(--ink) 14%, transparent); }
+.clients__list button {
+  appearance: none; background: none; border: 0; width: 100%; cursor: pointer;
+  font-family: var(--font-display); font-weight: 700; font-stretch: 112%;
+  font-size: clamp(1rem, 2vw, 1.3rem); letter-spacing: -0.015em;
+  text-transform: uppercase; text-align: left; color: inherit;
+  padding: 0.7rem 0; display: flex; justify-content: space-between; gap: 1rem;
+}
+.clients__list button:hover { color: var(--lime-deep); }
+.clients__list span { font-family: var(--font-text); font-weight: 400; font-size: 0.72rem;
+  letter-spacing: 0.1em; color: var(--ink-soft); text-transform: uppercase; align-self: center; }
+
+/* ── Enquiry ────────────────────────────────────────────────────────────── */
+.enquiry {
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+}
+.enquiry__grid { display: grid; gap: clamp(1.25rem, 3vw, 2.5rem);
+  grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 860px) { .enquiry__grid { grid-template-columns: 1fr 1.15fr; } }
+.enquiry p { margin: 0; max-width: 34ch; color: var(--ink-soft); }
+.enquiry form { display: grid; gap: 0.85rem; }
+.enquiry .field { display: grid; gap: 0.3rem; }
+.enquiry label { font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.enquiry input, .enquiry textarea, .enquiry select {
+  font: inherit; color: var(--ink); background: transparent;
+  border: 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 30%, transparent);
+  padding: 0.5rem 0; border-radius: 0;
+}
+.enquiry textarea { resize: vertical; min-height: 4.5rem; }
+.enquiry input:focus-visible, .enquiry textarea:focus-visible, .enquiry select:focus-visible {
+  outline: none; border-bottom-color: var(--ink); box-shadow: 0 1px 0 0 var(--ink);
+}
+.enquiry .row { display: grid; gap: 0.85rem; grid-template-columns: 1fr; }
+@media (min-width: 520px) { .enquiry .row { grid-template-columns: 1fr 1fr; } }
+.btn {
+  appearance: none; justify-self: start; cursor: pointer;
+  font-family: var(--font-text); font-weight: 600; font-size: 0.82rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--ink); color: var(--bone); border: 0;
+  padding: 0.75rem 1.4rem; margin-top: 0.35rem;
+  transition: background 140ms var(--ease), transform 120ms var(--ease);
+}
+.btn:hover { background: var(--lime-deep); }
+.btn:active { transform: translateY(1px); }
+.enquiry__note { font-size: 0.72rem; color: var(--ink-soft); margin-top: 0.4rem; }
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+.foot {
+  padding-block: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  display: flex; flex-wrap: wrap; gap: 0.75rem clamp(1rem, 3vw, 2.5rem);
+  align-items: baseline; justify-content: space-between;
+  font-size: 0.75rem; color: var(--ink-soft);
+}
+.foot nav { display: flex; gap: clamp(0.85rem, 2vw, 1.5rem); flex-wrap: wrap; }
+.foot a { text-underline-offset: 3px; }
+
+/* ── Project view ───────────────────────────────────────────────────────── */
+.project { display: none; padding-block: clamp(1rem, 3vw, 2rem) clamp(3rem, 7vw, 5rem); }
+body.is-project .project { display: block; }
+body.is-project .work-view { display: none; }
+
+/* focused programmatically on route so screen readers land in the right
+   place; it is not Tab-reachable, so it needs no visible ring */
+.project:focus, .project:focus-visible { outline: none; }
+.project__back {
+  display: inline-block; margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+}
+.project__client {
+  font-family: var(--font-display); font-weight: 900; font-stretch: 118%;
+  font-size: clamp(2rem, 7vw, 5.5rem); line-height: 0.92; letter-spacing: -0.035em;
   text-transform: uppercase; margin: 0;
 }
-.hg-cap p { font-family: var(--sc-font-text); font-size: 0.95rem; line-height: 1.6;
-  color: var(--sc-ink-soft); margin: 0; max-width: min(32ch, 100%); text-wrap: pretty; }
+.project__title { font-size: clamp(1rem, 2vw, 1.35rem); color: var(--ink-soft); margin: 0.5rem 0 0; max-width: 40ch; }
+.project__hero {
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0; background: var(--ink);
+  aspect-ratio: 16 / 9; max-height: 68vh; position: relative; overflow: hidden;
+}
+.project__hero img, .project__hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
-/* ── The peak: the index breaks out of the margin and becomes the wall ── */
-.hg-wall__inner { height: 100%; display: grid; align-content: center; }
-.hg-wall__rail { display: flex; gap: clamp(1rem, 1.8vw, 1.8rem); align-items: stretch;
-  padding-inline: var(--sc-gutter); will-change: transform; }
-.hg-wall__lead, .hg-wall__end {
-  flex: 0 0 clamp(16rem, 24vw, 22rem); display: grid; align-content: center; gap: var(--sc-3);
+.project__body { display: grid; gap: clamp(1.5rem, 3.5vw, 2.75rem);
+  grid-template-columns: 1fr; }
+/* three narrative sections in one row, Result spanning beneath: a 2-up grid
+   left Execution beside an empty trailing cell */
+@media (min-width: 760px)  { .project__body { grid-template-columns: repeat(3, 1fr); } }
+.sect { display: grid; gap: 0.5rem; align-content: start;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); padding-top: 0.85rem; }
+.sect h3 {
+  margin: 0; font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-soft); font-weight: 600;
 }
-/* Echoes an index row deliberately: same green rule, same name-over-what-we-made
-   structure. It should read as the list, grown to fill the screen. */
-.hg-wall__card {
-  flex: 0 0 clamp(14.5rem, 22vw, 19.5rem);
-  /* tall enough that the wall fills the screen: the peak has to read as a
-     takeover, not as a band of cards floating in black */
-  min-height: min(60vh, 32rem);
-  display: grid; grid-template-rows: auto auto 1fr; gap: var(--sc-3);
-  padding: var(--sc-4); border-radius: var(--sc-r-md);
-  background: var(--hg-lime); color: var(--hg-black);
-  box-shadow: 0 1.2rem 2.6rem -1rem var(--sc-shadow-color);
+.sect p { margin: 0; max-width: 46ch; }
+.sect--result { grid-column: 1 / -1; border-top-color: var(--ink); }
+.sect--result .metric {
+  font-family: var(--font-display); font-weight: 800; font-stretch: 112%;
+  font-size: clamp(1.25rem, 3vw, 2rem); line-height: 1.1; letter-spacing: -0.02em;
+  max-width: 30ch;
 }
-.hg-wall__card h3 {
-  font-family: var(--sc-font-display); font-weight: 800; font-stretch: 118%;
-  font-size: clamp(1.25rem, 2vw, 1.75rem); line-height: 0.95; letter-spacing: -0.03em;
-  text-transform: uppercase; margin: 0; text-wrap: balance;
+.pending { color: var(--ink-soft); font-style: italic; }
+.pending::after {
+  content: "awaiting copy"; display: inline-block; margin-left: 0.5rem;
+  font-style: normal; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--lime-deep); border: 1px solid color-mix(in srgb, var(--lime-deep) 40%, transparent);
+  padding: 0.05rem 0.3rem; transform: translateY(-0.1em);
 }
-.hg-wall__card p { font-family: var(--sc-font-text); font-size: 0.82rem; line-height: 1.5;
-  color: #2E5A00; margin: 0; }
-.hg-wall__thumb {
-  align-self: stretch; min-height: 7rem; border-radius: var(--sc-r-sm);
-  display: grid; place-content: center;
-  background: color-mix(in srgb, #0B0D0B 8%, transparent);
-  border: 1px dashed color-mix(in srgb, #0B0D0B 38%, transparent);
-  font-family: var(--sc-font-text); font-weight: 600;
-  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: #2E5A00;
-}
-.hg-wall__title {
-  font-family: var(--sc-font-display); font-weight: 900; font-stretch: 125%;
-  font-size: clamp(2.4rem, 5.2vw, 4.4rem); line-height: 0.86; letter-spacing: -0.04em;
-  text-transform: uppercase; margin: 0;
-}
+.project__facts { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.4rem 2rem;
+  font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); padding-top: 0.85rem; }
 
-/* ── Close: the inquiry plate, typeset exactly like a label ───────────── */
-.hg-close { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); align-content: center;
-  padding-block: clamp(4rem, 10vh, 7rem); }
-.hg-close__inner { width: min(100% - var(--sc-gutter) * 2, 92rem); margin-inline: auto;
-  display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vh, 3.4rem); }
-.hg-close__ask {
-  font-family: var(--sc-font-display); font-weight: 900; font-stretch: 122%;
-  font-size: clamp(2.4rem, 7vw, 5.8rem); line-height: 0.88; letter-spacing: -0.04em;
-  text-transform: uppercase; margin: 0; max-width: min(16ch, 100%); text-wrap: balance;
-}
-.hg-close__grid { display: grid; gap: clamp(1.4rem, 3vw, 2.4rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); max-width: 62rem; }
-.hg-close__cell { display: grid; gap: var(--sc-2); align-content: start;
-  padding-top: var(--sc-3); border-top: 1px solid color-mix(in srgb, #0B0D0B 24%, transparent); }
-.hg-close__cell a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.hg-close__cell a:focus-visible { outline: 2px solid var(--hg-black); outline-offset: 3px; }
-.hg-close__val { font-family: var(--sc-font-text); font-weight: 500; font-size: 1rem; line-height: 1.4; margin: 0; }
-.hg-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sc-4);
-  flex-wrap: wrap; padding-top: var(--sc-4);
-  border-top: 1px solid color-mix(in srgb, #0B0D0B 24%, transparent); }
-
-/* ── Layout offset for the fixed index ───────────────────────────────── */
-@media (min-width: 1024px) {
-  main { padding-inline-start: var(--hg-index-w); }
-  /* the wall is full-bleed: it is the index, grown */
-  .hg-wall { margin-inline-start: calc(var(--hg-index-w) * -1); }
-}
-
-/* ── Mobile: the index becomes a bottom bar and the clients stay legible ─ */
-@media (max-width: 1023px) {
-  /* the index leaves the margin, so the display type gets the width back */
-  :root { --hg-bar-h: 3.4rem; --hg-index-w: 0rem; }
-  .hg-index {
-    inset: auto 0 0 0; width: auto; height: var(--hg-bar-h);
-    flex-direction: row; align-items: center; gap: var(--sc-3);
-    padding: 0 var(--sc-3); border-inline-end: 0;
-    border-block-start: 1px solid color-mix(in srgb, #F2F1EB 14%, transparent);
-  }
-  .hg-index__head, .hg-index__title, .hg-index__made { display: none; }
-  .hg-index__list { display: flex; gap: var(--sc-3); overflow-x: auto; flex: 1;
-    scrollbar-width: none; scroll-snap-type: x proximity; }
-  .hg-index__list::-webkit-scrollbar { display: none; }
-  .hg-index__row { flex: 0 0 auto; scroll-snap-align: center; }
-  .hg-index__link { padding: 0.3rem 0 0.3rem 0.5rem; }
-  .hg-index__name { font-size: 0.8rem; white-space: nowrap; }
-  .hg-index__cta { margin-top: 0; flex: 0 0 auto; padding: 0.45rem 0.7rem; font-size: 0.72rem; }
-  main { padding-block-end: var(--hg-bar-h); }
-  body.hg-wall .hg-index { transform: translateY(100%); }
-
-  .hg-object__inner,
-  .hg-object--flip .hg-object__inner {
-    grid-template-columns: 1fr;
-    grid-template-areas: "name" "media" "label";
-  }
-  .hg-object { min-height: auto; padding-block: clamp(3rem, 7vh, 4.5rem); }
-  /* the marquee plate's single-row credit has to stack, or it sets a
-     max-content track wider than the phone */
-  .hg-object--wide .hg-object__label,
-  .hg-object--wide .hg-label__foot {
-    grid-auto-flow: row; grid-auto-columns: auto; row-gap: var(--sc-2);
-  }
-  .hg-object--wide .hg-label__foot { margin-top: var(--sc-2); }
-  .hg-object--wide .hg-frame { aspect-ratio: 16 / 9; }
-  .hg-hero { min-height: calc(100svh - var(--hg-bar-h)); }
-}
-@media (max-width: 700px) {
-  /* the portrait crop of the type: step the display down a rung */
-  .hg-client    { font-size: clamp(1.8rem, 8.6vw, 2.8rem); }
-  .hg-close__ask{ font-size: clamp(1.9rem, 8.6vw, 3.1rem); }
-}
-
-/* ── Motion floor ────────────────────────────────────────────────────── */
+/* ── Motion floor ───────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .hg-index, .hg-index__link, .hg-index__name, .hg-index__made { transition: none; }
-  body.hg-wall .hg-index { opacity: 1; transform: none; pointer-events: auto; }
-
-  /* The peak IS lateral travel, and lateral travel is the one thing reduced
-     motion takes away. Holding the act's 3.1 viewport-heights anyway leaves a
-     static pinned stage under three screens of scroll, which is dead scroll and
-     nothing else. So relay the wall out as a grid in normal flow: every client
-     still on screen, the roster still complete, nothing moving. devices.md §3
-     sanctions re-laying a rail out here; the act height is an inline style the
-     engine writes per resize, hence the !important. */
-  #wall { height: auto !important; padding-block: clamp(4rem, 10vh, 7rem); }
-  #wall [data-sc-stage] { position: static; height: auto; overflow: visible; }
-  .hg-wall__inner { height: auto; }
-  .hg-wall__rail {
-    display: grid; gap: clamp(1rem, 2vw, 1.8rem);
-    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
-  }
-  .hg-wall__lead, .hg-wall__end { flex: initial; }
-  .hg-wall__card { grid-template-rows: auto auto auto; }
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important; }
+  /* the caption cannot be hover-revealed if nothing animates: show it */
+  .tile__cap { opacity: 1 !important; transform: none !important; }
 }
 </style>
 </head>
 <body>
 
-<span data-sc-progress></span>
-<div class="sc-grain" aria-hidden="true"></div>
+<p class="draft">Concept draft. Not the live site.</p>
 
-<!-- ═══ CHROME · the living client index. It is the nav (every row jumps) and
-         it is the signature move: rows stamp as you pass their film and stay
-         stamped, so the roster is complete by the time you reach the end. -->
-<p class="hg-draft">Concept draft. Not the live site.</p>
+<div class="wrap">
 
-<nav class="hg-index" id="index" aria-label="Clients">
-  <div class="hg-index__head">
-    <svg class="hg-logo" viewBox="0 0 1000 300" role="img" aria-label="Homeground">
-      <defs><path id="hgArcA" d="M 30 255 Q 500 30 970 255" fill="none"></path></defs>
-      <text text-anchor="middle"><textPath href="#hgArcA" startOffset="50%">HOMEGROUND</textPath></text>
-    </svg>
-    <p class="hg-index__standing">Creative for brands in sport, sponsorship and youth culture.</p>
-  </div>
-  <p class="hg-index__title">Clients</p>
-  <ul class="hg-index__list">
-    <li class="hg-index__row" data-hg-row="beats"><a class="hg-index__link" href="#beats"><span class="hg-index__name">Beats by Dre</span><span class="hg-index__made">80-second film</span></a></li>
-    <li class="hg-index__row" data-hg-row="manutd"><a class="hg-index__link" href="#manutd"><span class="hg-index__name">Manchester United</span><span class="hg-index__made">Kit launch film</span></a></li>
-    <li class="hg-index__row" data-hg-row="callaway"><a class="hg-index__link" href="#callaway"><span class="hg-index__name">Callaway</span><span class="hg-index__made">Film</span></a></li>
-    <li class="hg-index__row" data-hg-row="sky"><a class="hg-index__link" href="#sky"><span class="hg-index__name">Sky Sports</span><span class="hg-index__made">To confirm</span></a></li>
-    <li class="hg-index__row" data-hg-row="villa"><a class="hg-index__link" href="#villa"><span class="hg-index__name">Aston Villa</span><span class="hg-index__made">To confirm</span></a></li>
-    <li class="hg-index__row" data-hg-row="arsenal"><a class="hg-index__link" href="#arsenal"><span class="hg-index__name">Arsenal</span><span class="hg-index__made">To confirm</span></a></li>
-    <li class="hg-index__row" data-hg-row="academy"><a class="hg-index__link" href="#academy"><span class="hg-index__name">Homeground Academy</span><span class="hg-index__made">Own initiative</span></a></li>
-  </ul>
-  <a class="hg-index__cta" href="#contact">Start a project</a>
-</nav>
+  <header class="top">
+    <h1 class="top__mark">
+      <span class="sr">Homeground</span>
+      <svg class="logo" viewBox="0 0 1000 300" aria-hidden="true">
+        <defs><path id="arcA" d="M 30 255 Q 500 30 970 255" fill="none"></path></defs>
+        <text text-anchor="middle"><textPath href="#arcA" startOffset="50%">HOMEGROUND</textPath></text>
+      </svg>
+    </h1>
+    <nav class="top__nav" aria-label="Primary">
+      <a href="#work" data-nav="work">Work</a>
+      <a href="#clients" data-nav="clients">Clients</a>
+    </nav>
+  </header>
 
-<main id="top">
+  <div class="work-view">
 
-  <!-- ═══ 1 · ARRIVAL ─────────────────────────────────────────────────── -->
-  <section class="hg-plate hg-plate--lime hg-hero" data-sc-act="flow">
-    <div class="hg-hero__inner" data-sc-in data-sc-stagger="70">
-      <h1 class="hg-hero__logo">
-        <span class="hg-sr">Homeground</span>
-        <svg class="hg-logo" viewBox="0 0 1000 300" aria-hidden="true">
-          <defs><path id="hgArcB" d="M 30 255 Q 500 30 970 255" fill="none"></path></defs>
-          <text text-anchor="middle"><textPath href="#hgArcB" startOffset="50%">HOMEGROUND</textPath></text>
-        </svg>
+    <section class="manifesto">
+      <h2 class="sr">About</h2>
+      <!-- Draft copy. Two lines, as the reference has. Positioning, not a
+           factual claim: nothing here asserts a result. -->
+      <h1>
+        <span>Sport is the brief.</span>
+        <span><em>Culture</em> is the job.</span>
       </h1>
-      <p class="hg-hero__line">
-        An award-winning creative agency for brands in sport, sponsorship and
-        youth culture. <b>Seven clients below. Every project named, and what we
-        made for them.</b>
-      </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ 2 · RECOGNITION · object 01 ─────────────────────────────────── -->
-  <section class="hg-plate hg-object hg-object--wide" id="beats" data-sc-act="flow" data-hg-object="beats">
-    <div class="hg-object__inner">
-      <div class="hg-object__name" data-sc-in>
-        <hr class="hg-rule">
-        <h2 class="hg-client">Beats by Dre</h2>
+    <section class="filters" aria-label="Filter work">
+      <div class="filters__row">
+        <span class="filters__label" id="f-client">Client</span>
+        <div class="filters__set" role="group" aria-labelledby="f-client" data-set="client"></div>
       </div>
-      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
-        <p class="hg-project">Some play, others glide.</p>
-        <div class="hg-label__foot">
-          <p class="hg-meta">80-second film</p>
-          <p class="hg-meta hg-meta--accent">With Cole Palmer</p>
-        </div>
+      <div class="filters__row">
+        <span class="filters__label" id="f-disc">Discipline</span>
+        <div class="filters__set" role="group" aria-labelledby="f-disc" data-set="discipline"></div>
       </div>
-      <div class="hg-object__media" data-sc-reveal="up" data-sc-reveal-at="0.1 0.46">
-        <div class="hg-frame">
-          <div class="hg-frame__slot" aria-hidden="true">
-            <span class="hg-slot__tag">Film slot</span>
-            <span class="hg-slot__ghost">Awaiting film</span>
-            <span class="hg-slot__file">assets/01-beats.jpg &nbsp;·&nbsp; assets/01-beats.mp4</span>
+      <p class="filters__count" id="count" role="status"></p>
+    </section>
+
+    <main id="work">
+      <h2 class="sr">Selected work</h2>
+      <div class="grid" id="grid"></div>
+    </main>
+
+    <section class="clients" id="clients">
+      <h2>Clients</h2>
+      <ul class="clients__list" id="clientList"></ul>
+    </section>
+
+    <section class="enquiry" id="enquiry">
+      <h2>Start something</h2>
+      <div class="enquiry__grid">
+        <p>Tell us the brand, the moment in the season, and what you need to exist. We will come back with a point of view, not a credentials deck.</p>
+        <form id="enquiryForm">
+          <div class="row">
+            <div class="field">
+              <label for="q-name">Your name</label>
+              <input id="q-name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="q-brand">Brand</label>
+              <input id="q-brand" name="brand" type="text" autocomplete="organization" required>
+            </div>
           </div>
-          <img class="hg-frame__img" src="assets/01-beats.jpg" width="1600" height="900"
-               alt="Beats by Dre, Some play others glide, with Cole Palmer." onerror="this.remove()">
-          <!-- <video class="hg-frame__vid" src="assets/01-beats.mp4" autoplay loop muted playsinline poster="assets/01-beats.jpg"></video> -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 3 · APPETITE · object 02. Ground cuts to bone, anchor flips. ── -->
-  <section class="hg-plate hg-plate--bone hg-object hg-object--wide" id="manutd" data-sc-act="flow" data-hg-object="manutd">
-    <div class="hg-object__inner">
-      <div class="hg-object__name" data-sc-in>
-        <hr class="hg-rule">
-        <h2 class="hg-client">Manchester United</h2>
-      </div>
-      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
-        <p class="hg-project">adidas Originals kit launch film.</p>
-        <div class="hg-label__foot">
-          <p class="hg-meta">Kit launch film, over two minutes</p>
-          <p class="hg-meta hg-meta--accent">With Barry Keoghan · Dir. Tom Day</p>
-        </div>
-      </div>
-      <div class="hg-object__media" data-sc-reveal="left" data-sc-reveal-at="0.1 0.46">
-        <div class="hg-frame">
-          <div class="hg-frame__slot" aria-hidden="true">
-            <span class="hg-slot__tag">Film slot</span>
-            <span class="hg-slot__ghost">Awaiting film</span>
-            <span class="hg-slot__file">assets/02-manutd.jpg &nbsp;·&nbsp; assets/02-manutd.mp4</span>
+          <div class="field">
+            <label for="q-need">What do you need</label>
+            <select id="q-need" name="need">
+              <option>A campaign</option>
+              <option>A kit or product launch</option>
+              <option>Social and content</option>
+              <option>Brand strategy</option>
+              <option>Something else</option>
+            </select>
           </div>
-          <img class="hg-frame__img" src="assets/02-manutd.jpg" width="1600" height="900"
-               alt="adidas Originals and Manchester United kit launch film with Barry Keoghan." onerror="this.remove()">
-          <!-- <video class="hg-frame__vid" src="assets/02-manutd.mp4" autoplay loop muted playsinline poster="assets/02-manutd.jpg"></video> -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 4 · object 03 ───────────────────────────────────────────────── -->
-  <section class="hg-plate hg-object" id="callaway" data-sc-act="flow" data-hg-object="callaway">
-    <div class="hg-object__inner">
-      <div class="hg-object__name" data-sc-in>
-        <hr class="hg-rule">
-        <h2 class="hg-client">Callaway</h2>
-      </div>
-      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
-        <p class="hg-project">The golfers stuck indoors.</p>
-        <div class="hg-label__foot">
-          <p class="hg-meta">Film</p>
-          <p class="hg-meta hg-meta--accent">With MSQ Sport &amp; Entertainment</p>
-        </div>
-      </div>
-      <div class="hg-object__media" data-sc-reveal="right" data-sc-reveal-at="0.1 0.46">
-        <div class="hg-frame">
-          <div class="hg-frame__slot" aria-hidden="true">
-            <span class="hg-slot__tag">Film slot</span>
-            <span class="hg-slot__ghost">Awaiting film</span>
-            <span class="hg-slot__file">assets/03-callaway.jpg &nbsp;·&nbsp; assets/03-callaway.mp4</span>
+          <div class="field">
+            <label for="q-brief">In a line or two</label>
+            <textarea id="q-brief" name="brief" rows="3"></textarea>
           </div>
-          <img class="hg-frame__img" src="assets/03-callaway.jpg" width="1600" height="900"
-               alt="Callaway film about golfers stuck indoors." onerror="this.remove()">
-          <!-- <video class="hg-frame__vid" src="assets/03-callaway.mp4" autoplay loop muted playsinline poster="assets/03-callaway.jpg"></video> -->
-        </div>
+          <button class="btn" type="submit">Send enquiry</button>
+          <p class="enquiry__note" id="enquiryNote">Opens your email client. Replace with a real form endpoint on launch.</p>
+        </form>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ═══ 5 · object 04 ───────────────────────────────────────────────── -->
-  <section class="hg-plate hg-plate--bone hg-object hg-object--flip" id="sky" data-sc-act="flow" data-hg-object="sky">
-    <div class="hg-object__inner">
-      <div class="hg-object__name" data-sc-in>
-        <hr class="hg-rule">
-        <h2 class="hg-client">Sky Sports</h2>
-      </div>
-      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
-        <p class="hg-project">Project title to confirm.</p>
-        <div class="hg-label__foot">
-          <p class="hg-meta">To confirm</p>
-          <p class="hg-meta hg-meta--accent">Client confirmed</p>
-        </div>
-      </div>
-      <div class="hg-object__media" data-sc-reveal="up" data-sc-reveal-at="0.1 0.46">
-        <div class="hg-frame">
-          <div class="hg-frame__slot" aria-hidden="true">
-            <span class="hg-slot__tag">Film slot</span>
-            <span class="hg-slot__ghost">Awaiting film</span>
-            <span class="hg-slot__file">assets/04-skysports.jpg &nbsp;·&nbsp; assets/04-skysports.mp4</span>
-          </div>
-          <img class="hg-frame__img" src="assets/04-skysports.jpg" width="1600" height="900"
-               alt="Sky Sports project by Homeground." onerror="this.remove()">
-          <!-- <video class="hg-frame__vid" src="assets/04-skysports.mp4" autoplay loop muted playsinline poster="assets/04-skysports.jpg"></video> -->
-        </div>
-      </div>
-    </div>
-  </section>
+    <footer class="foot">
+      <nav aria-label="Elsewhere">
+        <a href="https://www.instagram.com/homegroundldn/">Instagram</a>
+        <a href="https://uk.linkedin.com/company/homeground-london">LinkedIn</a>
+        <a href="#enquiry">Enquiries</a>
+      </nav>
+      <p style="margin:0">Email address to confirm</p>
+      <p style="margin:0">&copy; Homeground London</p>
+    </footer>
 
-  <!-- ═══ 6 · object 05 ───────────────────────────────────────────────── -->
-  <section class="hg-plate hg-object" id="villa" data-sc-act="flow" data-hg-object="villa">
-    <div class="hg-object__inner">
-      <div class="hg-object__name" data-sc-in>
-        <hr class="hg-rule">
-        <h2 class="hg-client">Aston Villa</h2>
-      </div>
-      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
-        <p class="hg-project">Project title to confirm.</p>
-        <div class="hg-label__foot">
-          <p class="hg-meta">To confirm</p>
-          <p class="hg-meta hg-meta--accent">Client confirmed</p>
-        </div>
-      </div>
-      <div class="hg-object__media" data-sc-reveal="left" data-sc-reveal-at="0.1 0.46">
-        <div class="hg-frame">
-          <div class="hg-frame__slot" aria-hidden="true">
-            <span class="hg-slot__tag">Film slot</span>
-            <span class="hg-slot__ghost">Awaiting film</span>
-            <span class="hg-slot__file">assets/05-astonvilla.jpg &nbsp;·&nbsp; assets/05-astonvilla.mp4</span>
-          </div>
-          <img class="hg-frame__img" src="assets/05-astonvilla.jpg" width="1600" height="900"
-               alt="Aston Villa project by Homeground." onerror="this.remove()">
-          <!-- <video class="hg-frame__vid" src="assets/05-astonvilla.mp4" autoplay loop muted playsinline poster="assets/05-astonvilla.jpg"></video> -->
-        </div>
-      </div>
-    </div>
-  </section>
+  </div><!-- /work-view -->
 
-  <!-- ═══ 7 · object 06 ───────────────────────────────────────────────── -->
-  <section class="hg-plate hg-plate--bone hg-object hg-object--flip" id="arsenal" data-sc-act="flow" data-hg-object="arsenal">
-    <div class="hg-object__inner">
-      <div class="hg-object__name" data-sc-in>
-        <hr class="hg-rule">
-        <h2 class="hg-client">Arsenal</h2>
-      </div>
-      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
-        <p class="hg-project">Project title to confirm.</p>
-        <div class="hg-label__foot">
-          <p class="hg-meta">To confirm</p>
-          <p class="hg-meta hg-meta--accent">Client confirmed</p>
-        </div>
-      </div>
-      <div class="hg-object__media" data-sc-reveal="right" data-sc-reveal-at="0.1 0.46">
-        <div class="hg-frame">
-          <div class="hg-frame__slot" aria-hidden="true">
-            <span class="hg-slot__tag">Film slot</span>
-            <span class="hg-slot__ghost">Awaiting film</span>
-            <span class="hg-slot__file">assets/06-arsenal.jpg &nbsp;·&nbsp; assets/06-arsenal.mp4</span>
-          </div>
-          <img class="hg-frame__img" src="assets/06-arsenal.jpg" width="1600" height="900"
-               alt="Arsenal project by Homeground." onerror="this.remove()">
-          <!-- <video class="hg-frame__vid" src="assets/06-arsenal.mp4" autoplay loop muted playsinline poster="assets/06-arsenal.jpg"></video> -->
-        </div>
-      </div>
-    </div>
-  </section>
+  <article class="project" id="project" tabindex="-1"></article>
 
-  <!-- ═══ 8 · CALM. The offer, catalogued in the same schema as the work. -->
-  <section class="hg-plate hg-caps" id="offer" data-sc-act="flow">
-    <div class="hg-caps__inner">
-      <div class="hg-caps__head" data-sc-in>
-        <hr class="hg-rule">
-        <p class="hg-project">Four disciplines, run in one building, for brands whose audience already cares about sport.</p>
-      </div>
-      <div class="hg-caps__list" data-sc-in data-sc-stagger="80">
-        <article class="hg-cap">
-          <h3>Strategy<br>&amp; comms</h3>
-          <p>Where a brand stands in sport, and what it is entitled to say there.</p>
-        </article>
-        <article class="hg-cap">
-          <h3>Creative</h3>
-          <p>The idea, the script, the talent, the thing that gets watched to the end.</p>
-        </article>
-        <article class="hg-cap">
-          <h3>Design</h3>
-          <p>Identity, kit graphics, titles, the visual language a campaign lives in.</p>
-        </article>
-        <article class="hg-cap">
-          <h3>Production</h3>
-          <p>Made in house, from the shoot through to the social cut-downs.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <!-- ═══ 9 · WEIGHT. The object that is not a client. Authored quiet: this
-           is the silence in front of the peak, not dead scroll. ────────── -->
-  <section class="hg-plate hg-plate--bone hg-object" id="academy" data-sc-act="flow" data-hg-object="academy">
-    <div class="hg-object__inner">
-      <div class="hg-object__name" data-sc-in>
-        <hr class="hg-rule">
-        <h2 class="hg-client">Homeground Academy</h2>
-      </div>
-      <div class="hg-object__label" data-sc-in data-sc-stagger="70">
-        <p class="hg-project">Helping young athletes see that they do not have to turn pro to have a career in sport.</p>
-        <div class="hg-label__foot">
-          <p class="hg-meta">Homeground's own initiative</p>
-          <p class="hg-meta hg-meta--accent">Not client work</p>
-        </div>
-      </div>
-      <div class="hg-object__media" data-sc-reveal="iris" data-sc-reveal-at="0.12 0.52">
-        <div class="hg-frame">
-          <div class="hg-frame__slot" aria-hidden="true">
-            <span class="hg-slot__tag">Film slot</span>
-            <span class="hg-slot__ghost">Awaiting film</span>
-            <span class="hg-slot__file">assets/07-academy.jpg &nbsp;·&nbsp; assets/07-academy.mp4</span>
-          </div>
-          <img class="hg-frame__img" src="assets/07-academy.jpg" width="1600" height="900"
-               alt="Homeground Academy." onerror="this.remove()">
-          <!-- <video class="hg-frame__vid" src="assets/07-academy.mp4" autoplay loop muted playsinline poster="assets/07-academy.jpg"></video> -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 10 · THE PEAK. The index leaves the margin and takes the screen. -->
-  <section class="hg-plate hg-wall" id="wall" data-sc-act="pan" data-sc-span="3.1">
-    <div data-sc-stage>
-      <div class="hg-wall__inner">
-        <div class="hg-wall__rail" data-sc-pan="0.05">
-          <div class="hg-wall__lead">
-            <hr class="hg-rule">
-            <h2 class="hg-wall__title">Who we<br>work for</h2>
-            <p class="hg-project">The whole list, in one place.</p>
-          </div>
-          <article class="hg-wall__card" data-sc-tilt="6"><h3>Beats by Dre</h3><p>Some play, others glide. 80-second film with Cole Palmer.</p><div class="hg-wall__thumb">Film slot</div></article>
-          <article class="hg-wall__card" data-sc-tilt="6"><h3>Manchester United</h3><p>adidas Originals kit launch film with Barry Keoghan.</p><div class="hg-wall__thumb">Film slot</div></article>
-          <article class="hg-wall__card" data-sc-tilt="6"><h3>Callaway</h3><p>The golfers stuck indoors, with MSQ Sport &amp; Entertainment.</p><div class="hg-wall__thumb">Film slot</div></article>
-          <article class="hg-wall__card" data-sc-tilt="6"><h3>Sky Sports</h3><p>Project title to confirm.</p><div class="hg-wall__thumb">Film slot</div></article>
-          <article class="hg-wall__card" data-sc-tilt="6"><h3>Aston Villa</h3><p>Project title to confirm.</p><div class="hg-wall__thumb">Film slot</div></article>
-          <article class="hg-wall__card" data-sc-tilt="6"><h3>Arsenal</h3><p>Project title to confirm.</p><div class="hg-wall__thumb">Film slot</div></article>
-          <article class="hg-wall__card" data-sc-tilt="6"><h3>Homeground Academy</h3><p>Homeground's own initiative for young athletes.</p><div class="hg-wall__thumb">Film slot</div></article>
-          <div class="hg-wall__end">
-            <p class="hg-meta hg-meta--accent">And the one that is not on the wall yet</p>
-            <h2 class="hg-wall__title">Yours</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 11 · RESOLVE. The inquiry plate, typeset exactly like a label. -->
-  <section class="hg-plate hg-plate--lime hg-close" id="contact" data-sc-act="flow">
-    <div class="hg-close__inner">
-      <div data-sc-in>
-        <hr class="hg-rule">
-        <h2 class="hg-close__ask">Bring us a season</h2>
-      </div>
-      <div class="hg-close__grid" data-sc-in data-sc-stagger="70">
-        <div class="hg-close__cell">
-          <p class="hg-meta">New business</p>
-          <!-- No real new-business address was verifiable, and an invented one
-               on a contact plate is a liability. Marked as a field, like the
-               unconfirmed project titles. -->
-          <p class="hg-close__val">Email address to confirm</p>
-        </div>
-        <div class="hg-close__cell">
-          <p class="hg-meta">Studio</p>
-          <p class="hg-close__val">London · North America<br>Latin America · Europe</p>
-        </div>
-        <div class="hg-close__cell">
-          <p class="hg-meta">Elsewhere</p>
-          <p class="hg-close__val"><a href="https://www.instagram.com/homegroundldn/">@homegroundldn</a></p>
-        </div>
-      </div>
-      <div class="hg-foot" data-sc-in>
-        <svg class="hg-logo hg-logo--foot" viewBox="0 0 1000 300" aria-hidden="true">
-          <defs><path id="hgArcC" d="M 30 255 Q 500 30 970 255" fill="none"></path></defs>
-          <text text-anchor="middle"><textPath href="#hgArcC" startOffset="50%">HOMEGROUND</textPath></text>
-        </svg>
-        <p class="hg-meta">Creative for sport and sport culture</p>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<script src="scrollcraft.js"></script>
 <script>
-ScrollCraft.mount(document.body);
+/* ═══════════════════════════════════════════════════════════════════════════
+   Data.
 
-/* The arched wordmark is SVG text on a path, and text longer than the path is
-   silently trimmed at both ends: at the wrong size the mark renders
-   "OMEGROUN". Measure the arc and set textLength so the word always spans it
-   exactly, whatever face actually loads. lengthAdjust="spacing" tracks the
-   letters rather than distorting the glyphs, which is how a varsity arch is
-   set anyway. */
-(function () {
-  function fitLogos() {
-    document.querySelectorAll(".hg-logo").forEach(function (svg) {
-      var path = svg.querySelector("path"), tp = svg.querySelector("textPath");
-      if (!path || !tp || !path.getTotalLength) return;
-      var L = path.getTotalLength();
-      if (!L) return;
-      tp.setAttribute("lengthAdjust", "spacing");
-      tp.setAttribute("textLength", (L * 0.97).toFixed(1));
+   Seven projects, which is what is actually verifiable. The grid, filters and
+   router are all driven from this array, so adding the rest of the roster is
+   an edit here and nothing else.
+
+   HONESTY RULES BAKED INTO THIS FILE:
+   - `metric` is null unless the figure is real. Nothing invents a percentage.
+   - challenge/idea/execution are null where the copy has not been written.
+     They render as a marked "awaiting copy" slot rather than as plausible
+     fiction about a real client's brief.
+   - `facts` only ever holds publicly verifiable credits.
+   ═══════════════════════════════════════════════════════════════════════════ */
+const PROJECTS = [
+  {
+    slug: 'beats-by-dre', client: 'Beats by Dre', title: 'Some play, others glide',
+    discipline: 'Film', sport: 'Football', media: '01-beats', verified: true,
+    facts: ['80-second film', 'With Cole Palmer'],
+    challenge: null, idea: null, execution: null,
+    metric: null, metricNote: '80-second film with England and Chelsea forward Cole Palmer'
+  },
+  {
+    slug: 'manchester-united', client: 'Manchester United', title: 'adidas Originals kit launch film',
+    discipline: 'Kit launch', sport: 'Football', media: '02-manutd', verified: true,
+    facts: ['Kit launch film', 'With Barry Keoghan', 'Dir. Tom Day'],
+    challenge: null, idea: null, execution: null,
+    metric: null, metricNote: 'Kit launch film with Barry Keoghan, directed by Tom Day'
+  },
+  {
+    slug: 'callaway', client: 'Callaway', title: 'The golfers stuck indoors',
+    discipline: 'Film', sport: 'Golf', media: '03-callaway', verified: true,
+    facts: ['Film', 'With MSQ Sport & Entertainment'],
+    challenge: null, idea: null, execution: null,
+    metric: null, metricNote: null
+  },
+  {
+    slug: 'sky-sports', client: 'Sky Sports', title: 'Project title to confirm',
+    discipline: 'Broadcast', sport: 'Multi-sport', media: '04-skysports', verified: false,
+    facts: ['Client confirmed'],
+    challenge: null, idea: null, execution: null,
+    metric: null, metricNote: null
+  },
+  {
+    slug: 'aston-villa', client: 'Aston Villa', title: 'Project title to confirm',
+    discipline: 'Kit launch', sport: 'Football', media: '05-astonvilla', verified: false,
+    facts: ['Client confirmed'],
+    challenge: null, idea: null, execution: null,
+    metric: null, metricNote: null
+  },
+  {
+    slug: 'arsenal', client: 'Arsenal', title: 'Project title to confirm',
+    discipline: 'Kit launch', sport: 'Football', media: '06-arsenal', verified: false,
+    facts: ['Client confirmed'],
+    challenge: null, idea: null, execution: null,
+    metric: null, metricNote: null
+  },
+  {
+    slug: 'homeground-academy', client: 'Homeground Academy', title: 'Careers in sport beyond turning pro',
+    discipline: 'Social', sport: 'Multi-sport', media: '07-academy', verified: true,
+    facts: ["Homeground's own initiative"],
+    challenge: null, idea: null, execution: null,
+    metric: null, metricNote: "Homeground's own initiative for young athletes"
+  },
+];
+
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const FINE = matchMedia('(hover: hover) and (pointer: fine)').matches;
+const $ = s => document.querySelector(s);
+
+/* ── Grid ─────────────────────────────────────────────────────────────── */
+const grid = $('#grid');
+
+function resultLine(p) {
+  if (p.metric) return { text: p.metric, pending: false };
+  if (p.metricNote) return { text: p.metricNote, pending: false };
+  return { text: 'Result to confirm', pending: true };
+}
+
+function tileHTML(p) {
+  const r = resultLine(p);
+  // alt describes the placeholder honestly; swap it for a description of the
+  // real frame when real stills land
+  const alt = `Placeholder plate for ${p.client} — ${p.title}`;
+  return `
+  <figure class="tile" data-slug="${p.slug}" data-client="${p.client}" data-discipline="${p.discipline}">
+    <a class="tile__link" href="#/work/${p.slug}">
+      <div class="tile__media">
+        <img class="tile__poster" src="assets/${p.media}-poster.jpg" width="1280" height="720"
+             loading="lazy" decoding="async" alt="${alt}">
+        <video class="tile__vid" muted playsinline loop preload="none"
+               data-webm="assets/${p.media}.webm" data-mp4="assets/${p.media}.mp4"
+               aria-hidden="true" tabindex="-1"></video>
+      </div>
+      <figcaption class="tile__cap">
+        <span class="tile__client">${p.client}</span>
+        <span class="tile__title">${p.title}</span>
+        <span class="tile__result" data-pending="${r.pending}">${r.text}</span>
+      </figcaption>
+    </a>
+  </figure>`;
+}
+
+grid.innerHTML = PROJECTS.map(tileHTML).join('');
+
+/* ── Motion. Load nothing off-screen; play only on intent. ──────────────
+   Loading is gated on intent (hover or keyboard focus), so an off-screen tile
+   can never fetch a clip: you cannot hover what is not on screen. The
+   IntersectionObserver's job is the other half — a tile that scrolls away
+   while playing is paused and released, which is the case hover alone cannot
+   catch. Under reduced motion no clip is ever fetched and the poster is the
+   whole story. */
+
+function attachSources(video) {
+  if (video.dataset.ready) return;
+  video.dataset.ready = '1';
+  const webm = document.createElement('source');
+  webm.type = 'video/webm'; webm.src = video.dataset.webm;
+  const mp4 = document.createElement('source');
+  mp4.type = 'video/mp4'; mp4.src = video.dataset.mp4;
+  video.append(webm, mp4);
+  video.load();
+}
+
+function play(tile) {
+  // deliberately NOT gated on the observer: it resolves a frame after the
+  // pointer arrives, so arriving with the cursor already over a tile (a fast
+  // scroll, or a page loaded mid-grid) would silently never play.
+  if (REDUCED) return;
+  const v = tile.querySelector('.tile__vid');
+  if (!v) return;
+  attachSources(v);
+  const go = v.play();
+  if (go && go.catch) go.catch(() => {});   // autoplay refusal is not an error here
+  tile.classList.add('is-playing');
+}
+
+function stop(tile) {
+  const v = tile.querySelector('.tile__vid');
+  tile.classList.remove('is-playing');
+  if (v && !v.paused) v.pause();
+}
+
+if (!REDUCED) {
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      // never leave an off-screen clip running
+      if (!e.isIntersecting) stop(e.target);
+    }
+  }, { rootMargin: '200px 0px' });
+  grid.querySelectorAll('.tile').forEach(t => io.observe(t));
+
+  if (FINE) {
+    grid.querySelectorAll('.tile').forEach(t => {
+      t.addEventListener('pointerenter', () => play(t));
+      t.addEventListener('pointerleave', () => stop(t));
     });
   }
-  fitLogos();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLogos);
-  addEventListener("resize", fitLogos, { passive: true });
-})();
-
-/* ─────────────────────────────────────────────────────────────────────────
-   THE SIGNATURE MOVE · the living client index.
-
-   Rows stamp as their object is passed and stay stamped, so the index
-   accumulates into a complete client list rather than being a static nav.
-   The engine is untouched: this reads plain scroll state off the page.
-   ───────────────────────────────────────────────────────────────────────── */
-(function () {
-  var rows = {}, order = [];
-  document.querySelectorAll("[data-hg-row]").forEach(function (r) {
-    rows[r.getAttribute("data-hg-row")] = r;
+  // keyboard parity: tabbing to a tile behaves like hovering it
+  grid.addEventListener('focusin', e => {
+    const t = e.target.closest('.tile'); if (t) play(t);
   });
-  document.querySelectorAll("[data-hg-object]").forEach(function (o) {
-    order.push({ key: o.getAttribute("data-hg-object"), el: o });
+  grid.addEventListener('focusout', e => {
+    const t = e.target.closest('.tile');
+    if (t && !t.contains(e.relatedTarget)) stop(t);
   });
+}
 
-  /* Light a row the first time its object is meaningfully on screen, and never
-     unlight it. A list that empties as you scroll back up is a defect, not an
-     effect: the whole point is that the roster accumulates. */
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      var row = rows[e.target.getAttribute("data-hg-object")];
-      if (row) row.classList.add("is-lit");
+/* ── Filters ──────────────────────────────────────────────────────────── */
+const state = { client: null, discipline: null };
+const uniq = k => [...new Set(PROJECTS.map(p => p[k]))].sort();
+
+function buildSet(key) {
+  const host = document.querySelector(`[data-set="${key}"]`);
+  const mk = (label, value) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = label; b.dataset.value = value ?? '';
+    b.setAttribute('aria-pressed', String(state[key] === value));
+    b.addEventListener('click', () => {
+      state[key] = state[key] === value ? null : value;
+      syncSet(key); apply();
     });
-  }, { rootMargin: "0px 0px -35% 0px", threshold: 0.01 });
-  order.forEach(function (o) { io.observe(o.el); });
+    host.append(b);
+  };
+  mk('All', null);
+  uniq(key).forEach(v => mk(v, v));
+}
 
-  /* "You are here" follows the object nearest the middle of the viewport. */
-  var wall = document.getElementById("wall");
-  var ticking = false;
-  function mark() {
-    ticking = false;
-    var mid = innerHeight / 2, best = null, bestD = Infinity;
-    for (var i = 0; i < order.length; i++) {
-      var r = order[i].el.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > innerHeight) continue;
-      var d = Math.abs(r.top + r.height / 2 - mid);
-      if (d < bestD) { bestD = d; best = order[i].key; }
-    }
-    for (var k in rows) rows[k].classList.toggle("is-here", k === best);
+function syncSet(key) {
+  document.querySelectorAll(`[data-set="${key}"] button`).forEach(b => {
+    const v = b.dataset.value || null;
+    b.setAttribute('aria-pressed', String(state[key] === v));
+  });
+}
 
-    /* The breakout. While the wall act owns the screen the margin index stands
-       down, because the wall IS the index, grown. */
-    if (wall) {
-      var w = wall.getBoundingClientRect();
-      document.body.classList.toggle("hg-wall", w.top < innerHeight * 0.5 && w.bottom > innerHeight * 0.5);
+function apply() {
+  let shown = 0;
+  grid.querySelectorAll('.tile').forEach(t => {
+    const ok = (!state.client || t.dataset.client === state.client)
+            && (!state.discipline || t.dataset.discipline === state.discipline);
+    if (ok) {
+      if (t.hidden) { t.hidden = false; t.classList.remove('is-entering'); void t.offsetWidth; t.classList.add('is-entering'); }
+      shown++;
+    } else {
+      t.hidden = true; stop(t);
     }
+  });
+  const total = PROJECTS.length;
+  $('#count').textContent = shown === total
+    ? `${total} projects`
+    : `${shown} of ${total} projects`;
+  let empty = grid.querySelector('.grid__empty');
+  if (!shown && !empty) {
+    empty = document.createElement('p');
+    empty.className = 'grid__empty';
+    empty.textContent = 'Nothing matches that combination.';
+    grid.append(empty);
+  } else if (shown && empty) empty.remove();
+}
 
-    /* Keep the current row in view in the mobile bottom bar. */
-    if (best && innerWidth < 1024) {
-      var el = rows[best];
-      if (el && el.scrollIntoView) el.scrollIntoView({ block: "nearest", inline: "center" });
-    }
+buildSet('client'); buildSet('discipline'); apply();
+
+/* ── Clients list. Selecting one filters the grid; it is not a second nav. ─ */
+const clientList = $('#clientList');
+clientList.innerHTML = uniq('client').map(c => {
+  const n = PROJECTS.filter(p => p.client === c).length;
+  return `<li><button type="button" data-client="${c}">${c}<span>${n} project${n > 1 ? 's' : ''}</span></button></li>`;
+}).join('');
+clientList.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  state.client = b.dataset.client; syncSet('client'); apply();
+  document.getElementById('work').scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+});
+
+/* ── Project view + routing ────────────────────────────────────────────
+   Hash routing so the file works from file:// as well as a server. The meta
+   tags are rewritten per project: that is correct for the tab and for a
+   crawler that runs JS, and it does nothing for a static scraper. See the
+   note in <head>. */
+const projectEl = $('#project');
+
+function sect(title, copy) {
+  const body = copy
+    ? `<p>${copy}</p>`
+    : `<p class="pending">One short paragraph.</p>`;
+  return `<div class="sect"><h3>${title}</h3>${body}</div>`;
+}
+
+function renderProject(p) {
+  const r = resultLine(p);
+  const posterAlt = `Placeholder plate for ${p.client} — ${p.title}`;
+  projectEl.innerHTML = `
+    <a class="project__back" href="#work">Back to work</a>
+    <h2 class="project__client">${p.client}</h2>
+    <p class="project__title">${p.title}</p>
+    <div class="project__hero">
+      <img src="assets/${p.media}-poster.jpg" width="1280" height="720" alt="${posterAlt}">
+    </div>
+    <div class="project__body">
+      ${sect('Challenge', p.challenge)}
+      ${sect('Idea', p.idea)}
+      ${sect('Execution', p.execution)}
+      <div class="sect sect--result">
+        <h3>Result</h3>
+        <p class="metric${r.pending ? ' pending' : ''}">${r.text}</p>
+      </div>
+      <div class="project__facts">${p.facts.map(f => `<span>${f}</span>`).join('')}</div>
+    </div>`;
+
+  const title = `${p.client} — ${p.title} · Homeground`;
+  const desc = r.pending
+    ? `${p.client}: ${p.title}. Work by Homeground, a creative agency for brands in sport.`
+    : `${p.client}: ${p.title}. ${r.text}.`;
+  setMeta(title, desc, `assets/${p.media}-poster.jpg`);
+}
+
+const BASE_TITLE = 'Homeground — creative for brands in sport';
+const BASE_DESC = document.querySelector('meta[name="description"]').content;
+
+function setMeta(title, desc, image) {
+  document.title = title;
+  const set = (sel, val) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); };
+  set('meta[name="description"]', desc);
+  set('meta[property="og:title"]', title);
+  set('meta[property="og:description"]', desc);
+  set('meta[name="twitter:title"]', title);
+  set('meta[name="twitter:description"]', desc);
+  if (image) { set('meta[property="og:image"]', image); set('meta[name="twitter:image"]', image); }
+}
+
+function route() {
+  const m = location.hash.match(/^#\/work\/([\w-]+)$/);
+  const p = m && PROJECTS.find(x => x.slug === m[1]);
+  if (p) {
+    document.body.classList.add('is-project');
+    renderProject(p);
+    projectEl.focus({ preventScroll: true });
+    window.scrollTo(0, 0);
+  } else {
+    document.body.classList.remove('is-project');
+    projectEl.innerHTML = '';
+    setMeta(BASE_TITLE, BASE_DESC, 'assets/01-beats-poster.jpg');
   }
-  addEventListener("scroll", function () {
-    if (!ticking) { ticking = true; requestAnimationFrame(mark); }
-  }, { passive: true });
-  addEventListener("resize", mark, { passive: true });
-  mark();
-})();
+}
+addEventListener('hashchange', route);
+route();
+
+/* ── Enquiry. No backend here, so it composes a mail draft. Swap for a real
+      endpoint on launch; the note under the button says so on the page. ── */
+$('#enquiryForm').addEventListener('submit', e => {
+  e.preventDefault();
+  // form.name is the form's own property, not the field — go via elements
+  const el = e.target.elements;
+  const body = [
+    `Name: ${el.name.value}`,
+    `Brand: ${el.brand.value}`,
+    `Need: ${el.need.value}`,
+    '',
+    el.brief.value
+  ].join('\n');
+  $('#enquiryNote').textContent =
+    'No address is set yet. Add the real enquiries address, or a form endpoint, before launch.';
+  console.info('Enquiry draft:\n' + body);
+});
 </script>
 </body>
 </html>
