@@ -361,28 +361,84 @@ body {
 }
 .case__src a { color: inherit; }
 
-/* ── chapter 2 · pillars ─────────────────────────────────────────────────── */
+/* ── chapter 1 · the concentration chart ─────────────────────────────────── */
 
-.pillar { padding-block: clamp(2.2rem, 4vw, 3.4rem); border-top: var(--fos-rule); }
-.pillar:last-of-type { border-bottom: var(--fos-rule); }
-.pillar__grid { display: grid; gap: 1.2rem; }
-@media (min-width: 860px) {
-  .pillar__grid { grid-template-columns: 15rem 1fr; gap: clamp(2rem, 4vw, 4rem); }
+.split { display: grid; gap: clamp(2.4rem, 5vw, 4.5rem); align-items: center; }
+@media (min-width: 900px) { .split { grid-template-columns: 0.9fr 1.1fr; } }
+
+.chart { margin: 0; display: grid; gap: 0.85rem; }
+.chart__row { display: grid; grid-template-columns: 4.4rem 1fr 3.2rem; gap: 0.85rem; align-items: center; }
+.chart__yr, .chart__tot {
+  font-family: var(--sc-font-mono); font-size: 0.72rem;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.04em;
+  color: var(--sc-ink-soft);
 }
+.chart__tot { text-align: right; color: var(--sc-ink); font-weight: 700; }
+.chart__bar { display: flex; width: var(--w); height: 2.6rem; }
+.chart__seg { display: flex; align-items: center; }
+.chart__seg--top { width: var(--s); background: var(--sc-accent); padding-left: 0.6rem; }
+.chart__seg--rest { flex: 1; background: color-mix(in srgb, currentColor 15%, transparent); }
+.chart__seg b {
+  font-family: var(--sc-font-mono); font-size: 0.74rem; font-weight: 700;
+  color: #F2EFE9; letter-spacing: 0.02em;
+}
+.chart__key {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem;
+  font-family: var(--sc-font-mono); font-size: 0.66rem;
+  color: var(--sc-ink-soft); text-transform: uppercase; letter-spacing: 0.1em;
+  margin-top: 0.4rem; padding-left: 5.25rem;
+}
+.chart__key span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.chart__sw { width: 0.7rem; height: 0.7rem; display: inline-block; }
+.chart__sw--top { background: var(--sc-accent); }
+.chart__sw--rest { background: color-mix(in srgb, currentColor 26%, transparent); }
+@media (max-width: 560px) {
+  .chart__row { grid-template-columns: 3.6rem 1fr 2.9rem; gap: 0.55rem; }
+  .chart__key { padding-left: 0; }
+}
+
+/* ── chapter 2 · the kit schedule and the pillars ────────────────────────── */
+
+.kit { display: grid; gap: clamp(2rem, 4vw, 3.6rem); align-items: center; }
+@media (min-width: 880px) { .kit { grid-template-columns: 0.65fr 1.35fr; } }
+
+.kit__fig { margin: 0; }
+.kit__svg { width: 100%; max-width: 21rem; height: auto; display: block; margin-inline: auto; color: var(--sc-ink); }
+.kit__balloon circle { fill: var(--sc-canvas); stroke: var(--sc-accent); stroke-width: 1.2; }
+.kit__balloon text {
+  font-family: var(--sc-font-mono); font-size: 10px; font-weight: 700;
+  fill: var(--sc-accent); text-anchor: middle; letter-spacing: 0.04em;
+}
+
+.schedule { width: 100%; border-collapse: collapse; caption-side: top; }
+.schedule caption {
+  font-family: var(--sc-font-mono); font-size: 0.7rem; text-align: left;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--sc-ink-soft);
+  padding-bottom: 0.9rem;
+}
+.schedule td { padding: 0.58rem 0; border-bottom: var(--fos-rule); vertical-align: baseline; font-size: 0.98rem; }
+.schedule__n {
+  font-family: var(--sc-font-mono); font-size: 0.72rem; color: var(--sc-accent);
+  width: 2.8rem; font-variant-numeric: tabular-nums;
+}
+.schedule__w { text-align: right; color: var(--sc-ink-soft); font-size: 0.84rem; }
+@media (max-width: 620px) {
+  .schedule td { font-size: 0.9rem; }
+  .schedule__w { display: none; }
+}
+
+.pillars { display: grid; gap: 0; margin-top: clamp(3rem, 6vw, 5rem); }
+@media (min-width: 820px) { .pillars { grid-template-columns: repeat(3, 1fr); gap: clamp(1.6rem, 3vw, 3rem); } }
+.pillar { padding-block: clamp(1.5rem, 3vw, 2.1rem); border-top: 2px solid currentColor; }
 .pillar h3 {
-  font-family: var(--sc-font-display);
-  font-weight: 800; font-stretch: 125%;
-  font-size: clamp(1.6rem, 3vw, 2.6rem);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin: 0;
+  font-family: var(--sc-font-display); font-weight: 800; font-stretch: 125%;
+  font-size: clamp(1.4rem, 2.4vw, 2rem); letter-spacing: -0.03em; line-height: 1;
+  margin: 0 0 0.85rem;
 }
+.pillar .fos-p { font-size: 1rem; max-width: 34ch; }
 .pillar__out {
-  font-family: var(--sc-font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--sc-accent);
-  margin: 1.1rem 0 0;
+  font-family: var(--sc-font-mono); font-size: 0.7rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--sc-accent); margin: 1rem 0 0;
 }
 
 /* ── chapter 3 · the report (parallax media column) ──────────────────────── */
@@ -407,6 +463,13 @@ body {
 .report__tbl th { text-align: left; font-weight: 500; text-transform: uppercase; letter-spacing: 0.09em; font-size: 0.66rem; color: #565248; padding-bottom: 0.45rem; border-bottom: 1px solid #DEDED6; }
 .report__tbl th:not(:first-child), .report__tbl td:not(:first-child) { text-align: right; }
 .report__tbl td { padding: 0.42rem 0; border-bottom: 1px solid #EDEDE7; }
+/* Screen time reads at a glance rather than digit by digit. The bar sits under
+   the figure, not instead of it. */
+.report__tbl td.bar { position: relative; padding-bottom: 0.6rem; }
+.report__tbl td.bar::before,
+.report__tbl td.bar::after { content: ""; position: absolute; bottom: 3px; height: 3px; }
+.report__tbl td.bar::before { left: 0; right: 0; background: #E6E4DC; }
+.report__tbl td.bar::after  { right: 0; width: var(--b); background: #8A6410; }
 .report__rec { margin-top: 1.1rem; padding-top: 0.8rem; border-top: 2px solid #131B3D; display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
 .report__verdict { color: #8A6410; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; }
 .report__cap {
@@ -675,115 +738,145 @@ body {
     </div>
   </div>
 </section>
-
-<!-- ═══ CHAPTER 1 · the case, in three figures ═══════════════════════════════
-     Device: count, inside running prose. Real figures only, cited below. -->
+<!-- ═══ CHAPTER 1 · the case ════════════════════════════════════════════════
+     Device: count, inside running prose, plus a chart drawn from the same
+     published figures. Copy cut to three sentences: the chart carries the
+     argument that four paragraphs were carrying before. -->
 <section class="ch ch--chalk" data-sc-act="flow" data-chapter="The money is here">
-  <div class="fos-wrap fos-pad case">
+  <div class="fos-wrap fos-pad">
     <div class="fos-headblock">
       <p class="fos-label">Chapter one</p>
       <h2 class="fos-display fos-display--head">The money arrived. It did not spread out.</h2>
     </div>
 
-    <div class="case__grid" data-sc-in data-sc-stagger="80">
-      <p>
-        Women's Super League clubs turned over
-        <span class="case__fig">£</span><span class="case__fig" data-sc-count="0 90" data-sc-count-at="0.05 0.4">0</span><span class="case__fig">m</span>
-        in 2024/25. That is
-        <span class="case__fig" data-sc-count="0 39" data-sc-count-at="0.1 0.45">0</span><span class="case__fig">%</span>
-        more than the season before.
-      </p>
-      <p>
-        Four clubs took
-        <span class="case__fig" data-sc-count="0 71" data-sc-count-at="0.15 0.5">0</span><span class="case__fig">%</span>
-        of it. The season before, the same four took 66%.
-      </p>
-      <p>
-        The distance between the highest earner in the league and the lowest is now
-        <span class="case__fig" data-sc-count="0 16" data-sc-count-at="0.2 0.55">0</span><span class="case__fig">x</span>.
-        Last season it was 13x.
-      </p>
-      <p>
-        Across the fifteen highest-earning women's clubs in the world,
-        <span class="case__fig" data-sc-count="0 72" data-sc-count-at="0.25 0.6">0</span><span class="case__fig">%</span>
-        of all income is commercial. Commercial capability is not part of the difference. It is the difference.
-      </p>
+    <div class="split" data-sc-in data-sc-stagger="80">
+      <div class="case__grid">
+        <p>
+          WSL clubs turned over
+          <span class="case__fig">£</span><span class="case__fig" data-sc-count="0 90" data-sc-count-at="0.04 0.34">0</span><span class="case__fig">m</span>
+          last season, up
+          <span class="case__fig" data-sc-count="0 39" data-sc-count-at="0.08 0.38">0</span><span class="case__fig">%</span>
+          in a year.
+        </p>
+        <p>
+          Four clubs took
+          <span class="case__fig" data-sc-count="0 71" data-sc-count-at="0.12 0.42">0</span><span class="case__fig">%</span>
+          of it.
+        </p>
+        <p>
+          Top earner to bottom earner is now
+          <span class="case__fig" data-sc-count="0 16" data-sc-count-at="0.16 0.46">0</span><span class="case__fig">x</span>.
+        </p>
+      </div>
+
+      <figure class="chart">
+        <div class="chart__row">
+          <span class="chart__yr">2023/24</span>
+          <div class="chart__bar" style="--w:72%">
+            <span class="chart__seg chart__seg--top" style="--s:66%"><b>66%</b></span>
+            <span class="chart__seg chart__seg--rest"></span>
+          </div>
+          <span class="chart__tot">£65m</span>
+        </div>
+        <div class="chart__row">
+          <span class="chart__yr">2024/25</span>
+          <div class="chart__bar" style="--w:100%">
+            <span class="chart__seg chart__seg--top" style="--s:71%"><b>71%</b></span>
+            <span class="chart__seg chart__seg--rest"></span>
+          </div>
+          <span class="chart__tot">£90m</span>
+        </div>
+        <figcaption class="chart__key">
+          <span><i class="chart__sw chart__sw--top"></i>The top four clubs</span>
+          <span><i class="chart__sw chart__sw--rest"></i>The other eight</span>
+        </figcaption>
+      </figure>
     </div>
 
     <p class="case__land">The money is here. It is not distributed by accident.</p>
 
     <p class="case__src">
-      Sources: Deloitte Annual Review of Football Finance, Women's Super League, 2024/25 season.
-      League revenue, growth, top-four concentration and the earnings spread are league figures.
-      The 72% commercial share is drawn from the fifteen highest-earning women's clubs worldwide
-      (£95.8m of £132.2m), which is a wider set than the WSL alone.
+      Deloitte Annual Review of Football Finance, Women's Super League, 2024/25.
+      Bar length is total league revenue; the split is the published top-four share.
     </p>
   </div>
 </section>
 
 <!-- ═══ CHAPTER 2 · what we do ══════════════════════════════════════════════
-     Device: flow + in, staggered. Running text, no cards, real deliverables. -->
+     Device: flow + in. The kit schedule replaces three paragraphs of prose:
+     it is the inventory audit drawn as the spec sheet it actually is, which
+     is a technical drawing rather than anything resembling clip art. -->
 <section class="ch ch--blue" data-sc-act="flow" data-chapter="Value it, sell it, prove it">
   <div class="fos-wrap fos-pad">
     <div class="fos-headblock">
       <p class="fos-label">Chapter two</p>
-      <h2 class="fos-display fos-display--head">An outsourced commercial department, on retainer.</h2>
-      <p class="fos-lede" style="margin-top:1.4rem">
-        Three things, in order. Each one ends in a document you can hold.
-      </p>
+      <h2 class="fos-display fos-display--head">Everything you own, priced.</h2>
     </div>
 
-    <div data-sc-in data-sc-stagger="70">
-      <div class="pillar">
-        <div class="pillar__grid">
-          <h3>Value it</h3>
-          <div>
-            <p class="fos-p">
-              We audit everything you can sell. Shirt, sleeve, back of shirt, training kit, LED,
-              matchday, digital, community, data. Then we price it against what comparable rights
-              actually cleared this season, not against what you charged last season and rolled over.
-            </p>
-            <p class="pillar__out">Deliverable: inventory audit and a priced media pack.</p>
-          </div>
-        </div>
-      </div>
+    <div class="kit" data-sc-in data-sc-stagger="60">
+      <figure class="kit__fig">
+        <svg viewBox="0 0 300 350" role="img" aria-labelledby="kit-t" class="kit__svg">
+          <title id="kit-t">A match shirt marked up with the three shirt positions, numbered to the schedule beside it</title>
+          <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round">
+            <path stroke-width="1.6" d="M120 40 C110 41 102 43 95 46 L48 72 C38 90 32 106 30 120 L78 141
+                     C82 130 87 120 92 112 L92 312 L208 312 L208 112
+                     C213 120 218 130 222 141 L270 120 C268 106 262 90 252 72 L205 46
+                     C198 43 190 41 180 40 C176 53 164 61 150 61 C136 61 124 53 120 40 Z"/>
+            <path stroke-width="1.1" opacity="0.55" d="M124 44 C129 55 138 65 150 65 C162 65 171 55 176 44"/>
+            <path stroke-width="1.1" opacity="0.3" d="M92 296 L208 296"/>
+          </g>
+          <g fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.45">
+            <path d="M150 132 L236 102"/>
+            <path d="M56 104 L34 78"/>
+            <path d="M150 246 L236 264"/>
+            <path d="M104 246 L196 246" stroke-dasharray="2 5"/>
+          </g>
+          <g class="kit__balloon">
+            <circle cx="250" cy="97" r="13"/><text x="250" y="101">01</text>
+            <circle cx="24" cy="70" r="13"/><text x="24" y="74">02</text>
+            <circle cx="250" cy="268" r="13"/><text x="250" y="272">03</text>
+          </g>
+        </svg>
+      </figure>
 
-      <div class="pillar">
-        <div class="pillar__grid">
-          <h3>Sell it</h3>
-          <div>
-            <p class="fos-p">
-              We take the packages to market by category, not by mailing list. A named target list,
-              brands with a reason to be in front of your audience, approached in the right order.
-              You see every conversation. You sign every deal.
-            </p>
-            <p class="pillar__out">Deliverable: named target list by category, and the deals.</p>
-          </div>
-        </div>
-      </div>
+      <table class="schedule">
+        <caption>The audit, in the order we price it.</caption>
+        <tbody>
+          <tr><td class="schedule__n">01</td><td>Front of shirt</td><td class="schedule__w">Highest value asset you hold</td></tr>
+          <tr><td class="schedule__n">02</td><td>Sleeve</td><td class="schedule__w">Most commonly underpriced</td></tr>
+          <tr><td class="schedule__n">03</td><td>Back of shirt</td><td class="schedule__w">Sold separately, rarely is</td></tr>
+          <tr><td class="schedule__n">04</td><td>Training kit</td><td class="schedule__w">Own category, own buyer</td></tr>
+          <tr><td class="schedule__n">05</td><td>LED and perimeter</td><td class="schedule__w">Priced on screen time</td></tr>
+          <tr><td class="schedule__n">06</td><td>Matchday title</td><td class="schedule__w">Local, renewable, sticky</td></tr>
+          <tr><td class="schedule__n">07</td><td>Community programme</td><td class="schedule__w">The one buyers ask for</td></tr>
+        </tbody>
+      </table>
+    </div>
 
+    <div class="pillars" data-sc-in data-sc-stagger="70">
       <div class="pillar">
-        <div class="pillar__grid">
-          <h3>Prove it</h3>
-          <div>
-            <p class="fos-p">
-              Then the part nobody does. Every quarter, the sponsor gets a report they will actually
-              read: logo screen time in minutes, reach by asset, what it was worth against what they
-              paid, and a straight recommendation on renewal. Deals die at year one because nobody
-              ever showed the sponsor what they got.
-            </p>
-            <p class="pillar__out">Deliverable: quarterly partner report and a renewal case.</p>
-          </div>
-        </div>
+        <h3>Value it</h3>
+        <p class="fos-p">Priced against what comparable rights actually cleared. Not against last season plus five per cent.</p>
+        <p class="pillar__out">Inventory audit, priced media pack</p>
+      </div>
+      <div class="pillar">
+        <h3>Sell it</h3>
+        <p class="fos-p">Category-led, to brands with a reason to be in front of your audience. You sign every deal.</p>
+        <p class="pillar__out">Named target list, and the deals</p>
+      </div>
+      <div class="pillar">
+        <h3>Prove it</h3>
+        <p class="fos-p">Quarterly, in writing, whether it flatters us or not.</p>
+        <p class="pillar__out">Partner report, renewal case</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══ CHAPTER 3 · prove it, expanded ══════════════════════════════════════
-     Device: parallax, inside a media column. The report travels against its
-     own column; the copy and the caption stay put. Body copy never rides a
-     parallax layer. -->
+     Device: parallax, inside a media column. Prose cut from two long
+     paragraphs to two short ones; the report now carries bars, so the
+     delivery reads at a glance instead of needing to be read. -->
 <section class="ch ch--chalk" data-sc-act="flow" data-chapter="Proof of delivery">
   <div class="fos-wrap fos-pad">
     <div class="proof__grid">
@@ -794,15 +887,11 @@ body {
           <h2 class="fos-display fos-display--head">This is why the second year happens.</h2>
         </div>
         <p class="fos-p">
-          A sponsor who cannot measure what they bought will not buy it twice. Most clubs below the
-          elite tier send nothing after the season ends, so renewal becomes a conversation about
-          goodwill and budget, which is a conversation you lose.
+          A sponsor who cannot measure what they bought will not buy it twice.
         </p>
         <p class="fos-p">
-          We send this instead. Screen time counted, reach broken out by asset, cost per thousand
-          against what they paid, and a recommendation we are prepared to defend. When the number
-          says renew at a higher rate, it says so. When it says the LED package underdelivered, it
-          says that too, and we fix it before the sponsor raises it.
+          Most clubs send nothing once the season ends, so renewal becomes a conversation
+          about goodwill and budget. You lose that conversation.
         </p>
       </div>
 
@@ -813,16 +902,15 @@ body {
             <span>Q3 · 2025/26</span>
           </div>
           <table class="report__tbl">
-            <caption class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Sample delivery figures by asset</caption>
             <thead>
               <tr><th scope="col">Asset</th><th scope="col">Screen time</th><th scope="col">Reach</th><th scope="col">CPT</th></tr>
             </thead>
             <tbody>
-              <tr><td>Front of shirt</td><td>412 min</td><td>2.10m</td><td>£4.90</td></tr>
-              <tr><td>Sleeve</td><td>168 min</td><td>2.10m</td><td>£3.20</td></tr>
-              <tr><td>LED, in-play</td><td>96 min</td><td>1.44m</td><td>£8.70</td></tr>
-              <tr><td>Matchday title</td><td>31 min</td><td>0.62m</td><td>£6.10</td></tr>
-              <tr><td>Social, owned</td><td>—</td><td>3.35m</td><td>£1.80</td></tr>
+              <tr><td>Front of shirt</td><td class="bar" style="--b:100%">412 min</td><td>2.10m</td><td>£4.90</td></tr>
+              <tr><td>Sleeve</td><td class="bar" style="--b:41%">168 min</td><td>2.10m</td><td>£3.20</td></tr>
+              <tr><td>LED, in-play</td><td class="bar" style="--b:23%">96 min</td><td>1.44m</td><td>£8.70</td></tr>
+              <tr><td>Matchday title</td><td class="bar" style="--b:8%">31 min</td><td>0.62m</td><td>£6.10</td></tr>
+              <tr><td>Social, owned</td><td class="bar" style="--b:0%">n/a</td><td>3.35m</td><td>£1.80</td></tr>
             </tbody>
           </table>
           <div class="report__rec">
@@ -831,8 +919,7 @@ body {
           </div>
         </div>
         <figcaption class="report__cap">
-          Sample partner report, illustrative figures. The format is the one your sponsor receives
-          every quarter.
+          Sample partner report, illustrative figures. This is the format your sponsor gets every quarter.
         </figcaption>
       </figure>
 
@@ -842,7 +929,7 @@ body {
 
 <!-- ═══ CHAPTER 4 · who this is for ═════════════════════════════════════════
      Device: reveal. A wipe is a change of state, and this chapter changes the
-     reader's state: in, or out. -->
+     reader's: in, or out. Each line cut to one. -->
 <section class="ch ch--blue" data-sc-act="flow" data-chapter="Who this is for">
   <div class="fos-wrap fos-pad qual">
     <div class="fos-headblock">
@@ -854,19 +941,19 @@ body {
       <div class="qual__reveal" data-sc-reveal="left" data-sc-reveal-at="0.06 0.26">
         <p class="fos-label" style="margin-bottom:1rem">This is for</p>
         <ul>
-          <li>Women's Super League 2 and tier 3 clubs with an audience growing faster than the commercial team can sell it.</li>
-          <li>Independent women's clubs operating outside a men's parent structure.</li>
-          <li>Women's teams inside a men's parent club who are being sold as an afterthought in a bundled deal.</li>
-          <li>Clubs who have never had their inventory valued by anyone who does this for a living.</li>
+          <li>WSL2 and tier 3 clubs whose audience has outgrown the commercial team.</li>
+          <li>Independent women's clubs, no men's parent.</li>
+          <li>Women's teams sold as an afterthought in someone else's bundle.</li>
+          <li>Anyone who has never had the inventory valued properly.</li>
         </ul>
       </div>
 
       <div class="qual--not qual__reveal" data-sc-reveal="right" data-sc-reveal-at="0.16 0.36">
         <p class="fos-label" style="margin-bottom:1rem">This is not for</p>
         <ul>
-          <li>Clubs with a full commercial department already selling at market rate.</li>
-          <li>Anyone looking for a grant, a partner, or a cause.</li>
-          <li>Clubs who want a logo on a bib in exchange for exposure.</li>
+          <li>Clubs already selling at market rate.</li>
+          <li>Anyone looking for a grant or a cause.</li>
+          <li>Clubs trading a logo for exposure.</li>
           <li>Anyone who wants the deal announced before the reporting is built.</li>
         </ul>
       </div>
@@ -891,16 +978,14 @@ body {
              real brands. No stock headshots. Nothing here is invented copy
              pretending to be fact. -->
         <p class="fos-p fos-tbc">
-          [Founder name and role.] [Where they sold rights before this, and for whom.]
-          [The brands they have done deals with, named.] [The football background, and
-          what it is actually worth here.]
+          [Founder name and role.] [Where they sold rights before, and for whom.]
+          [Brands they have done deals with, named.]
         </p>
         <p class="fos-p fos-tbc">
           [Second name, if there is one. Same treatment.]
         </p>
         <p class="fos-p" style="margin-top:1.6rem">
-          No account managers. The person who values your inventory is the person who
-          sells it and the person who writes the report.
+          No account managers. Whoever values your inventory sells it and writes the report.
         </p>
       </div>
 
@@ -912,9 +997,9 @@ body {
         <!-- PLACEHOLDER · titles are positioning, not claims. Replace with
              real pieces before launch; the index carries any number. -->
         <ul class="index">
-          <li><a href="#"><span class="index__kind">Valuation</span><span class="index__ttl">What a sleeve is actually worth in the Championship, and how the £4,000 number got set</span></a></li>
-          <li><a href="#"><span class="index__kind">Reporting</span><span class="index__ttl">Screen time is not reach, and selling it as reach is why your sponsor left</span></a></li>
-          <li><a href="#"><span class="index__kind">Market</span><span class="index__ttl">Seventy-one per cent to four clubs: reading the 2024/25 revenue split</span></a></li>
+          <li><a href="#"><span class="index__kind">Valuation</span><span class="index__ttl">What a sleeve is worth, and how the £4,000 number got set</span></a></li>
+          <li><a href="#"><span class="index__kind">Reporting</span><span class="index__ttl">Screen time is not reach, and why that lost you a sponsor</span></a></li>
+          <li><a href="#"><span class="index__kind">Market</span><span class="index__ttl">Seventy-one per cent to four clubs</span></a></li>
         </ul>
         <p class="fos-label" style="margin-top:1.4rem">More to follow</p>
       </div>
@@ -936,8 +1021,8 @@ body {
           <p class="fos-label">Chapter six</p>
           <h2 class="fos-display fos-display--head" style="margin-top:0.9rem">Book a valuation.</h2>
           <p class="fos-lede" style="margin-top:1.4rem">
-            One call, about an hour. You leave it knowing what your inventory is worth.
-            There is no charge for it and no obligation after it.
+            About an hour. You leave knowing what your inventory is worth.
+            No charge, no obligation.
           </p>
         </div>
 

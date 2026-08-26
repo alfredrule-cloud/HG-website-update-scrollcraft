@@ -1,6 +1,6 @@
 {
   "doc": {
-    "height": 9656,
+    "height": 8750,
     "vh": 844,
     "acts": [
       "pin",
@@ -30,7 +30,7 @@
       "act": "pin",
       "stages": [
         0,
-        8490
+        7584
       ],
       "segs": [],
       "custom": [],
@@ -42,7 +42,7 @@
     {
       "i": 1,
       "y": 286,
-      "pct": 3,
+      "pct": 4,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -55,7 +55,7 @@
       "act": "pin",
       "stages": [
         0,
-        8231
+        7325
       ],
       "segs": [],
       "custom": [],
@@ -67,7 +67,7 @@
     {
       "i": 2,
       "y": 545,
-      "pct": 6,
+      "pct": 7,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -80,7 +80,7 @@
       "act": "pin",
       "stages": [
         0,
-        7972
+        7066
       ],
       "segs": [],
       "custom": [],
@@ -92,7 +92,7 @@
     {
       "i": 3,
       "y": 805,
-      "pct": 9,
+      "pct": 10,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -105,7 +105,7 @@
       "act": "pin",
       "stages": [
         0,
-        7712
+        6806
       ],
       "segs": [],
       "custom": [],
@@ -117,7 +117,7 @@
     {
       "i": 4,
       "y": 1064,
-      "pct": 12,
+      "pct": 13,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -130,7 +130,7 @@
       "act": "pin",
       "stages": [
         0,
-        7453
+        6547
       ],
       "segs": [],
       "custom": [],
@@ -142,7 +142,7 @@
     {
       "i": 5,
       "y": 1323,
-      "pct": 15,
+      "pct": 17,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -155,7 +155,7 @@
       "act": "pin",
       "stages": [
         0,
-        7194
+        6288
       ],
       "segs": [],
       "custom": [],
@@ -166,8 +166,8 @@
     },
     {
       "i": 6,
-      "y": 1396,
-      "pct": 16,
+      "y": 1385,
+      "pct": 18,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -179,8 +179,8 @@
       ],
       "act": "pin",
       "stages": [
-        -46,
-        7121
+        -35,
+        6226
       ],
       "segs": [],
       "custom": [],
@@ -191,8 +191,8 @@
     },
     {
       "i": 7,
-      "y": 1829,
-      "pct": 21,
+      "y": 1718,
+      "pct": 22,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -202,10 +202,10 @@
         "none",
         "none"
       ],
-      "act": "flow",
+      "act": "pin",
       "stages": [
-        -479,
-        6688
+        -368,
+        5893
       ],
       "segs": [],
       "custom": [],
@@ -216,7 +216,7 @@
     },
     {
       "i": 8,
-      "y": 2263,
+      "y": 2052,
       "pct": 26,
       "settled": true,
       "contrast": [],
@@ -229,8 +229,8 @@
       ],
       "act": "flow",
       "stages": [
-        -913,
-        6254
+        -702,
+        5588
       ],
       "segs": [],
       "custom": [],
@@ -241,8 +241,8 @@
     },
     {
       "i": 9,
-      "y": 2696,
-      "pct": 31,
+      "y": 2292,
+      "pct": 29,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -254,8 +254,8 @@
       ],
       "act": "flow",
       "stages": [
-        -1346,
-        5821
+        -942,
+        5348
       ],
       "segs": [],
       "custom": [],
@@ -266,8 +266,8 @@
     },
     {
       "i": 10,
-      "y": 2811,
-      "pct": 32,
+      "y": 2385,
+      "pct": 30,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -279,8 +279,8 @@
       ],
       "act": "flow",
       "stages": [
-        -1461,
-        5706
+        -1035,
+        5255
       ],
       "segs": [],
       "custom": [],
@@ -291,8 +291,8 @@
     },
     {
       "i": 11,
-      "y": 3130,
-      "pct": 36,
+      "y": 2718,
+      "pct": 34,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -304,8 +304,8 @@
       ],
       "act": "flow",
       "stages": [
-        -1780,
-        5387
+        -1368,
+        4922
       ],
       "segs": [],
       "custom": [],
@@ -316,8 +316,8 @@
     },
     {
       "i": 12,
-      "y": 3268,
-      "pct": 37,
+      "y": 2767,
+      "pct": 35,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -329,8 +329,8 @@
       ],
       "act": "flow",
       "stages": [
-        -1918,
-        5249
+        -1417,
+        4873
       ],
       "segs": [],
       "custom": [],
@@ -341,8 +341,8 @@
     },
     {
       "i": 13,
-      "y": 3563,
-      "pct": 40,
+      "y": 3052,
+      "pct": 39,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -354,8 +354,8 @@
       ],
       "act": "flow",
       "stages": [
-        -2213,
-        4954
+        -1702,
+        4588
       ],
       "segs": [],
       "custom": [],
@@ -366,8 +366,8 @@
     },
     {
       "i": 14,
-      "y": 3725,
-      "pct": 42,
+      "y": 3243,
+      "pct": 41,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -379,8 +379,8 @@
       ],
       "act": "flow",
       "stages": [
-        -2375,
-        4792
+        -1893,
+        4397
       ],
       "segs": [],
       "custom": [],
@@ -391,7 +391,7 @@
     },
     {
       "i": 15,
-      "y": 4181,
+      "y": 3718,
       "pct": 47,
       "settled": true,
       "contrast": [],
@@ -404,8 +404,8 @@
       ],
       "act": "flow",
       "stages": [
-        -2831,
-        4336
+        -2368,
+        3922
       ],
       "segs": [],
       "custom": [],
@@ -416,7 +416,7 @@
     },
     {
       "i": 16,
-      "y": 4338,
+      "y": 3910,
       "pct": 49,
       "settled": true,
       "contrast": [],
@@ -429,8 +429,8 @@
       ],
       "act": "flow",
       "stages": [
-        -2988,
-        4179
+        -2560,
+        3730
       ],
       "segs": [],
       "custom": [],
@@ -441,7 +441,7 @@
     },
     {
       "i": 17,
-      "y": 4638,
+      "y": 4193,
       "pct": 53,
       "settled": true,
       "contrast": [],
@@ -454,8 +454,8 @@
       ],
       "act": "flow",
       "stages": [
-        -3288,
-        3879
+        -2843,
+        3447
       ],
       "segs": [],
       "custom": [],
@@ -466,7 +466,7 @@
     },
     {
       "i": 18,
-      "y": 4723,
+      "y": 4254,
       "pct": 54,
       "settled": true,
       "contrast": [],
@@ -479,8 +479,8 @@
       ],
       "act": "flow",
       "stages": [
-        -3373,
-        3794
+        -2904,
+        3386
       ],
       "segs": [],
       "custom": [],
@@ -491,7 +491,7 @@
     },
     {
       "i": 19,
-      "y": 5094,
+      "y": 4598,
       "pct": 58,
       "settled": true,
       "contrast": [],
@@ -504,8 +504,8 @@
       ],
       "act": "flow",
       "stages": [
-        -3744,
-        3423
+        -3248,
+        3042
       ],
       "segs": [],
       "custom": [],
@@ -516,21 +516,21 @@
     },
     {
       "i": 20,
-      "y": 5109,
-      "pct": 58,
+      "y": 4668,
+      "pct": 59,
       "settled": true,
       "contrast": [],
       "cues": [],
       "clips": [],
       "rails": [],
       "wipes": [
-        "none",
-        "none"
+        "inset(0px 100% 0px 0px)",
+        "inset(0px 0px 0px 100%)"
       ],
       "act": "flow",
       "stages": [
-        -3759,
-        3408
+        -3318,
+        2972
       ],
       "segs": [],
       "custom": [],
@@ -541,8 +541,8 @@
     },
     {
       "i": 21,
-      "y": 5494,
-      "pct": 62,
+      "y": 4859,
+      "pct": 61,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -554,8 +554,8 @@
       ],
       "act": "flow",
       "stages": [
-        -4144,
-        3023
+        -3509,
+        2781
       ],
       "segs": [],
       "custom": [],
@@ -566,21 +566,21 @@
     },
     {
       "i": 22,
-      "y": 5500,
-      "pct": 62,
+      "y": 4943,
+      "pct": 63,
       "settled": true,
       "contrast": [],
       "cues": [],
       "clips": [],
       "rails": [],
       "wipes": [
-        "inset(0px 100% 0px 0px)",
+        "inset(0px 99.61% 0px 0px)",
         "inset(0px 0px 0px 100%)"
       ],
       "act": "flow",
       "stages": [
-        -4150,
-        3017
+        -3593,
+        2697
       ],
       "segs": [],
       "custom": [],
@@ -591,21 +591,21 @@
     },
     {
       "i": 23,
-      "y": 5867,
-      "pct": 67,
+      "y": 5200,
+      "pct": 66,
       "settled": true,
       "contrast": [],
       "cues": [],
       "clips": [],
       "rails": [],
       "wipes": [
-        "inset(0px 14.58% 0px 0px)",
-        "inset(0px 0px 0px 83.3%)"
+        "inset(0px 14.47% 0px 0px)",
+        "inset(0px 0px 0px 83.18%)"
       ],
       "act": "flow",
       "stages": [
-        -4517,
-        2650
+        -3850,
+        2440
       ],
       "segs": [],
       "custom": [],
@@ -616,7 +616,7 @@
     },
     {
       "i": 24,
-      "y": 5879,
+      "y": 5287,
       "pct": 67,
       "settled": true,
       "contrast": [],
@@ -624,13 +624,13 @@
       "clips": [],
       "rails": [],
       "wipes": [
-        "inset(0px 11.3% 0px 0px)",
-        "inset(0px 0px 0px 79.55%)"
+        "inset(0px 0% 0px 0px)",
+        "inset(0px 0px 0px 49.18%)"
       ],
       "act": "flow",
       "stages": [
-        -4529,
-        2638
+        -3937,
+        2353
       ],
       "segs": [],
       "custom": [],
@@ -641,8 +641,8 @@
     },
     {
       "i": 25,
-      "y": 6235,
-      "pct": 71,
+      "y": 5541,
+      "pct": 70,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -654,8 +654,8 @@
       ],
       "act": "flow",
       "stages": [
-        -4885,
-        2282
+        -4191,
+        2099
       ],
       "segs": [],
       "custom": [],
@@ -666,7 +666,7 @@
     },
     {
       "i": 26,
-      "y": 6265,
+      "y": 5632,
       "pct": 71,
       "settled": true,
       "contrast": [],
@@ -679,8 +679,8 @@
       ],
       "act": "flow",
       "stages": [
-        -4915,
-        2252
+        -4282,
+        2008
       ],
       "segs": [],
       "custom": [],
@@ -691,8 +691,8 @@
     },
     {
       "i": 27,
-      "y": 6572,
-      "pct": 75,
+      "y": 5792,
+      "pct": 73,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -704,8 +704,8 @@
       ],
       "act": "flow",
       "stages": [
-        -5222,
-        1945
+        -4442,
+        1848
       ],
       "segs": [],
       "custom": [],
@@ -716,8 +716,8 @@
     },
     {
       "i": 28,
-      "y": 6603,
-      "pct": 75,
+      "y": 5881,
+      "pct": 74,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -729,8 +729,8 @@
       ],
       "act": "flow",
       "stages": [
-        -5253,
-        1914
+        -4531,
+        1759
       ],
       "segs": [],
       "custom": [],
@@ -741,8 +741,8 @@
     },
     {
       "i": 29,
-      "y": 6953,
-      "pct": 79,
+      "y": 6148,
+      "pct": 78,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -754,8 +754,8 @@
       ],
       "act": "flow",
       "stages": [
-        -5603,
-        1564
+        -4798,
+        1492
       ],
       "segs": [],
       "custom": [],
@@ -766,7 +766,7 @@
     },
     {
       "i": 30,
-      "y": 6970,
+      "y": 6222,
       "pct": 79,
       "settled": true,
       "contrast": [],
@@ -779,8 +779,8 @@
       ],
       "act": "flow",
       "stages": [
-        -5620,
-        1547
+        -4872,
+        1418
       ],
       "segs": [],
       "custom": [],
@@ -791,8 +791,8 @@
     },
     {
       "i": 31,
-      "y": 7334,
-      "pct": 83,
+      "y": 6505,
+      "pct": 82,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -804,8 +804,8 @@
       ],
       "act": "flow",
       "stages": [
-        -5984,
-        1183
+        -5155,
+        1135
       ],
       "segs": [],
       "custom": [],
@@ -816,7 +816,7 @@
     },
     {
       "i": 32,
-      "y": 7338,
+      "y": 6563,
       "pct": 83,
       "settled": true,
       "contrast": [],
@@ -829,8 +829,8 @@
       ],
       "act": "flow",
       "stages": [
-        -5988,
-        1179
+        -5213,
+        1077
       ],
       "segs": [],
       "custom": [],
@@ -841,8 +841,8 @@
     },
     {
       "i": 33,
-      "y": 7715,
-      "pct": 88,
+      "y": 6861,
+      "pct": 87,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -854,8 +854,8 @@
       ],
       "act": "flow",
       "stages": [
-        -6365,
-        802
+        -5511,
+        779
       ],
       "segs": [],
       "custom": [],
@@ -866,8 +866,8 @@
     },
     {
       "i": 34,
-      "y": 8096,
-      "pct": 92,
+      "y": 7217,
+      "pct": 91,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -877,10 +877,10 @@
         "inset(0px 0% 0px 0px)",
         "inset(0px 0px 0px 0%)"
       ],
-      "act": "pin",
+      "act": "flow",
       "stages": [
-        -6746,
-        421
+        -5867,
+        423
       ],
       "segs": [],
       "custom": [],
@@ -891,7 +891,7 @@
     },
     {
       "i": 35,
-      "y": 8477,
+      "y": 7574,
       "pct": 96,
       "settled": true,
       "contrast": [],
@@ -904,8 +904,8 @@
       ],
       "act": "pin",
       "stages": [
-        -7127,
-        40
+        -6224,
+        66
       ],
       "segs": [],
       "custom": [],
@@ -916,8 +916,8 @@
     },
     {
       "i": 36,
-      "y": 8523,
-      "pct": 97,
+      "y": 7617,
+      "pct": 96,
       "settled": true,
       "contrast": [],
       "cues": [],
@@ -929,8 +929,8 @@
       ],
       "act": "pin",
       "stages": [
-        -7173,
-        0
+        -6267,
+        23
       ],
       "segs": [],
       "custom": [],
@@ -941,12 +941,12 @@
     },
     {
       "i": 37,
-      "y": 8579,
+      "y": 7673,
       "pct": 97,
       "settled": true,
       "contrast": [
         {
-          "t": "Chapter six Book a valuation. One call, ",
+          "t": "Chapter six Book a valuation. About an h",
           "dir": "light-on-dark",
           "worst": 14.67,
           "mean": 14.67
@@ -954,7 +954,7 @@
       ],
       "cues": [
         {
-          "t": "Chapter six Book a valuation. One call, about ",
+          "t": "Chapter six Book a valuation. About an hour. Y",
           "o": 0.99
         }
       ],
@@ -966,7 +966,7 @@
       ],
       "act": "pin",
       "stages": [
-        -7229,
+        -6323,
         0
       ],
       "segs": [],
@@ -978,12 +978,12 @@
     },
     {
       "i": 38,
-      "y": 8636,
+      "y": 7730,
       "pct": 98,
       "settled": true,
       "contrast": [
         {
-          "t": "Chapter six Book a valuation. One call, ",
+          "t": "Chapter six Book a valuation. About an h",
           "dir": "light-on-dark",
           "worst": 14.67,
           "mean": 14.67
@@ -991,7 +991,7 @@
       ],
       "cues": [
         {
-          "t": "Chapter six Book a valuation. One call, about ",
+          "t": "Chapter six Book a valuation. About an hour. Y",
           "o": 1
         }
       ],
@@ -1003,7 +1003,7 @@
       ],
       "act": "pin",
       "stages": [
-        -7286,
+        -6380,
         0
       ],
       "segs": [],
@@ -1015,12 +1015,12 @@
     },
     {
       "i": 39,
-      "y": 8693,
-      "pct": 99,
+      "y": 7787,
+      "pct": 98,
       "settled": true,
       "contrast": [
         {
-          "t": "Chapter six Book a valuation. One call, ",
+          "t": "Chapter six Book a valuation. About an h",
           "dir": "light-on-dark",
           "worst": 14.67,
           "mean": 14.67
@@ -1028,7 +1028,7 @@
       ],
       "cues": [
         {
-          "t": "Chapter six Book a valuation. One call, about ",
+          "t": "Chapter six Book a valuation. About an hour. Y",
           "o": 1
         }
       ],
@@ -1040,7 +1040,7 @@
       ],
       "act": "pin",
       "stages": [
-        -7343,
+        -6437,
         0
       ],
       "segs": [],
@@ -1052,12 +1052,12 @@
     },
     {
       "i": 40,
-      "y": 8749,
+      "y": 7843,
       "pct": 99,
       "settled": true,
       "contrast": [
         {
-          "t": "Chapter six Book a valuation. One call, ",
+          "t": "Chapter six Book a valuation. About an h",
           "dir": "light-on-dark",
           "worst": 14.67,
           "mean": 14.67
@@ -1065,7 +1065,7 @@
       ],
       "cues": [
         {
-          "t": "Chapter six Book a valuation. One call, about ",
+          "t": "Chapter six Book a valuation. About an hour. Y",
           "o": 1
         }
       ],
@@ -1077,7 +1077,7 @@
       ],
       "act": "pin",
       "stages": [
-        -7399,
+        -6493,
         0
       ],
       "segs": [],
@@ -1089,12 +1089,12 @@
     },
     {
       "i": 41,
-      "y": 8806,
+      "y": 7900,
       "pct": 100,
       "settled": true,
       "contrast": [
         {
-          "t": "Chapter six Book a valuation. One call, ",
+          "t": "Chapter six Book a valuation. About an h",
           "dir": "light-on-dark",
           "worst": 14.67,
           "mean": 14.67
@@ -1102,7 +1102,7 @@
       ],
       "cues": [
         {
-          "t": "Chapter six Book a valuation. One call, about ",
+          "t": "Chapter six Book a valuation. About an hour. Y",
           "o": 1
         }
       ],
@@ -1114,7 +1114,7 @@
       ],
       "act": "pin",
       "stages": [
-        -7456,
+        -6550,
         0
       ],
       "segs": [],
@@ -1126,12 +1126,12 @@
     },
     {
       "i": 42,
-      "y": 8812,
+      "y": 7906,
       "pct": 100,
       "settled": true,
       "contrast": [
         {
-          "t": "Chapter six Book a valuation. One call, ",
+          "t": "Chapter six Book a valuation. About an h",
           "dir": "light-on-dark",
           "worst": 14.67,
           "mean": 14.67
@@ -1139,7 +1139,7 @@
       ],
       "cues": [
         {
-          "t": "Chapter six Book a valuation. One call, about ",
+          "t": "Chapter six Book a valuation. About an hour. Y",
           "o": 1
         }
       ],
@@ -1151,7 +1151,7 @@
       ],
       "act": "pin",
       "stages": [
-        -7462,
+        -6556,
         0
       ],
       "segs": [],
