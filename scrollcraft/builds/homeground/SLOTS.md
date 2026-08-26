@@ -105,11 +105,21 @@ no metric, `metricNote` carries a verifiable fact instead and the tile reads
 
 ## The logo and the lime
 
-The wordmark is the arched collegiate "HOMEGROUND" set as SVG text on an arc in
-*Graduate*, thickened with a painted-under stroke. A close reconstruction, **not
-a trace of your file** — drop the real vector at `assets/logo.svg` and swap the
-`<svg class="logo">` block in the header for `<img src="assets/logo.svg"
-alt="Homeground">`.
+The wordmark on the page is a **reconstruction, not your artwork**: the arched
+collegiate "HOMEGROUND" set as SVG text on an arc in *Graduate*, thickened with a
+painted-under stroke. Alfa Slab One, Anton and Bungee were tried and rejected
+(too slabby, and no serifs); Graduate is the right genre, and the arch depth and
+weight were tuned against your image in `tools/logo-lab.html`. It is close. It is
+not the same typeface, because I do not have your file.
+
+**To fix it permanently, drop the real artwork at `assets/logo.svg`** (or
+`assets/logo.png`). No code change: the page probes for it on load and replaces
+the reconstruction when it finds it, moving the accessible name onto the image.
+Delete the file and the reconstruction comes back. Both paths are covered by the
+check suite.
+
+To re-tune the reconstruction instead, open `tools/logo-lab.html` — it renders
+arch-depth and weight variants side by side on the brand field.
 
 `--lime: #7CEE00` is **eyeballed from your image, not sampled.** Change it once
 at the top of `index.html`. Its companion `--lime-deep: #3D7300` is the accent on

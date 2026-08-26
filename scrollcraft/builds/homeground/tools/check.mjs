@@ -133,6 +133,36 @@ for (const w of [390, 620, 768, 1040, 1440]) {
   await p.close();
 }
 
+/* ── 5b. the logo drop-in: real artwork replaces the reconstruction ────── */
+{
+  const fs = await import('node:fs');
+  const probe = async () => {
+    const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+    await p.goto(URL, { waitUntil: 'networkidle' });
+    await p.waitForTimeout(500);
+    const r = await p.evaluate(() => {
+      const h = document.querySelector('.top__mark');
+      return { img: !!h.querySelector('img.logo'), svg: !!h.querySelector('svg.logo'),
+               alt: (h.querySelector('img.logo') || {}).alt, sr: !!h.querySelector('.sr') };
+    });
+    await p.close();
+    return r;
+  };
+
+  const before = await probe();
+  ok('reconstruction shows when no artwork present', before.svg && !before.img && before.sr);
+
+  fs.writeFileSync('assets/logo.svg',
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60"><rect width="200" height="60" fill="#7CEE00"/></svg>');
+  const after = await probe();
+  fs.unlinkSync('assets/logo.svg');
+  ok('real artwork replaces it with no code change', after.img && !after.svg, `src swapped=${after.img}`);
+  ok('accessible name moves to the image', after.alt === 'Homeground' && !after.sr, `alt="${after.alt}"`);
+
+  const restored = await probe();
+  ok('removing the artwork restores the reconstruction', restored.svg && !restored.img);
+}
+
 /* ── 6. a11y: heading order, alt text, focus ──────────────────────────── */
 {
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });

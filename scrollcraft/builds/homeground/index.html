@@ -73,8 +73,8 @@ a { color: inherit; }
 /* ── The mark ───────────────────────────────────────────────────────────── */
 .logo { display: block; width: 100%; height: auto; color: var(--ink); }
 .logo text {
-  font-family: var(--font-mark); font-size: 134px;
-  fill: currentColor; stroke: currentColor; stroke-width: 3.5;
+  font-family: var(--font-mark); font-size: 140px;
+  fill: currentColor; stroke: currentColor; stroke-width: 10;
   paint-order: stroke fill; stroke-linejoin: round;
 }
 
@@ -347,8 +347,8 @@ body.is-project .work-view { display: none; }
   <header class="top">
     <h1 class="top__mark">
       <span class="sr">Homeground</span>
-      <svg class="logo" viewBox="0 0 1000 300" aria-hidden="true">
-        <defs><path id="arcA" d="M 30 255 Q 500 30 970 255" fill="none"></path></defs>
+      <svg class="logo" viewBox="0 0 1000 330" aria-hidden="true">
+        <defs><path id="arcA" d="M 30 285 Q 500 -60 970 285" fill="none"></path></defs>
         <text text-anchor="middle"><textPath href="#arcA" startOffset="50%">HOMEGROUND</textPath></text>
       </svg>
     </h1>
@@ -750,6 +750,32 @@ function route() {
 }
 addEventListener('hashchange', route);
 route();
+
+/* ── The real mark, when it arrives ────────────────────────────────────
+   The SVG above is a reconstruction in Graduate, not a trace of Homeground's
+   artwork. Drop the real file at assets/logo.svg (or .png) and it replaces the
+   reconstruction on load with no code change. Probed rather than referenced
+   directly so a missing file costs one 404 and nothing renders broken. */
+(function () {
+  const host = document.querySelector('.top__mark');
+  if (!host) return;
+  const candidates = ['assets/logo.svg', 'assets/logo.png'];
+  (function tryNext(i) {
+    if (i >= candidates.length) return;              // keep the reconstruction
+    const probe = new Image();
+    probe.onload = () => {
+      const img = document.createElement('img');
+      img.src = candidates[i];
+      img.alt = 'Homeground';
+      img.className = 'logo';
+      host.querySelector('.logo').replaceWith(img);
+      const sr = host.querySelector('.sr');
+      if (sr) sr.remove();                           // the img now carries the name
+    };
+    probe.onerror = () => tryNext(i + 1);
+    probe.src = candidates[i];
+  })(0);
+})();
 
 /* ── Enquiry. No backend here, so it composes a mail draft. Swap for a real
       endpoint on launch; the note under the button says so on the page. ── */

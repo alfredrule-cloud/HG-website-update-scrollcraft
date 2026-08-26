@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Graduate";src:url("../fonts/graduate-0.woff2") format("woff2")}
+body{margin:0;background:#7CEE00;font-family:system-ui}
+.row{display:grid;grid-template-columns:11rem 1fr;align-items:center;gap:1rem;
+     padding:.5rem 1.5rem;border-bottom:1px solid rgba(0,0,0,.18)}
+.lbl{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0B0D0B}
+svg{display:block;width:100%;height:auto;color:#0B0D0B}
+</style></head><body>
+<div id="out"></div>
+<script>
+// arch depth is the control-point rise; weight is the painted-under stroke;
+// squeeze <1 condenses the glyphs horizontally via lengthAdjust
+// Arch/weight tuner for the wordmark reconstruction. Alfa Slab One, Anton and
+// Bungee were tried and rejected: too slabby, and no serifs at all. Graduate is
+// the right genre; only arch depth and weight needed tuning. Row 2 shipped —
+// heavier fills the counters of the O and G, deeper distorts the end letters.
+const V = [
+  ['1 · arch -45 w8',   'Graduate', -45, 140, 8,  0.97, 'spacing'],
+  ['2 · SHIPPED',       'Graduate', -60, 140, 10, 0.97, 'spacing'],
+  ['3 · arch -60 w12',  'Graduate', -60, 140, 12, 0.97, 'spacing'],
+  ['4 · arch -75 w10',  'Graduate', -75, 145, 10, 0.97, 'spacing'],
+];
+document.getElementById('out').innerHTML = V.map(([lbl, fam, cy, fs, sw, tl, adj], i) => `
+  <div class="row"><span class="lbl">${lbl}</span>
+  <svg viewBox="0 0 1000 330" data-i="${i}">
+    <defs><path id="p${i}" d="M 30 285 Q 500 ${cy} 970 285" fill="none"></path></defs>
+    <text text-anchor="middle" style="font-family:${fam};font-size:${fs}px;fill:currentColor;
+      ${sw ? `stroke:currentColor;stroke-width:${sw};paint-order:stroke fill;stroke-linejoin:round;` : ''}">
+      <textPath href="#p${i}" startOffset="50%" lengthAdjust="${adj}">HOMEGROUND</textPath>
+    </text>
+  </svg></div>`).join('');
+
+// fit each to its own arc
+document.fonts.ready.then(() => {
+  document.querySelectorAll('svg').forEach(svg => {
+    const i = svg.dataset.i, tp = svg.querySelector('textPath');
+    const L = document.getElementById('p' + i).getTotalLength();
+    tp.setAttribute('textLength', (L * V[i][5]).toFixed(1));
+  });
+  document.title = 'ready';
+});
+</script></body></html>
