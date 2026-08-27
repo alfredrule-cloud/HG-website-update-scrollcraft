@@ -251,3 +251,32 @@ above a rule. Felt state moved from Concern to Alarm.
 **Chapter five cannot pass the feel check yet.** It reads "unfinished" because
 it is: the people are bracketed placeholders. That is the honest state, not a
 design failure, and it resolves the moment real names and real deals go in.
+
+---
+
+## Imagery: direction chosen, budget held
+
+Asked where photography should go and how to pay for it, the client chose
+**inventory detail shots** and **no spend yet**.
+
+The direction is right for the anti-brief. Every sports-photography option is
+banned by it (no stock, no silhouettes, no motion-blur action, no headshots, no
+clip-art footballs). What survives is photographing *the inventory itself*:
+catalogue shots of the things on the rate card. That reads as an audit document
+rather than as a sports agency, which is the whole positioning.
+
+So the page ships without photography and is built to receive it:
+
+- `assets/MANIFEST.md` carries the seven shots, the single style preamble to
+  reuse verbatim, the exact scene per shot, both generation routes and the
+  encode command.
+- The schedule in chapter two already has the slots, the sizing and the
+  responsive rules. Turning them on is two edits: add `schedule--illustrated`
+  to the table, uncomment the seven `<img>` tags.
+- **The layout was tested with stand-ins, not assumed.** The first pass at
+  192x128 pushed the schedule past a thousand pixels and sank every label to the
+  bottom of its row. Slots are now 112x72 with the rows set by the type, which
+  was verified on a render and then reverted so no placeholder art ships.
+
+Cost, when they want it: about 2 credits or a few cents per still, so roughly
+12 credits for the set. The smallest Higgsfield pack is 500.
